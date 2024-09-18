@@ -3,3 +3,4 @@ export * from "./Icon/Icon";
 export * from "./Modal/Modal";
 export * from "./Loader/Loader";
 export * from "./ScrollUpButton/ScrollUpButton";
+export * from "./Header/NavBar";
