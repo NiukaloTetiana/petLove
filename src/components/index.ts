@@ -3,4 +3,8 @@ export * from "./Icon/Icon";
 export * from "./Modal/Modal";
 export * from "./Loader/Loader";
 export * from "./ScrollUpButton/ScrollUpButton";
+export * from "./Layout/Layout";
+export * from "./Header/Header";
+export * from "./Header/AuthButton";
+export * from "./Header/BurgerMenu";
 export * from "./Header/NavBar";
