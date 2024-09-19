@@ -71,7 +71,7 @@ input {
   &:hover,
   &:focus,
   &.active {
-    @apply border-[#f6b83d] shadow-md;
+    @apply border-white shadow-sm;
   }
 }
 
@@ -125,6 +125,47 @@ input {
     screen and (min-resolution: 1.5dppx) {
     .bg-home::after {
       background-image: url("./assets/images/home/home_desktop_2x.webp");
+    }
+  }
+}
+
+.bg-img {
+  background-image: url("./assets/images/backdrop/loader_mobile_1x.webp");
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 2),
+  screen and (min-resolution: 1.5dppx) {
+  .bg-img {
+    background-image: url("./assets/images/backdrop/loader_mobile_2x.webp");
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .bg-img {
+    background-image: url("./assets/images/backdrop/loader_tablet_1x.webp");
+  }
+
+  @media screen and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min-resolution: 1.5dppx) {
+    .bg-img {
+      background-image: url("./assets/images/backdrop/loader_tablet_2x.webp");
+    }
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .bg-img {
+    background-image: url("./assets/images/backdrop/loader_desktop_1x.webp");
+  }
+
+  @media screen and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min-resolution: 1.5dppx) {
+    .bg-img {
+      background-image: url("./assets/images/backdrop/loader_desktop_2x.webp");
     }
   }
 }

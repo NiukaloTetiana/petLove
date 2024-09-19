@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 
-import { Header, Loader, ScrollUpButton } from "../../components";
+import { Header, ScrollUpButton } from "../../components";
 
 export const Layout = () => {
   return (
@@ -9,7 +9,7 @@ export const Layout = () => {
       <Header />
 
       <main>
-        <Suspense fallback={<Loader />}>
+        <Suspense fallback={null}>
           <Outlet />
         </Suspense>
         <ScrollUpButton />
