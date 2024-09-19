@@ -1,8 +1,8 @@
 const HomePage = () => {
   return (
     <section className="bg-white">
-      <div className="container lg:px-[32px]">
-        <div className="flex flex-col gap-[24px] rounded-b-[30px] bg-[#f6b83d] px-5 pb-[50px] pt-[32px] md:gap-[32px] md:rounded-b-[60px] md:px-[32px] md:pb-[44px] md:pt-[84px] lg:flex-row lg:gap-[73px] lg:px-[64px]">
+      <div className="container pb-[10px] md:pb-[16px] lg:px-[32px]">
+        <div className="bg-home flex flex-col gap-[24px] rounded-b-[30px] bg-[#f6b83d] px-5 pb-[50px] pt-[32px] md:gap-[32px] md:rounded-b-[60px] md:px-[32px] md:pb-[44px] md:pt-[84px] lg:flex-row lg:gap-[73px] lg:px-[64px]">
           <h1 className="text-[50px] font-bold leading-[0.96] tracking-[-0.03em] text-white md:text-[80px] lg:w-[760px] lg:text-[90px]">
             Take good <span className="opacity-40">care</span> of your small
             pets

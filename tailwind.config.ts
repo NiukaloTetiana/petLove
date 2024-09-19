@@ -34,7 +34,7 @@ export default {
           "@screen lg": {
             paddingLeft: "64px",
             paddingRight: "63px",
-            maxWidth: "1440px",
+            maxWidth: "1280px",
           },
         },
       });
