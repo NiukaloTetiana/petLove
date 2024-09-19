@@ -30,11 +30,15 @@ export const ScrollUpButton = () => {
   return (
     <button
       onClick={handleClickBtn}
-      className={`fixed bottom-4 right-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#F6B83D] shadow-md transition duration-300 hover:bg-[#FFF4DF] md:bottom-[30px] md:right-[30px] lg:bottom-[40px] lg:right-[60px] ${
-        !isVisible ? "scale-0" : "scale-1"
+      className={`group fixed bottom-4 right-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#F6B83D] shadow-md transition duration-500 hover:bg-[#fbe7c1] md:bottom-[30px] md:right-[30px] lg:bottom-[40px] lg:right-[60px] ${
+        !isVisible ? "scale-0" : "scale-100"
       }`}
     >
-      <Icon id="arrow-up" className="fill-white" size={20} />
+      <Icon
+        id="arrow-up"
+        className="fill-white hover:fill-[#F6B83D]"
+        size={20}
+      />
     </button>
   );
 };
