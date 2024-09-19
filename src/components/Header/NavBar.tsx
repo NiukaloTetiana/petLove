@@ -28,7 +28,7 @@ export const NavBar = ({
     <nav className={navClass}>
       <Link
         to="/"
-        className={`${logoClass} flex items-center justify-center text-2xl text-[20px] font-bold leading-none tracking-[-0.04em] md:text-[28px] ${
+        className={`${logoClass} flex items-end justify-center gap-[1.7px] text-[20px] font-bold leading-none tracking-[-0.04em] md:text-[28px] ${
           isHomePage ? "text-white md:font-extrabold" : "text-[#262626]"
         }`}
       >
