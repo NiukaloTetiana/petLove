@@ -86,7 +86,7 @@ input {
 }
 
 .bg-home {
-  @apply relative after:absolute after:-bottom-[402px] after:right-0 after:h-[402px] after:w-[335px] after:rounded-[30px] after:content-[''] after:sm-max:w-[280px] after:md:-bottom-[496px] md:after:h-[496px] md:after:w-[704px] after:md:rounded-[60px] after:lg:-bottom-[384px] lg:after:h-[384px] lg:after:w-[1216px];
+  @apply relative after:absolute after:bottom-0 after:right-0 after:h-[402px] after:w-[335px] after:translate-y-full after:rounded-[30px] after:content-[''] after:sm-max:w-[280px] md:after:h-[496px] md:after:w-[704px] after:md:rounded-[60px] lg:after:h-[384px] lg:after:w-[1216px];
 }
 
 .bg-home::after {
