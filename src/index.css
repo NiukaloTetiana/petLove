@@ -36,9 +36,29 @@
 }
 
 body {
-  @apply font-manrope bg-[#f9f9f9] font-medium;
+  @apply bg-[#f9f9f9] font-manrope font-medium;
 }
 
 input {
   @apply outline-none;
+}
+
+.link-home {
+  @apply border-[#26262626] text-[#262626] transition duration-500 lg:border-[#ffffff66] lg:text-white;
+
+  &:hover,
+  &:focus,
+  &.active {
+    @apply border-[#f6b83d] shadow-sm;
+  }
+}
+
+.link-next {
+  @apply border-[#ffffff26] text-white transition duration-500 lg:border-[#26262626] lg:text-[#262626];
+
+  &:hover,
+  &:focus,
+  &.active {
+    @apply border-[#ffffff80] shadow-sm lg:border-[#f6b83d];
+  }
 }

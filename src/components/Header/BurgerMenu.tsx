@@ -31,7 +31,7 @@ export const BurgerMenu = ({
       className={`${classBackdrop} fixed left-0 top-0 z-50 h-full w-full bg-transparent backdrop-blur-sm lg:hidden`}
     >
       <div
-        className={`${classMenu} relative ml-auto flex h-full w-[218px] flex-col items-center justify-between gap-[45px] px-[20px] pb-10 pt-[236px] transition duration-500 md:w-[374px] md:px-[49px] md:pb-10 md:pt-[369px] ${isHomePage ? "bg-white" : "bg-[#f6b83d]"}`}
+        className={`${classMenu} relative ml-auto flex h-full w-[218px] flex-col items-center justify-between px-[20px] pb-10 pt-[236px] transition duration-500 md:w-[374px] md:px-[49px] md:pt-[369px] ${isHomePage ? "bg-white" : "bg-[#f6b83d]"}`}
       >
         <button
           type="button"
@@ -47,8 +47,7 @@ export const BurgerMenu = ({
 
         <NavBar
           logoClass="hidden"
-          linkListClass="flex flex-col gap-[2px] items-center justify-center hidden:lg"
-          linkClasses={isHomePage ? "text-[#262626]" : "text-white"}
+          linkListClass="flex hidden:lg"
           toggleMenu={toggleMenu}
         />
 
