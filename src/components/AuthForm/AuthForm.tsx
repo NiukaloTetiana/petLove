@@ -40,7 +40,7 @@ export const AuthForm = ({ registration, toggleModal }: IAuthFormProps) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="py-[55px]px-5 w-full rounded-[30px] bg-white px-5 py-[55px] md:rounded-[60px] md:px-[140px] md:py-[71px] lg:px-[84px] lg:py-[69px]"
+      className={`w-full rounded-[30px] bg-white px-5 md:rounded-[60px] md:px-[140px] lg:w-[592px] lg:px-[84px] ${registration ? "py-5 md:py-[30px] lg:py-[77px]" : "py-[55px] md:py-[71px] lg:py-[118px]"}`}
     >
       <h2 className="mb-[12px] text-[28px] font-bold leading-[1] tracking-[-0.04em] text-[#262626] md:mb-[16px] md:text-[54px]">
         {registration ? "Registration" : "Log in"}
@@ -78,7 +78,6 @@ export const AuthForm = ({ registration, toggleModal }: IAuthFormProps) => {
         errors={errors}
         dirtyFields={dirtyFields}
         register={register}
-        className="mb-[40px] md:mb-[50px]"
       />
 
       {registration && (
@@ -89,13 +88,13 @@ export const AuthForm = ({ registration, toggleModal }: IAuthFormProps) => {
           errors={errors}
           dirtyFields={dirtyFields}
           register={register}
-          className="mb-[24px] md:mb-[34px]"
+          registration
         />
       )}
 
       <button
         type="submit"
-        className="link-reg mb-[12px] h-[42px] w-full rounded-[30px] bg-[#f6b83d] p-[12px] text-center text-[14px] font-bold uppercase leading-[1.29] tracking-[-0.03em] text-white transition duration-500 md:mb-[16px] md:p-[16px] md:text-[16px] md:leading-[0.8]"
+        className="link-reg mb-[12px] h-[42px] w-full rounded-[30px] bg-[#f6b83d] p-[12px] text-center text-[14px] font-bold uppercase leading-[1.29] tracking-[-0.03em] text-white transition duration-500 md:mb-[16px] md:h-[52px] md:p-[16px] md:text-[16px] md:leading-[1]"
       >
         {registration ? "Registration" : "Log in"}
       </button>
