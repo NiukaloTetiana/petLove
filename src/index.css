@@ -173,3 +173,11 @@ input {
 .text-message {
   @apply absolute -bottom-[2px] left-[12px] translate-y-full text-[10px] font-medium leading-[1.2] tracking-[-0.03em] md:-bottom-[4px] md:left-[16px] md:text-[12px] md:leading-[1.17];
 }
+
+.input-wrapper-reg:last-of-type {
+  @apply mb-[24px] md:mb-[32px];
+}
+
+.input-wrapper-log:last-of-type {
+  @apply mb-10 md:mb-[64px] lg:mb-[72px];
+}

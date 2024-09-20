@@ -17,6 +17,7 @@ interface InputFieldProps {
   dirtyFields: FormState<IFormData>["dirtyFields"];
   register: UseFormRegister<IFormData>;
   setShowPass?: (value: boolean) => void;
+  registration?: boolean;
 }
 
 export const InputField = ({
@@ -26,11 +27,12 @@ export const InputField = ({
   errors,
   dirtyFields,
   register,
+  registration,
 }: InputFieldProps) => {
   const [showPass, setShowPass] = useState(false);
 
   const baseClass =
-    "bg-white w-full h-[42px] border border-[#26262626] rounded-[30px] p-[12px] md:p-[16px] text-[14px] md:text-[16px] leading-[1.29] md:leading-[1.25] tracking-[-0.03em] text-[#262626cc] placeholder:text-[#2626267f] hover:shadow-md focus:shadow-md hover:border-[#f6b83d] focus:border-[#f6b83d] transition duration-500";
+    "bg-white w-full h-[42px] md:h-[52px] border border-[#26262626] rounded-[30px] p-[12px] md:p-[16px] text-[14px] md:text-[16px] leading-[1.29] md:leading-[1.25] tracking-[-0.03em] text-[#262626cc] placeholder:text-[#2626267f] hover:shadow-md focus:shadow-md hover:border-[#f6b83d] focus:border-[#f6b83d] transition duration-500";
   const errorClass =
     "border-[#ef2447] hover:border-[#ef2447] focus:border-[#ef2447] transition duration-300";
   const successClass =
@@ -44,7 +46,9 @@ export const InputField = ({
         : baseClass;
 
   return (
-    <div className="relative mb-5 last:mb-20 md:mb-[30px]">
+    <div
+      className={`relative mb-5 md:mb-[30px] ${registration ? "input-wrapper-reg" : "input-wrapper-log"}`}
+    >
       <input
         type={type === "password" && showPass ? "text" : type}
         placeholder={placeholder}
