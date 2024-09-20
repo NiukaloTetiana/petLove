@@ -32,18 +32,21 @@ export const InputField = ({
   const [showPass, setShowPass] = useState(false);
 
   const baseClass =
-    "bg-white w-full h-[42px] md:h-[52px] border border-[#26262626] rounded-[30px] p-[12px] md:p-[16px] text-[14px] md:text-[16px] leading-[1.29] md:leading-[1.25] tracking-[-0.03em] text-[#262626cc] placeholder:text-[#2626267f] hover:shadow-md focus:shadow-md hover:border-[#f6b83d] focus:border-[#f6b83d] transition duration-500";
-  const errorClass =
-    "border-[#ef2447] hover:border-[#ef2447] focus:border-[#ef2447] transition duration-300";
-  const successClass =
-    "border-[#08aa83] hover:border-[#08aa83] focus:border-[#08aa83] transition duration-300";
+    "bg-white w-full h-[42px] md:h-[52px] border rounded-[30px] p-[12px] md:p-[16px] text-[14px] md:text-[16px] leading-[1.29] md:leading-[1.25] tracking-[-0.03em] text-[#262626cc] placeholder:text-[#2626267f] hover:shadow-md focus:shadow-md transition duration-500";
 
-  const inputClass =
-    !errors[name] && dirtyFields[name]
-      ? `${baseClass} ${successClass}`
-      : errors[name]
-        ? `${baseClass} ${errorClass}`
-        : baseClass;
+  const borderColors = {
+    default: "border-[#26262626] hover:border-[#f6b83d] focus:border-[#f6b83d]",
+    error: "border-[#ef2447] hover:border-[#ef2447] focus:border-[#ef2447]",
+    success: "border-[#08aa83] hover:border-[#08aa83] focus:border-[#08aa83]",
+  };
+
+  const getBorderClass = () => {
+    if (errors[name]) return borderColors.error;
+    if (dirtyFields[name] && !errors[name]) return borderColors.success;
+    return borderColors.default;
+  };
+
+  const inputClass = `${baseClass} ${getBorderClass()}`;
 
   return (
     <div

@@ -15,7 +15,7 @@ export const Header = () => {
     >
       <div className={`container ${isHomePage ? "lg:px-[32px]" : ""}`}>
         <div
-          className={`flex items-center justify-between ${isHomePage ? "rounded-t-[30px] bg-[#f6b83d] px-5 pb-[28px] pt-[18px] md:rounded-t-[60px] md:px-[32px] md:pb-[39px] md:pt-[23px] lg:px-[64px] lg:pb-[32px] lg:pt-[16px]" : "bg-[#F9F9F9] py-[28px] md:py-[39px] lg:py-[32px]"}`}
+          className={`flex items-center justify-between ${isHomePage ? "rounded-t-[30px] bg-[#f6b83d] px-5 pb-[28px] pt-[18px] md:rounded-t-[60px] md:px-[32px] md:pb-[39px] md:pt-[23px] lg:px-[64px] lg:pb-[32px] lg:pt-[16px]" : "bg-[#F9F9F9] py-5 md:py-[39px] lg:py-[32px]"}`}
         >
           <NavBar linkListClass="hidden lg:flex" />
           <BurgerMenu
