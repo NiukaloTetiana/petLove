@@ -61,7 +61,7 @@ input {
   &:hover,
   &:focus,
   &.active {
-    @apply bg-[#fbe7c1] shadow-md;
+    @apply bg-[#fbe7c1] text-[#f6b83d] shadow-md;
   }
 }
 
@@ -168,4 +168,8 @@ input {
       background-image: url("./assets/images/backdrop/loader_desktop_2x.webp");
     }
   }
+}
+
+.text-message {
+  @apply absolute -bottom-[2px] left-[12px] translate-y-full text-[10px] font-medium leading-[1.2] tracking-[-0.03em] md:-bottom-[4px] md:left-[16px] md:text-[12px] md:leading-[1.17];
 }

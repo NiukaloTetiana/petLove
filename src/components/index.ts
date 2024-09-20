@@ -8,3 +8,5 @@ export * from "./Header/Header";
 export * from "./Header/AuthButton";
 export * from "./Header/BurgerMenu";
 export * from "./Header/NavBar";
+export * from "./AuthForm/AuthForm";
+export * from "./InputField/InputField";
