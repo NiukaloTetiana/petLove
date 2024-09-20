@@ -40,7 +40,7 @@ export const AuthForm = ({ registration, toggleModal }: IAuthFormProps) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className={`w-full rounded-[30px] bg-white px-5 md:rounded-[60px] md:px-[140px] lg:w-[592px] lg:px-[84px] ${registration ? "py-5 md:py-[30px] lg:py-[77px]" : "py-[55px] md:py-[71px] lg:py-[118px]"}`}
+      className={`w-full rounded-[30px] bg-white px-5 md:rounded-[60px] md:px-[140px] lg:h-[654px] lg:w-[592px] lg:px-[84px] ${registration ? "py-5 md:py-[30px] lg:py-[77px]" : "py-[55px] md:py-[71px] lg:py-[118px]"}`}
     >
       <h2 className="mb-[12px] text-[28px] font-bold leading-[1] tracking-[-0.04em] text-[#262626] md:mb-[16px] md:text-[54px]">
         {registration ? "Registration" : "Log in"}
