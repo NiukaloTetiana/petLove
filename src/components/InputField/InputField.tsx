@@ -17,7 +17,6 @@ interface InputFieldProps {
   dirtyFields: FormState<IFormData>["dirtyFields"];
   register: UseFormRegister<IFormData>;
   setShowPass?: (value: boolean) => void;
-  className?: string;
 }
 
 export const InputField = ({
@@ -45,7 +44,7 @@ export const InputField = ({
         : baseClass;
 
   return (
-    <div className="relative mb-5 md:mb-[30px]">
+    <div className="relative mb-5 last:mb-20 md:mb-[30px]">
       <input
         type={type === "password" && showPass ? "text" : type}
         placeholder={placeholder}

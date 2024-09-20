@@ -10,3 +10,4 @@ export * from "./Header/BurgerMenu";
 export * from "./Header/NavBar";
 export * from "./AuthForm/AuthForm";
 export * from "./InputField/InputField";
+export * from "./PetInfo/PetInfo";
