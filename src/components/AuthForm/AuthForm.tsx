@@ -1,11 +1,11 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 import { registerSchema, loginSchema } from "../../schemas/validationSchemas";
 import { InputField } from "../InputField/InputField";
 import { IFormData } from "../InputField/InputField";
-import { Link } from "react-router-dom";
 
 interface IAuthFormProps {
   registration?: boolean;
