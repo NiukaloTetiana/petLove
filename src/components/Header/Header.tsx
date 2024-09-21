@@ -1,11 +1,17 @@
 import { useLocation } from "react-router-dom";
 
-import { AuthButton, BurgerMenu, Icon, NavBar } from "../../components";
+import {
+  AuthButton,
+  BurgerMenu,
+  Icon,
+  NavBar,
+  UserBar,
+} from "../../components";
 import { useModal } from "../../hooks";
 
 export const Header = () => {
   const [isMenuOpen, toggleMenu] = useModal();
-
+  const isLogin = false;
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
@@ -24,9 +30,12 @@ export const Header = () => {
             classBackdrop={`${isMenuOpen ? "scale-1" : "scale-0"}`}
             classMenu={`${isMenuOpen ? "translate-y-0" : "translate-y-[-100%]"}`}
           />
-          <div className="flex items-center gap-[10px] sm-max:gap-[2px] md:gap-[16px]">
-            <AuthButton className="hidden lg:flex" />
-
+          <div className="flex items-center gap-[12px] sm-max:gap-[8px] md:gap-[16px]">
+            {isLogin ? (
+              <UserBar toggleMenu={toggleMenu} />
+            ) : (
+              <AuthButton className="hidden lg:flex" />
+            )}
             <button
               type="button"
               onClick={() => {

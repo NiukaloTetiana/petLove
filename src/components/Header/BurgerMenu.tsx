@@ -1,9 +1,9 @@
 import { useRef } from "react";
+import { useLocation } from "react-router-dom";
 
-import { AuthButton, Icon, NavBar } from "../../components";
+import { AuthButton, Icon, LogoutButton, NavBar } from "../../components";
 import { useEscapeClose } from "../../hooks";
 import { handleClickOnBackdrop } from "../../helpers";
-import { useLocation } from "react-router-dom";
 
 interface IBurgerMenuProps {
   classBackdrop: string;
@@ -19,6 +19,7 @@ export const BurgerMenu = ({
   isOpen,
 }: IBurgerMenuProps) => {
   const backdropRef = useRef(null);
+  const isLogin = false;
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
@@ -51,10 +52,14 @@ export const BurgerMenu = ({
           toggleMenu={toggleMenu}
         />
 
-        <AuthButton
-          toggleMenu={toggleMenu}
-          className="flex flex-col md:flex-row lg:hidden"
-        />
+        {isLogin ? (
+          <LogoutButton toggleMenu={toggleMenu} className="block lg:hidden" />
+        ) : (
+          <AuthButton
+            toggleMenu={toggleMenu}
+            className="flex flex-col md:flex-row lg:hidden"
+          />
+        )}
       </div>
     </div>
   );

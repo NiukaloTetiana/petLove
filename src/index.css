@@ -61,7 +61,7 @@ input {
   &:hover,
   &:focus,
   &.active {
-    @apply bg-[#fbe7c1] text-[#f6b83d] shadow-md;
+    @apply bg-[#fbe7c1] text-[#f6b83d] shadow-md outline-none;
   }
 }
 
@@ -180,4 +180,8 @@ input {
 
 .input-wrapper-log:last-of-type {
   @apply mb-10 md:mb-[64px] lg:mb-[72px];
+}
+
+.button {
+  @apply h-[42px] w-[137px] rounded-[30px] border-none py-[12px] text-center text-[14px] font-bold leading-[1.29] tracking-[-0.03em] transition duration-500 md:h-[48px] md:w-[140px] md:py-[14px] md:text-[16px] md:leading-[1.25];
 }
