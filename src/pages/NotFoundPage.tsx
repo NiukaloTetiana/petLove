@@ -9,8 +9,8 @@ import {
 
 const NotFoundPage = () => {
   return (
-    <div className="container pb-5 md:pb-[]">
-      <div className="flex min-h-screen items-center justify-center rounded-[30px] bg-[#f6b83d] md:rounded-[60px]">
+    <div className="container pb-5 md:pb-[32px]">
+      <div className="flex h-[calc(100vh-134px)] items-center justify-center rounded-[30px] bg-[#f6b83d] md:h-[calc(100vh-146px)] md:rounded-[60px]">
         <div className="text-center">
           <h2 className="mb-5 flex items-center justify-center gap-[8px] text-[120px] font-extrabold leading-[1] text-white md:mb-10 md:text-[300px]">
             4
