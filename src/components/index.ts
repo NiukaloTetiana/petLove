@@ -13,5 +13,6 @@ export * from "./Header/UserBar";
 export * from "./AuthForm/AuthForm";
 export * from "./InputField/InputField";
 export * from "./PetInfo/PetInfo";
-export * from "./LogOut/LogOut";
+export * from "./ModalLogOut/ModalLogOut";
 export * from "./Title/Title";
+export * from "./ModalEditUser/ModalEditUser";
