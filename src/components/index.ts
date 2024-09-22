@@ -14,3 +14,4 @@ export * from "./AuthForm/AuthForm";
 export * from "./InputField/InputField";
 export * from "./PetInfo/PetInfo";
 export * from "./LogOut/LogOut";
+export * from "./Title/Title";
