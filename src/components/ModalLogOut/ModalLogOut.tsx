@@ -15,14 +15,14 @@ export const LogOut = ({ toggleLogOutModal }: ILogOutProps) => {
   };
 
   return (
-    <div>
+    <>
       <div className="mx-auto mb-5 flex size-[80px] items-center justify-center rounded-[50%] bg-[#fff4df]">
         <img
           srcSet={`${modal_cat_1x} 1x, ${modal_cat_2x} 2x`}
           src={modal_cat_1x}
           alt="Cat"
           loading="lazy"
-          className="h-[44px] w-[44px]"
+          className="size-[44px]"
         />
       </div>
       <h3 className="mb-[28px] text-center text-[20px] font-bold leading-[1] tracking-[-0.03em] text-[#262626] md:text-[28px] md:leading-[1.17]">
@@ -44,6 +44,6 @@ export const LogOut = ({ toggleLogOutModal }: ILogOutProps) => {
           Cancel
         </button>
       </div>
-    </div>
+    </>
   );
 };

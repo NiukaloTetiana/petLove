@@ -19,7 +19,7 @@ export const BurgerMenu = ({
   isOpen,
 }: IBurgerMenuProps) => {
   const backdropRef = useRef(null);
-  const isLogin = false;
+  const isLogin = true;
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
@@ -53,7 +53,10 @@ export const BurgerMenu = ({
         />
 
         {isLogin ? (
-          <LogoutButton toggleMenu={toggleMenu} className="block lg:hidden" />
+          <LogoutButton
+            toggleMenu={toggleMenu}
+            className="inline-block w-full md:w-[155px] lg:hidden"
+          />
         ) : (
           <AuthButton
             toggleMenu={toggleMenu}

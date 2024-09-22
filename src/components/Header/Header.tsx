@@ -11,7 +11,7 @@ import { useModal } from "../../hooks";
 
 export const Header = () => {
   const [isMenuOpen, toggleMenu] = useModal();
-  const isLogin = false;
+  const isLogin = true;
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
