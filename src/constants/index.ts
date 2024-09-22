@@ -1,2 +1,2 @@
 export * from "./navItems";
-export * from "./emailRegExp";
+export * from "./validationPatterns";
