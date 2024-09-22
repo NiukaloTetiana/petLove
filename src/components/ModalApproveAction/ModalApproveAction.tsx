@@ -1,11 +1,13 @@
 import { toast } from "react-toastify";
 import { modal_cat_1x, modal_cat_2x } from "../../assets";
 
-interface ILogOutProps {
+interface IModalApproveActionProps {
   toggleLogOutModal: () => void;
 }
 
-export const LogOut = ({ toggleLogOutModal }: ILogOutProps) => {
+export const ModalApproveAction = ({
+  toggleLogOutModal,
+}: IModalApproveActionProps) => {
   const handleLogout = async () => {
     try {
       toast.info("If you want to continue, you must log in.");

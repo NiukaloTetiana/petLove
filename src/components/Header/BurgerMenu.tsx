@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useLocation } from "react-router-dom";
 
-import { AuthButton, Icon, LogoutButton, NavBar } from "../../components";
+import { AuthButton, Icon, LogoutBtn,  NavBar } from "../../components";
 import { useEscapeClose } from "../../hooks";
 import { handleClickOnBackdrop } from "../../helpers";
 
@@ -53,7 +53,7 @@ export const BurgerMenu = ({
         />
 
         {isLogin ? (
-          <LogoutButton
+          <LogoutBtn
             toggleMenu={toggleMenu}
             className="inline-block w-full md:w-[155px] lg:hidden"
           />

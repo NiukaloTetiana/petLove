@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 
-import { Icon, LogoutButton } from "../../components";
+import { Icon, LogoutBtn } from "../../components";
 
 interface IUserBarProps {
   toggleMenu: () => void;
@@ -12,7 +12,7 @@ export const UserBar = ({ toggleMenu }: IUserBarProps) => {
 
   return (
     <div className="flex items-center justify-center lg:gap-[8px]">
-      <LogoutButton toggleMenu={toggleMenu} className="hidden lg:block" />
+      <LogoutBtn toggleMenu={toggleMenu} className="hidden lg:block" />
 
       <div className="flex items-center justify-center gap-[8px]">
         <Link

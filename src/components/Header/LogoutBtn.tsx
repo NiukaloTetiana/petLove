@@ -1,14 +1,14 @@
 import { useLocation } from "react-router-dom";
 
-import { LogOut, Modal } from "../../components";
+import { Modal, ModalApproveAction } from "../../components";
 import { useModal } from "../../hooks";
 
-interface ILogoutButtonProps {
+interface ILogoutBtnProps {
   className?: string;
   toggleMenu: () => void;
 }
 
-export const LogoutButton = ({ toggleMenu, className }: ILogoutButtonProps) => {
+export const LogoutBtn = ({ toggleMenu, className }: ILogoutBtnProps) => {
   const [isOpenModal, toggleModal] = useModal();
   const location = useLocation();
   const isHomePage = location.pathname === "/";
@@ -32,7 +32,7 @@ export const LogoutButton = ({ toggleMenu, className }: ILogoutButtonProps) => {
           toggleModal={toggleModal}
           className="bg-[#fff4df] px-[28px] py-10 md:p-[80px]"
         >
-          <LogOut toggleLogOutModal={toggleModal} />
+          <ModalApproveAction toggleLogOutModal={toggleModal} />
         </Modal>
       )}
     </>

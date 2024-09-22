@@ -18,7 +18,7 @@ export const NavBar = ({
   const isHomePage = location.pathname === "/";
 
   return (
-    <nav
+    <div
       className={`lg:flex lg:items-center ${isHomePage ? "lg:gap-[280px]" : "lg:gap-[313px]"}`}
     >
       <Link
@@ -39,22 +39,23 @@ export const NavBar = ({
         />
         ve
       </Link>
-
-      <ul
-        className={`flex flex-col items-center justify-center gap-[10px] lg:flex-row ${linkListClass}`}
-      >
-        {navItems.map((item) => (
-          <li key={item.path}>
-            <NavLink
-              to={item.path}
-              onClick={toggleMenu}
-              className={`block h-[48px] w-[119px] rounded-[30px] border bg-transparent py-[15px] text-center text-[14px] font-medium leading-[1.29] tracking-[-0.03em] md:h-[50px] md:text-[16px] md:leading-[1.25] lg:w-auto lg:px-5 ${isHomePage ? "link-home" : "link-next"}`}
-            >
-              {item.label}
-            </NavLink>
-          </li>
-        ))}
-      </ul>
-    </nav>
+      <nav>
+        <ul
+          className={`flex flex-col items-center justify-center gap-[10px] lg:flex-row ${linkListClass}`}
+        >
+          {navItems.map((item) => (
+            <li key={item.path}>
+              <NavLink
+                to={item.path}
+                onClick={toggleMenu}
+                className={`block h-[48px] w-[119px] rounded-[30px] border bg-transparent py-[15px] text-center text-[14px] font-medium leading-[1.29] tracking-[-0.03em] md:h-[50px] md:text-[16px] md:leading-[1.25] lg:w-auto lg:px-5 ${isHomePage ? "link-home" : "link-next"}`}
+              >
+                {item.label}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
   );
 };
