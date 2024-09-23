@@ -32,7 +32,7 @@ export const InputField = ({
   const [showPass, setShowPass] = useState(false);
 
   const baseClass =
-    "bg-white h-[42px] md:h-[52px] border rounded-[30px] p-[12px] md:p-[16px] text-[14px] md:text-[16px] leading-[1.29] md:leading-[1.25] tracking-[-0.03em] text-[#262626cc] placeholder:text-[#2626267f] hover:shadow-md focus:shadow-md transition duration-500";
+    "bg-white w-full h-[42px] md:h-[52px] border rounded-[30px] p-[12px] md:p-[16px] text-[14px] md:text-[16px] leading-[1.29] md:leading-[1.25] tracking-[-0.03em] text-[#262626cc] placeholder:text-[#2626267f] hover:shadow-md focus:shadow-md transition duration-500";
 
   const borderColors = {
     default: "border-[#26262626] hover:border-[#f6b83d] focus:border-[#f6b83d]",

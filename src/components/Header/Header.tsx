@@ -31,11 +31,7 @@ export const Header = () => {
             classMenu={`${isMenuOpen ? "translate-y-0" : "translate-y-[-100%]"}`}
           />
           <div className="flex items-center gap-[12px] sm-max:gap-[8px] md:gap-[16px]">
-            {isLogin ? (
-              <UserBar toggleMenu={toggleMenu} />
-            ) : (
-              <AuthButton className="hidden lg:flex" />
-            )}
+            {isLogin ? <UserBar /> : <AuthButton className="hidden lg:flex" />}
             <button
               type="button"
               onClick={() => {

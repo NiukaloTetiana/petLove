@@ -56,7 +56,7 @@ export const ModalEditUser = ({ toggleEditModal }: IModalEditUserProps) => {
     fieldName: keyof FormData
   ): string => {
     const avatarClass =
-      "max-w-[161px] md:max-w-none md:w-[226px] sm-max:w-[148px] sm-max:!pr-5 h-[42px] !pr-[39px] md:!pr-5 truncate";
+      "max-w-[161px] md:max-w-none md:w-[226px] sm-max:w-[148px] sm-max:!pr-5 !h-[42px] !pr-[39px] md:!pr-5 truncate";
     const baseClass = `input w-full input-hover ${fieldName === "avatar" ? avatarClass : ""}`;
     const errorClass = "border-red-700";
     const successClass = "border-green-700";

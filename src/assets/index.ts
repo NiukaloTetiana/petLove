@@ -18,6 +18,12 @@ import error_mobile_1x from "./images/error/error_mobile_1x.webp";
 import error_mobile_2x from "./images/error/error_mobile_2x.webp";
 import error_tablet_1x from "./images/error/error_tablet_1x.webp";
 import error_tablet_2x from "./images/error/error_tablet_2x.webp";
+import pet_mobile_1x from "./images/pet/pet_mobile_1x.webp";
+import pet_mobile_2x from "./images/pet/pet_mobile_2x.webp";
+import pet_tablet_1x from "./images/pet/pet_tablet_1x.webp";
+import pet_tablet_2x from "./images/pet/pet_tablet_2x.webp";
+import pet_desktop_1x from "./images/pet/pet_desktop_1x.webp";
+import pet_desktop_2x from "./images/pet/pet_desktop_2x.webp";
 
 export {
   regisrer_mobile_1x,
@@ -40,4 +46,10 @@ export {
   error_mobile_2x,
   error_tablet_1x,
   error_tablet_2x,
+  pet_mobile_1x,
+  pet_mobile_2x,
+  pet_tablet_1x,
+  pet_tablet_2x,
+  pet_desktop_1x,
+  pet_desktop_2x,
 };

@@ -92,7 +92,7 @@ export const UserCard = () => {
         </Link>
       </div>
 
-      <LogoutBtn className="w-[114px] md:w-[155px] lg:bg-[#fff4df] lg:text-[#f6b83d]" />
+      <LogoutBtn className="w-[114px] md:w-[155px] lg:bg-[#fff4df] lg:!text-[#f6b83d]" />
 
       {isOpenModal && (
         <Modal
