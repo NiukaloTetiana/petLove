@@ -61,7 +61,7 @@ input {
   &:hover,
   &:focus,
   &.active {
-    @apply bg-[#fbe7c1] text-[#f6b83d] shadow-md outline-none;
+    @apply bg-[#fbe7c1] text-[#f6b83d] shadow-sm outline-none;
   }
 }
 
@@ -188,4 +188,17 @@ input {
 
 .button-modal {
   @apply h-[42px] w-full rounded-[30px] bg-[#f6b83d] py-[12px] text-center text-[14px] font-bold leading-[1.29] tracking-[-0.03em] text-white transition duration-500 md:h-[52px] md:py-[16px] md:text-[16px] md:leading-[1.25];
+}
+
+.input {
+  @apply h-[42px] rounded-[30px] border p-3 text-[14px] font-medium leading-[1.29] tracking-[-0.03em] md:h-[52px] md:p-4 md:text-[16px] md:leading-[1.25];
+
+  &:hover,
+  &:focus {
+    @apply border-[#f9b020] shadow-md;
+  }
+}
+
+.message-edit {
+  @apply absolute bottom-0 left-[14px] translate-y-full text-[8px] font-medium leading-[1.2] tracking-[-0.03em] md:-bottom-[2px] md:left-[18px] md:text-[10px] md:leading-[1.17];
 }
