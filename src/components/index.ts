@@ -16,3 +16,5 @@ export * from "./PetBlock/PetBlock";
 export * from "./ModalApproveAction/ModalApproveAction";
 export * from "./Title/Title";
 export * from "./ModalEditUser/ModalEditUser";
+export * from "./EditUserBtn/EditUserBtn";
+export * from "./UserCard/UserCard";

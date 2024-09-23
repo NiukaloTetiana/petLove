@@ -2,22 +2,18 @@ import { Link, useLocation } from "react-router-dom";
 
 import { Icon, LogoutBtn } from "../../components";
 
-interface IUserBarProps {
-  toggleMenu: () => void;
-}
-
-export const UserBar = ({ toggleMenu }: IUserBarProps) => {
+export const UserBar = () => {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
   return (
     <div className="flex items-center justify-center lg:gap-[8px]">
-      <LogoutBtn toggleMenu={toggleMenu} className="hidden lg:block" />
+      <LogoutBtn className="hidden lg:block" />
 
       <div className="flex items-center justify-center gap-[8px]">
         <Link
           to="/profile"
-          className="flex size-10 items-center justify-center rounded-[50%] bg-[#fff4df] md:size-[50px]"
+          className="link-reg flex size-10 items-center justify-center rounded-[50%] bg-[#fff4df] transition duration-500 md:size-[50px]"
         >
           <Icon
             id="user"

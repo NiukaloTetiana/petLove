@@ -5,7 +5,7 @@ import { useModal } from "../../hooks";
 
 interface ILogoutBtnProps {
   className?: string;
-  toggleMenu: () => void;
+  toggleMenu?: () => void;
 }
 
 export const LogoutBtn = ({ toggleMenu, className }: ILogoutBtnProps) => {
