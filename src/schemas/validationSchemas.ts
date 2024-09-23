@@ -35,7 +35,7 @@ export const loginSchema = yup.object().shape({
   password: yup.string().required("Password is required"),
 });
 
-export const EditInfoSchema = yup.object().shape({
+export const editInfoSchema = yup.object().shape({
   name: yup.string().required("Name is required"),
   email: yup
     .string()
@@ -43,9 +43,11 @@ export const EditInfoSchema = yup.object().shape({
     .required("Email is required"),
   avatar: yup
     .string()
+    .optional()
     .matches(urlRegExp, "Avatar URL must be a valid image link"),
   phone: yup
     .string()
+    .optional()
     .matches(
       phoneRegExp,
       "Phone number is incorrect. Please use the format: +380962939397"
