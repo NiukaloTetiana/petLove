@@ -1,15 +1,16 @@
-// import { useState } from "react";
+import { useEffect } from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
-import { Icon } from "../../components";
 import {
   FieldErrors,
   FormState,
   SubmitHandler,
   useForm,
 } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+
+import { Icon } from "../../components";
 import { editInfoSchema } from "../../schemas";
-// import { formatPhoneNumber } from "../../helpers";
+import { formatPhoneNumber } from "../../helpers";
 
 export interface FormData {
   name: string;
@@ -23,37 +24,48 @@ interface IModalEditUserProps {
 }
 
 export const ModalEditUser = ({ toggleEditModal }: IModalEditUserProps) => {
-  // const [phone, setPhone] = useState("");
-
   const {
     register,
     handleSubmit,
-    // setValue,
+    setValue,
     formState: { errors, dirtyFields },
   } = useForm<FormData>({
     mode: "onChange",
     resolver: yupResolver(editInfoSchema),
   });
 
+  useEffect(() => {
+    const user = {
+      name: "John Doe",
+      email: "XjKZB@example.com",
+      phone: "+380960700432",
+      avatar:
+        "https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg",
+    };
+    if (user) {
+      setValue("name", user.name);
+      setValue("email", user.email);
+      setValue("avatar", user.avatar);
+    }
+    setValue("phone", user.phone || "+380");
+  }, [setValue]);
+
   const inputClass = (
     errors: FieldErrors<FormData>,
     dirtyFields: FormState<FormData>["dirtyFields"],
     fieldName: keyof FormData
   ): string => {
-    const baseClass = "input w-full";
+    const avatarClass =
+      "max-w-[161px] md:max-w-none md:w-[226px] sm-max:w-[148px] sm-max:!pr-5 h-[42px] !pr-[39px] md:!pr-5 truncate";
+    const baseClass = `input w-full input-hover ${fieldName === "avatar" ? avatarClass : ""}`;
     const errorClass = "border-red-700";
     const successClass = "border-green-700";
-    const avatarClass = "input w-[161px] md:w-[226px] md:h-[42px]";
 
     if (errors[fieldName] && dirtyFields[fieldName]) {
-      return `${baseClass} ${errorClass}`;
+      return `${baseClass} ${errorClass} `;
     }
     if (!errors[fieldName] && dirtyFields[fieldName]) {
       return `${baseClass} ${successClass}`;
-    }
-
-    if (fieldName === "avatar") {
-      return `${baseClass} ${avatarClass} ${errors[fieldName] ? errorClass : ""}`;
     }
     return baseClass;
   };
@@ -108,7 +120,7 @@ export const ModalEditUser = ({ toggleEditModal }: IModalEditUserProps) => {
         className="w-[295px] sm-max:w-[260px] md:w-[380px]"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div className="relative mb-[10px] flex w-full gap-[8px] md:mb-5">
+        <div className="relative mb-[10px] flex w-full gap-[8px] sm-max:gap-[4px] md:mb-5">
           <input
             {...register("avatar")}
             type="text"
@@ -119,13 +131,13 @@ export const ModalEditUser = ({ toggleEditModal }: IModalEditUserProps) => {
 
           <button
             type="button"
-            className="link-reg flex h-[42px] w-[126px] items-center justify-center gap-[8px] rounded-[30px] bg-[#fff4df] text-[12px] leading-[1.33] text-[#262626] transition duration-500 md:w-[146px] md:text-[14px] md:leading-[1.29]"
+            className="link-reg flex h-[42px] w-[126px] items-center justify-center gap-[8px] rounded-[30px] bg-[#fff4df] text-[12px] leading-[1.33] text-[#262626] transition duration-500 sm-max:gap-[4px] sm-max:text-[11px] md:w-[146px] md:text-[14px] md:leading-[1.29]"
           >
             Upload photo
             <Icon
               id="upload-cloud"
               size={18}
-              className="fill-none stroke-[#f6b83d]"
+              className="fill-none stroke-[#f6b83d] sm-max:size-[16px]"
             />
           </button>
         </div>
@@ -155,11 +167,9 @@ export const ModalEditUser = ({ toggleEditModal }: IModalEditUserProps) => {
             {...register("phone")}
             name="phone"
             type="tel"
-            // value={phone}
             className={inputClass(errors, dirtyFields, "phone")}
             autoComplete="tel"
-            placeholder="+380"
-            // onChange={(e) => formatPhoneNumber(e, setPhone, setValue)}
+            onChange={(e) => formatPhoneNumber(e, setValue)}
           />
           {renderMessage(errors, dirtyFields, "phone")}
         </div>

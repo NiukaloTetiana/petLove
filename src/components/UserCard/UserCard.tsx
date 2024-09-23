@@ -63,7 +63,7 @@ export const UserCard = () => {
           .filter((key) => ["name", "email", "phone"].includes(key))
           .map((key) => (
             <input
-              className={`input w-full md:w-[305px] lg:w-full ${user[key as keyof typeof user] ? "border-[#f6b83d]" : "border-[#26262626]"}`}
+              className={`input md:w-[305px] lg:w-full ${user[key as keyof typeof user] ? "border-[#f6b83d]" : "border-[#26262626]"}`}
               key={key}
               value={
                 key === "phone"
