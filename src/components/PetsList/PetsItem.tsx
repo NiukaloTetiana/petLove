@@ -14,11 +14,11 @@ export const PetsItem = ({ pet }: IPetsItemProps) => {
 
   return (
     <li className="relative flex items-start gap-[14px] rounded-[20px] border border-[#26262619] p-4 sm-max:gap-[8px] md:w-[305px] md:py-[22px] md:pl-[16px] md:pr-[27px] lg:w-full lg:items-center lg:gap-[25px] lg:p-5">
-      <div className="flex shrink-0 items-center justify-center rounded-full">
+      <div className="flex h-[66px] w-[66px] shrink-0 items-center justify-center overflow-hidden rounded-full sm-max:h-[60px] sm-max:w-[60px] md:h-[75px] md:w-[75px] lg:h-[90px] lg:w-[90px]">
         <img
           src={imgUrl}
           alt="Pet's photo"
-          className="size-[66px] rounded-full sm-max:size-[60px] md:size-[75px] lg:size-[90px]"
+          className="h-full w-full object-cover"
         />
       </div>
 
