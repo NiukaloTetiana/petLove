@@ -18,3 +18,6 @@ export * from "./Title/Title";
 export * from "./ModalEditUser/ModalEditUser";
 export * from "./EditUserBtn/EditUserBtn";
 export * from "./UserCard/UserCard";
+export * from "./PetsList/PetsList";
+export * from "./PetsList/PetsItem";
+export * from "./PetsBlock/PetsBlock";

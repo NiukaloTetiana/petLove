@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 import { useModal } from "../../hooks";
 import {
   Icon,
@@ -9,6 +7,7 @@ import {
   ModalEditUser,
   EditUserBtn,
 } from "../../components";
+import PetsBlock from "../PetsBlock/PetsBlock";
 
 export const UserCard = () => {
   const [isOpenModal, toggleModal] = useModal();
@@ -55,6 +54,7 @@ export const UserCard = () => {
       >
         Upload photo
       </button>
+
       <h4 className="mb-5 text-[16px] font-bold leading-[1.25] text-[#2b2b2a]">
         My information
       </h4>
@@ -75,22 +75,7 @@ export const UserCard = () => {
           ))}
       </div>
 
-      <div className="mb-10 flex items-center justify-between">
-        <h4 className="text-[16px] font-bold leading-[1.25] text-[#2b2b2a]">
-          My pets
-        </h4>
-        <Link
-          to="/add-pet"
-          className="flex h-[38px] w-[103px] items-center justify-center gap-[4px] rounded-[30px] bg-[#f6b83d] px-[16px] py-[10px] text-[14px] font-medium leading-[1.29] tracking-[-0.03em] text-white"
-        >
-          Add pet
-          <Icon
-            id="plus"
-            size={18}
-            className="fill-white stroke-white md:size-[px]"
-          />
-        </Link>
-      </div>
+      <PetsBlock />
 
       <LogoutBtn className="w-[114px] md:w-[155px] lg:bg-[#fff4df] lg:!text-[#f6b83d]" />
 
