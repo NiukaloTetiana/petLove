@@ -21,3 +21,4 @@ export * from "./UserCard/UserCard";
 export * from "./PetsList/PetsList";
 export * from "./PetsList/PetsItem";
 export * from "./PetsBlock/PetsBlock";
+export * from "./AddPetForm/AddPetForm";
