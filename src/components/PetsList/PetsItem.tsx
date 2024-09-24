@@ -49,7 +49,7 @@ export const PetsItem = ({ pet }: IPetsItemProps) => {
       <button
         onClick={handleRemovePet}
         type="submit"
-        className="absolute right-[12px] top-[12px] flex size-[30px] items-center justify-center rounded-full bg-[#fff4df] md:size-[38px] lg:right-5 lg:top-5"
+        className="link-reg absolute right-[12px] top-[12px] flex size-[30px] items-center justify-center rounded-full bg-[#fff4df] md:size-[38px] lg:right-5 lg:top-5"
       >
         <Icon
           id="trash"

@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-import { emailRegExp, phoneRegExp, urlRegExp } from "../constants";
+import { dateRegExp, emailRegExp, phoneRegExp, urlRegExp } from "../constants";
 
 export const registerSchema = yup.object({
   name: yup
@@ -52,4 +52,22 @@ export const editInfoSchema = yup.object().shape({
       phoneRegExp,
       "Phone number is incorrect. Please use the format: +380962939397"
     ),
+});
+
+export const addPetSchema = yup.object().shape({
+  title: yup.string().required("Title is required"),
+  name: yup.string().required("Name is required"),
+  imgUrl: yup
+    .string()
+    .matches(urlRegExp, "Must be a valid img URL (png/jpg/jpeg/gif/bmp/webp)")
+    .required("Image URL is required"),
+  species: yup.string().required("Species is required"),
+  birthday: yup
+    .string()
+    .matches(dateRegExp, "Birthday must be in the format: '17.10.2020'")
+    .required("Birthday is required"),
+  sex: yup
+    .string()
+    .oneOf(["male", "female", "multiple"])
+    .required("Sex is required"),
 });
