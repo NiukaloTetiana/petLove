@@ -206,3 +206,11 @@ input {
 .message-edit {
   @apply absolute bottom-0 left-[14px] translate-y-full text-[8px] font-medium leading-[1.2] tracking-[-0.03em] md:-bottom-[1px] md:left-[18px] md:text-[10px] md:leading-[1.17];
 }
+
+.item {
+  @apply flex flex-col gap-[4px];
+}
+
+.span {
+  @apply text-[10px] leading-[1.4] text-[#2626267f];
+}

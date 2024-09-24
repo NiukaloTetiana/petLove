@@ -1,0 +1,26 @@
+[
+  {
+    "imgUrl": "https://educaloi.qc.ca/wp-content/uploads/507810382_1200x563.jpg",
+    "title": "Playful Kittenaaaaaaaaaaa",
+    "name": "Whiskers",
+    "birthday": "2021-05-14",
+    "sex": "female",
+    "species": "cat"
+  },
+  {
+    "imgUrl": "https://educaloi.qc.ca/wp-content/uploads/507810382_1200x563.jpg",
+    "title": "Energetic Puppy",
+    "name": "Rover",
+    "birthday": "2020-07-23",
+    "sex": "male",
+    "species": "dog"
+  },
+  {
+    "imgUrl": "https://educaloi.qc.ca/wp-content/uploads/507810382_1200x563.jpg",
+    "title": "Clever Parrot",
+    "name": "Polly",
+    "birthday": "2019-03-01",
+    "sex": "female",
+    "species": "parrot"
+  }
+]
