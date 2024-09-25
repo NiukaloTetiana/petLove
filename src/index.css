@@ -271,7 +271,7 @@ input {
   @apply size-[32px] rounded-full transition duration-500 md:size-10;
 }
 
-.real-radio:checked + .custom-radio.famale {
+.real-radio:checked + .custom-radio.female {
   @apply bg-[#f43f5e] stroke-white;
 }
 
