@@ -235,7 +235,7 @@ input {
 }
 
 ::-webkit-scrollbar {
-  @apply h-[61px] w-[6px] md:h-[80px] md:w-[8px];
+  @apply h-[61px] w-[6px] md:h-[80px] md:min-w-[8px];
 }
 
 ::-webkit-scrollbar-thumb {
@@ -244,4 +244,41 @@ input {
 
 ::-webkit-scrollbar-track {
   @apply m-[12px] md:m-[14px];
+}
+
+.label {
+  @apply relative flex size-[32px] cursor-pointer items-center justify-center rounded-full transition duration-500 md:size-10;
+
+  &:hover,
+  &:focus {
+    @apply bg-[#fbe7c1] shadow-sm;
+  }
+}
+
+.real-radio {
+  @apply absolute opacity-0;
+}
+
+.custom-radio {
+  @apply relative md:size-[24px];
+}
+
+.custom-radio::before {
+  @apply absolute left-1/2 top-1/2 z-[2] content-[''];
+}
+
+.real-radio:checked + .custom-radio {
+  @apply size-[32px] rounded-full transition duration-500 md:size-10;
+}
+
+.real-radio:checked + .custom-radio.famale {
+  @apply bg-[#f43f5e] stroke-white;
+}
+
+.real-radio:checked + .custom-radio.male {
+  @apply bg-[#54adff] stroke-white;
+}
+
+.real-radio:checked + .custom-radio.multiple {
+  @apply bg-[#f6b83d] fill-white;
 }

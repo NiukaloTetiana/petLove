@@ -131,26 +131,68 @@ export const AddPetForm = () => {
   };
 
   return (
-    <div className="md:py-p-10 rounded-[30px] bg-white p-5 pt-[28px] md:rounded-[60px] md:px-[136px] lg:w-[592px] lg:px-[80px] lg:py-[60px]">
-      <h3 className="mb-[24px] text-[28px] font-bold leading-[1] tracking-[-0.03em] text-[#2b2b2a] sm-max:text-[24px] md:mb-10 md:text-[32px]">
+    <div className="md:py-p-10 relative rounded-[30px] bg-white p-5 pt-[28px] md:rounded-[60px] md:px-[136px] lg:w-[592px] lg:px-[80px] lg:py-[60px]">
+      <h3 className="mb-[64px] text-[28px] font-bold leading-[1] tracking-[-0.03em] text-[#2b2b2a] sm-max:text-[24px] md:text-[32px]">
         Add my pet /{" "}
         <span className="text-[14px] leading-[1.29] text-[#2b2b2a66] md:text-[16px] md:leading-[1.25]">
           Personal details
         </span>
       </h3>
 
-      <div className="mx-auto mb-[16px] flex size-[68px] items-center justify-center rounded-full bg-[#fff4df] md:mb-[12px] md:size-[86px]">
-        <Icon
-          id="footprint"
-          size={34}
-          className="fill-[#f6b83d] stroke-none md:size-[44px]"
-        />
-      </div>
-
       <form
         className="w-[295px] sm-max:w-full md:w-[432px]"
         onSubmit={handleSubmit(onSubmit)}
       >
+        <div className="absolute top-[80px] flex items-center gap-2 md:top-[112px] lg:top-[132px]">
+          <label className="label female bg-[#f43f5e19]">
+            <input
+              {...register("sex")}
+              className="real-radio"
+              type="radio"
+              value="female"
+            />
+            <Icon
+              id="female"
+              size={20}
+              className="custom-radio female fill-none stroke-[#f43f5e]"
+            />
+          </label>
+          <label className="label male bg-[#54adff19]">
+            <input
+              {...register("sex")}
+              className="real-radio"
+              type="radio"
+              value="male"
+            />
+            <Icon
+              id="male"
+              size={20}
+              className="custom-radio male fill-none stroke-[#54adff]"
+            />
+          </label>
+          <label className="label multiple bg-[#fff4df]">
+            <input
+              {...register("sex")}
+              className="real-radio"
+              type="radio"
+              value="multiple"
+            />
+            <Icon
+              id="multiple"
+              size={20}
+              className="custom-radio multiple fill-[#f6b83d] stroke-none"
+            />
+          </label>
+        </div>
+
+        <div className="mx-auto mb-[16px] flex size-[68px] items-center justify-center rounded-full bg-[#fff4df] md:mb-[12px] md:size-[86px]">
+          <Icon
+            id="footprint"
+            size={34}
+            className="fill-[#f6b83d] stroke-none md:size-[44px]"
+          />
+        </div>
+
         <div className="relative mb-[10px] flex w-full gap-[8px] sm-max:gap-[4px] md:mb-5">
           <input
             {...register("imgUrl")}
@@ -230,7 +272,7 @@ export const AddPetForm = () => {
               type="text"
               onClick={handleListClick}
               placeholder="Type of pet"
-              className="input !w-[143px] truncate placeholder:text-[#2626267f] sm-max:!w-[102px] sm-max:pr-6 md:!w-[210px]"
+              className="input !w-[143px] truncate placeholder:text-[#2626267f] sm-max:!w-[102px] sm-max:pr-14 md:!w-[210px]"
               readOnly
             />
 
