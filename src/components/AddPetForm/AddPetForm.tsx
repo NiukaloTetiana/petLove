@@ -14,6 +14,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import { addPetSchema } from "../../schemas";
 import { Icon } from "../../components";
+import { format } from "date-fns";
 
 export interface AddPetFormData {
   title: string;
@@ -238,21 +239,33 @@ export const AddPetForm = () => {
         </div>
 
         <div className="relative mb-[31px] flex gap-2 md:mb-10 md:gap-3">
-          <div className="relative">
+          <label className="relative">
             <Controller
               control={control}
               name="birthday"
-              render={({ field }) => (
+              render={({ field: { onChange, value } }) => (
                 <DatePicker
-                  value={field.value}
-                  selected={field.value ? new Date(field.value) : null}
                   maxDate={new Date()}
+                  selected={
+                    value
+                      ? new Date(value.split(".").reverse().join("-"))
+                      : null
+                  }
                   onChange={(date) => {
-                    field.onChange(date);
+                    onChange(date);
+                    if (date) {
+                      const formattedDate = format(
+                        (date as Date) || "",
+                        "dd.MM.yyyy"
+                      );
+                      setValue("birthday", formattedDate, {
+                        shouldValidate: true,
+                      });
+                    }
                   }}
                   dateFormat="dd.MM.yyyy"
                   placeholderText="00.00.0000"
-                  className="input !w-[144px] placeholder:text-[#2626267f] sm-max:!w-[130px] md:!w-[210px]"
+                  className="input-hover input !w-[144px] placeholder:text-[#2626267f] sm-max:!w-[130px] md:!w-[210px]"
                 />
               )}
             />
@@ -264,7 +277,7 @@ export const AddPetForm = () => {
             />
 
             {renderMessage(errors, dirtyFields, "birthday")}
-          </div>
+          </label>
 
           <div ref={sortRef} className="relative">
             <input
@@ -272,7 +285,7 @@ export const AddPetForm = () => {
               type="text"
               onClick={handleListClick}
               placeholder="Type of pet"
-              className="input !w-[143px] truncate placeholder:text-[#2626267f] sm-max:!w-[102px] sm-max:pr-14 md:!w-[210px]"
+              className="input input-hover !w-[143px] placeholder:text-[#2626267f] sm-max:!w-[102px] sm-max:pr-14 md:!w-[210px]"
               readOnly
             />
 

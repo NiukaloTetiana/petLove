@@ -59,16 +59,16 @@ export const addPetSchema = yup.object().shape({
   name: yup.string().required("Name is required"),
   imgUrl: yup
     .string()
+    .required("Image URL is required")
     .matches(
       urlRegExp,
       "Image URL must be a valid link to an image (png, jpg, jpeg, gif, bmp, webp)"
-    )
-    .required("Image URL is required"),
+    ),
   species: yup.string().required("Species is required"),
   birthday: yup
     .string()
-    .matches(dateRegExp, "Birthday must be in the format: '17.10.2020'")
-    .required("Birthday is required"),
+    .required("Birthday is required")
+    .matches(dateRegExp, "Birthday must be in the format: '17.10.2020'"),
   sex: yup
     .string()
     .oneOf(["male", "female", "multiple"])

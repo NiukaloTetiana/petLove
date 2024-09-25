@@ -230,6 +230,10 @@ input {
   @apply border-white text-white;
 }
 
+.react-datepicker__navigation:hover *::before {
+  @apply border-[#262626];
+}
+
 .scrollbar {
   @apply overflow-x-auto overflow-y-auto;
 }
