@@ -214,3 +214,34 @@ input {
 .span {
   @apply text-[10px] leading-[1.4] text-[#2626267f];
 }
+
+.react-datepicker__header {
+  @apply bg-[#f6b83d] text-white;
+}
+
+.react-datepicker__day--keyboard-selected,
+.react-datepicker__day--selected {
+  @apply border border-[#26262626] bg-[#f9b020];
+}
+
+.react-datepicker__current-month,
+.react-datepicker__day-name,
+.react-datepicker__navigation-icon::before {
+  @apply border-white text-white;
+}
+
+.scrollbar {
+  @apply overflow-x-auto overflow-y-auto;
+}
+
+::-webkit-scrollbar {
+  @apply h-[61px] w-[6px] md:h-[80px] md:w-[8px];
+}
+
+::-webkit-scrollbar-thumb {
+  @apply rounded-[13px] bg-[#26262614];
+}
+
+::-webkit-scrollbar-track {
+  @apply m-[12px] md:m-[14px];
+}

@@ -1,3 +1,4 @@
+import { RefObject, useEffect, useRef, useState } from "react";
 import {
   Controller,
   FieldErrors,
@@ -5,6 +6,7 @@ import {
   SubmitHandler,
   useForm,
 } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import DatePicker from "react-datepicker";
 import { toast } from "react-toastify";
@@ -22,16 +24,61 @@ export interface AddPetFormData {
   sex: "male" | "female" | "multiple";
 }
 
+const speciesOptions = [
+  { label: "dog" },
+  { label: "cat" },
+  { label: "monkey" },
+  { label: "bird" },
+  { label: "snake" },
+  { label: "turtle" },
+  { label: "lizard" },
+  { label: "frog" },
+  { label: "fish" },
+  { label: "ants" },
+  { label: "bees" },
+  { label: "butterfly" },
+  { label: "spider" },
+  { label: "scorpion" },
+];
+
 export const AddPetForm = () => {
   const {
     register,
     handleSubmit,
     control,
+    setValue,
     formState: { errors, dirtyFields },
   } = useForm<AddPetFormData>({
     mode: "onChange",
     resolver: yupResolver(addPetSchema),
   });
+
+  const [isListVisible, setIsListVisible] = useState<boolean>(false);
+  const [selectedType, setSelectedType] = useState<string | null>(null);
+  const sortRef: RefObject<HTMLDivElement> = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (sortRef.current && !sortRef.current.contains(event.target as Node)) {
+        setIsListVisible(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+  const handleListClick = () => {
+    setIsListVisible(!isListVisible);
+  };
+
+  const handleLabelClick = (type: string) => {
+    setValue("species", type);
+    setIsListVisible(false);
+    setSelectedType(type);
+  };
 
   const inputClass = (
     errors: FieldErrors<AddPetFormData>,
@@ -39,7 +86,7 @@ export const AddPetForm = () => {
     fieldName: keyof AddPetFormData
   ): string => {
     const imgUrlClass =
-      "max-w-[161px] md:max-w-none md:w-[226px] sm-max:w-[130px] sm-max:!pr-5 !h-[42px] !pr-[39px] md:!pr-5 truncate";
+      "max-w-[161px] md:max-w-none md:w-[278px] sm-max:w-[130px] sm-max:!pr-5 !h-[42px] !pr-[39px] md:!pr-5 truncate";
     const baseClass = `input border-[#26262626] w-full placeholder:text-[#2626267f] input-hover ${fieldName === "imgUrl" ? imgUrlClass : ""}`;
     const errorClass = "border-red-700";
     const successClass = "border-green-700";
@@ -101,7 +148,7 @@ export const AddPetForm = () => {
       </div>
 
       <form
-        className="w-[295px] sm-max:w-full md:w-[380px]"
+        className="w-[295px] sm-max:w-full md:w-[432px]"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="relative mb-[10px] flex w-full gap-[8px] sm-max:gap-[4px] md:mb-5">
@@ -134,7 +181,7 @@ export const AddPetForm = () => {
             placeholder="Title"
             className={inputClass(errors, dirtyFields, "title")}
           />
-          {renderMessage(errors, dirtyFields, "name")}
+          {renderMessage(errors, dirtyFields, "title")}
         </div>
 
         <div className="relative mb-[10px] w-full md:mb-[14px]">
@@ -163,7 +210,7 @@ export const AddPetForm = () => {
                   }}
                   dateFormat="dd.MM.yyyy"
                   placeholderText="00.00.0000"
-                  className="input !w-[144px] sm-max:!w-[130px] md:!w-[210px]"
+                  className="input !w-[144px] placeholder:text-[#2626267f] sm-max:!w-[130px] md:!w-[210px]"
                 />
               )}
             />
@@ -171,20 +218,55 @@ export const AddPetForm = () => {
             <Icon
               id="calendar"
               size={18}
-              className="absolute right-[12px] top-[12px] size-5 fill-none stroke-[#262626] sm-max:size-4 md:right-[16px] md:top-[16px]"
+              className="absolute right-[12px] top-[12px] fill-none stroke-[#262626] sm-max:size-4 md:right-[16px] md:top-[16px] md:size-5"
             />
 
             {renderMessage(errors, dirtyFields, "birthday")}
           </div>
+
+          <div ref={sortRef} className="relative">
+            <input
+              {...register("species")}
+              type="text"
+              onClick={handleListClick}
+              placeholder="Type of pet"
+              className="input !w-[143px] truncate placeholder:text-[#2626267f] sm-max:!w-[102px] sm-max:pr-6 md:!w-[210px]"
+              readOnly
+            />
+
+            <Icon
+              id="chevron-down"
+              className={`absolute right-[12px] top-[12px] fill-none stroke-[#262626] transition duration-300 sm-max:size-4 md:right-[16px] md:top-[16px] md:size-5 ${
+                isListVisible ? "rotate-180" : ""
+              }`}
+              size={18}
+            />
+
+            {isListVisible && (
+              <ul className="scrollbar absolute top-[46px] z-[2] h-[78px] w-[143px] space-y-[8px] rounded-[15px] border border-[#26262626] bg-white p-3 text-[14px] font-medium leading-[1.25] tracking-[-0.03em] text-[#26262699] shadow-md sm-max:w-[102px] md:top-[54px] md:h-[126px] md:w-[210px] md:p-[14px] md:text-[16px] md:leading-[1.29]">
+                {speciesOptions.map(({ label }) => (
+                  <li
+                    key={label}
+                    onClick={() => handleLabelClick(label)}
+                    className={`cursor-pointer hover:text-[#f6b83d] ${
+                      selectedType === label ? "text-[#f6b83d]" : ""
+                    }`}
+                  >
+                    {label}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
         </div>
 
         <div className="flex justify-end gap-2">
-          <button
-            type="button"
-            className="link-reg h-[42px] w-[100px] rounded-[30px] bg-[#262626] bg-opacity-[0.05] text-center text-[14px] font-bold leading-[1.29] tracking-[-0.03em] text-[#262626] transition duration-500 md:h-[52px] md:w-[170px] md:text-[16px] md:leading-[1.25]"
+          <Link
+            to="/profile"
+            className="link-reg flex h-[42px] w-[100px] items-center justify-center rounded-[30px] bg-[#262626] bg-opacity-[0.05] text-[14px] font-bold leading-[1.29] tracking-[-0.03em] text-[#262626] transition duration-500 md:h-[52px] md:w-[170px] md:text-[16px] md:leading-[1.25]"
           >
             Back
-          </button>
+          </Link>
           <button
             type="submit"
             className="link-reg h-[42px] w-[100px] rounded-[30px] bg-[#f6b83d] text-center text-[14px] font-bold leading-[1.29] tracking-[-0.03em] text-white transition duration-500 md:h-[52px] md:w-[170px] md:text-[16px] md:leading-[1.25]"
