@@ -50,7 +50,7 @@ export const editInfoSchema = yup.object().shape({
     .optional()
     .matches(
       phoneRegExp,
-      "Phone number is incorrect. Please use the format: +380962939397"
+      "Phone number is incorrect. Please use the format: +380XXXXXXXXX"
     ),
 });
 
@@ -62,7 +62,7 @@ export const addPetSchema = yup.object().shape({
     .required("Image URL is required")
     .matches(
       urlRegExp,
-      "Image URL must be a valid link to an image (png, jpg, jpeg, gif, bmp, webp)"
+      "The imgURL with pet as string in format: https://XXXX.png|jpg|jpeg|gif|bmp|webp"
     ),
   species: yup.string().required("Species is required"),
   birthday: yup
