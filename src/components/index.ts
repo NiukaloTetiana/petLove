@@ -22,3 +22,5 @@ export * from "./PetsList/PetsList";
 export * from "./PetsList/PetsItem";
 export * from "./PetsBlock/PetsBlock";
 export * from "./AddPetForm/AddPetForm";
+export * from "./FriendsList/FriendsList";
+export * from "./FriendsList/FriendsItem";
