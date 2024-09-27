@@ -53,7 +53,7 @@ input {
   &:hover,
   &:focus,
   &.active {
-    @apply bg-[#fff4df] text-[#f6b83d] shadow-md outline-none lg:bg-[#f9b020] lg:text-white;
+    @apply bg-[#fff4df] text-[#f6b83d] shadow-sm outline-none lg:bg-[#f9b020] lg:text-white;
   }
 }
 
@@ -299,4 +299,8 @@ input {
   &:active {
     @apply text-[#f6b83d];
   }
+}
+
+.button-attention {
+  @apply block h-[42px] w-[135px] rounded-[30px] py-[12px] text-center text-[14px] font-bold leading-[1.29] tracking-[-0.03em] transition duration-500 md:h-[48px] md:w-[140px] md:py-[14px] md:text-[16px] md:leading-[1.25];
 }
