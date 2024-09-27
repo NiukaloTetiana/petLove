@@ -9,7 +9,7 @@ export interface INotice {
   comment: string;
   sex: string;
   location: string;
-  imageUrl: string;
+  imgURL: string;
   popularity: number;
   user: string;
   createdAt: string;

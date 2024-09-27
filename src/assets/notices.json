@@ -1,0 +1,37 @@
+{
+  "page": 1,
+  "perPage": 2,
+  "totalPages": 26,
+  "results": [
+    {
+      "species": "dog",
+      "category": "sell",
+      "price": 150,
+      "title": "Golden Retriever Puppies",
+      "name": "Max",
+      "birthday": "2022-01-10",
+      "comment": "Adorable puppy looking for a loving home.",
+      "sex": "male",
+      "location": "641ffcc1ae4e889a02d25ca5",
+      "imgURL": "https://ftp.goit.study/img/pets/1.webp",
+      "createdAt": "2023-12-11T10:43:28.477Z",
+      "user": "6576e7d0c4cc99fc5ef94221",
+      "popularity": 2,
+      "updatedAt": "2023-12-25T11:41:12.493Z"
+    },
+    {
+      "species": "fish",
+      "category": "free",
+      "title": "Colorful Betta Fish",
+      "name": "Splash",
+      "birthday": "2021-04-05",
+      "comment": "Free to a good home. Beautiful betta fish.",
+      "sex": "unknown",
+      "location": "641ffcd2ae4e889a02d28d11",
+      "imgURL": "https://ftp.goit.study/img/pets/3.webp",
+      "createdAt": "2023-12-11T10:43:28.477Z",
+      "user": "6576e7d0c4cc99fc5ef94221",
+      "popularity": 1
+    }
+  ]
+}
