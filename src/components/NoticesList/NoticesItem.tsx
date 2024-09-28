@@ -1,11 +1,12 @@
 import { format } from "date-fns";
 
 import { INotice } from "../../types";
-import { Icon, Modal, ModalAttention } from "../../components";
+import { Icon, Modal, ModalAttention, ModalNotice } from "../../components";
 import { useModal } from "../../hooks";
 
 interface INoticesItemProps {
   notice: INotice;
+  toggleNoticeModal: () => void;
 }
 
 export const NoticesItem = ({ notice }: INoticesItemProps) => {
@@ -21,6 +22,7 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
     species,
   } = notice;
   const [isOpenModal, toggleModal] = useModal();
+  const [isOpenNoticeModal, toggleNoticeModal] = useModal();
 
   const capitalizeFirstLetter = (string: string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -83,8 +85,8 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
       <div className="flex items-center justify-between">
         <button
           type="button"
-          // onClick={}
-          className="link-log duration- h-[46px] w-[231px] rounded-[30px] bg-[#f6b83d] py-[14px] text-center text-[14px] font-medium leading-[1.29] tracking-[-0.03em] text-white shadow-sm transition sm-max:w-[170px] md:h-[48px] md:w-[236px] md:leading-[1] lg:w-[257px]"
+          onClick={toggleNoticeModal}
+          className="link-log h-[46px] w-[231px] rounded-[30px] bg-[#f6b83d] py-[14px] text-center text-[14px] font-medium leading-[1.29] tracking-[-0.03em] text-white shadow-sm transition duration-500 sm-max:w-[170px] md:h-[48px] md:w-[236px] md:leading-[1] lg:w-[257px]"
         >
           Learn more
         </button>
@@ -101,6 +103,16 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
           />
         </button>
       </div>
+
+      {isOpenNoticeModal && (
+        <Modal
+          isOpen={isOpenNoticeModal}
+          toggleModal={toggleNoticeModal}
+          className="px-[28px] py-10 md:px-[72px]"
+        >
+          <ModalNotice notice={notice} />
+        </Modal>
+      )}
 
       {isOpenModal && (
         <Modal

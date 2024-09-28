@@ -27,3 +27,4 @@ export * from "./FriendsList/FriendsItem";
 export * from "./NoticesList/NoticesList";
 export * from "./NoticesList/NoticesItem";
 export * from "./ModalAttention/ModalAttention";
+export * from "./ModalNotice/ModalNotice";

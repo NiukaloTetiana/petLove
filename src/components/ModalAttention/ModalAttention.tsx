@@ -1,5 +1,6 @@
-import { modal_dog_1x, modal_dog_2x } from "../../assets";
 import { Link } from "react-router-dom";
+
+import { modal_dog_1x, modal_dog_2x } from "../../assets";
 
 // interface IModalAttentionProps {
 //   toggleAttentionModal: () => void;
