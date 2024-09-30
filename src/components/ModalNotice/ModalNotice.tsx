@@ -104,12 +104,9 @@ export const ModalNotice = ({ notice }: IModalNoticeProps) => {
           />
         </button>
 
-        <button
-          type="button"
-          className="button-notice bg-[#fff4df] text-[#f6b83d]"
-        >
+        <a href="tel:" className="button-notice bg-[#fff4df] text-[#f6b83d]">
           Contact
-        </button>
+        </a>
       </div>
     </>
   );

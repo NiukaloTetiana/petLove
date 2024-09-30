@@ -6,7 +6,6 @@ import { useModal } from "../../hooks";
 
 interface INoticesItemProps {
   notice: INotice;
-  toggleNoticeModal: () => void;
 }
 
 export const NoticesItem = ({ notice }: INoticesItemProps) => {
