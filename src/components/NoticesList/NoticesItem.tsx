@@ -28,7 +28,7 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
   };
 
   return (
-    <li className="w-full gap-[14px] rounded-[16px] bg-white p-[24px] shadow-md md:w-[342px] lg:w-[363px]">
+    <li className="w-full rounded-[16px] bg-white p-[24px] shadow-md md:w-[342px] lg:w-[363px]">
       <div className="mb-[24px] flex h-[178px] w-[287px] shrink-0 items-center justify-center overflow-hidden rounded-[16px] sm-max:w-full md:w-[294px] lg:w-[315px]">
         <img
           src={imgURL}
