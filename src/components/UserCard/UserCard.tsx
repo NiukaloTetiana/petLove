@@ -6,8 +6,8 @@ import {
   Modal,
   ModalEditUser,
   EditUserBtn,
+  PetsBlock,
 } from "../../components";
-import PetsBlock from "../PetsBlock/PetsBlock";
 
 
 export const UserCard = () => {

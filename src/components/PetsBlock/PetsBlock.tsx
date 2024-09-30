@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import { Icon, PetsList } from "../../components";
 
-const PetsBlock = () => {
+export const PetsBlock = () => {
   return (
     <>
       <div className="mb-5 flex items-center justify-between">
@@ -26,5 +26,3 @@ const PetsBlock = () => {
     </>
   );
 };
-
-export default PetsBlock;
