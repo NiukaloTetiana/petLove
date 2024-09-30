@@ -33,7 +33,7 @@ export const PetsItem = ({ pet }: IPetsItemProps) => {
           </li>
           <li className="item">
             <span className="span">Birthday</span>
-            {format(birthday, "dd.mm.yyyy")}
+            {format(birthday, "dd.MM.yyyy")}
           </li>
           <li className="item">
             <span className="span">Sex</span>

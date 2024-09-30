@@ -9,6 +9,7 @@ import {
 } from "../../components";
 import PetsBlock from "../PetsBlock/PetsBlock";
 
+
 export const UserCard = () => {
   const [isOpenModal, toggleModal] = useModal();
   const [isOpenEditModal, toggleEditModal] = useModal();

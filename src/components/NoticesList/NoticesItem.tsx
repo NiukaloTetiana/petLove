@@ -61,7 +61,7 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
         </li>
         <li className="flex flex-col gap-[2px]">
           <span className="span">Birthday</span>
-          {format(birthday, "dd.mm.yyyy")}
+          {format(birthday, "dd.MM.yyyy")}
         </li>
         <li className="flex flex-col gap-[2px]">
           <span className="span">Sex</span>

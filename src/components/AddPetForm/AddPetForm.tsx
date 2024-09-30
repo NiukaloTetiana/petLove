@@ -11,10 +11,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import DatePicker from "react-datepicker";
 import { toast } from "react-toastify";
 import "react-datepicker/dist/react-datepicker.css";
+import { format } from "date-fns";
 
 import { addPetSchema } from "../../schemas";
 import { Icon } from "../../components";
-import { format } from "date-fns";
 
 export interface AddPetFormData {
   title: string;
