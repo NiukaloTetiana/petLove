@@ -1,5 +1,5 @@
 export interface IPet {
-  //   _id: string;
+  // _id: string;
   imgUrl: string;
   title: string;
   name: string;
@@ -7,3 +7,5 @@ export interface IPet {
   sex: string;
   species: string;
 }
+
+export interface IPetRequest extends Omit<IPet, "_id"> {}
