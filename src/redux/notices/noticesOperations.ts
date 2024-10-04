@@ -7,6 +7,7 @@ import type {
   IOneNotice,
 } from "../../types";
 import { instance } from "../../services";
+import { refreshUser } from "../auth/authOperations";
 
 export const getNotices = createAsyncThunk<
   INoticesResponse,
@@ -92,30 +93,32 @@ export const addNoticeFavorites = createAsyncThunk<
   string[],
   string,
   { rejectValue: string }
->("notices/addNotice", async (id, { rejectWithValue }) => {
+>("notices/addNotice", async (id, thunkAPI) => {
   try {
     const { data } = await instance.post(`/notices/favorites/add/${id}`);
 
+    await thunkAPI.dispatch(refreshUser());
     return data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      return rejectWithValue(error.response?.data.message);
+      return thunkAPI.rejectWithValue(error.response?.data.message);
     }
   }
 });
 
 export const deleteNoticeFavorites = createAsyncThunk<
   string[],
-  string,add
+  string,
   { rejectValue: string }
->("notices/deleteNotice", async (id, { rejectWithValue }) => {
+>("notices/deleteNotice", async (id, thunkAPI) => {
   try {
     const { data } = await instance.delete(`/notices/favorites/remove/${id}`);
 
+    await thunkAPI.dispatch(refreshUser());
     return data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      return rejectWithValue(error.response?.data.message);
+      return thunkAPI.rejectWithValue(error.response?.data.message);
     }
   }
 });

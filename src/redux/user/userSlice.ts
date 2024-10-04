@@ -52,6 +52,7 @@ const userSlice = createSlice({
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.name = action.payload.name;
         state.email = action.payload.email;
+        state.noticesFavorites = action.payload.noticesFavorites;
       })
       .addCase(addPet.fulfilled, (state, action) => {
         state.pets = action.payload.pets;

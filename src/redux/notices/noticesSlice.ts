@@ -63,17 +63,6 @@ const noticesSlice = createSlice({
         state.sex = action.payload;
         state.isLoading = false;
       })
-      .addCase(addNoticeFavorites.fulfilled, (state, action) => {
-        state.oneNotice = action.payload;
-        state.isLoading = false;
-      })
-      .addCase(deleteNoticeFavorites.fulfilled, (state, action) => {
-        state.oneNotice = action.payload;
-        state.isLoading = false;
-      })
-      .addCase(getReviews.rejected, (state) => {
-        state.isLoading = false;
-      })
       .addMatcher(
         isAnyOf(
           getNotices.pending,
@@ -104,10 +93,25 @@ const noticesSlice = createSlice({
       );
   },
   selectors: {
-    selectReviews: (state) => state.notices,
-    selectIsLoadingReviews: (state) => state.isLoading,
+    selectNotices: (state) => state.notices,
+    selectOneNotice: (state) => state.oneNotice,
+    selectCategories: (state) => state.categories,
+    selectSpecies: (state) => state.species,
+    selectSex: (state) => state.sex,
+    selectPage: (state) => state.page,
+    selectTotalPages: (state) => state.totalPages,
+    selectIsLoadingNotices: (state) => state.isLoading,
   },
 });
 
 export const noticesReducer = noticesSlice.reducer;
-export const { selectNotices, selectIsLoadingNotices } = noticesSlice.selectors;
+export const {
+  selectNotices,
+  selectOneNotice,
+  selectCategories,
+  selectSpecies,
+  selectSex,
+  selectPage,
+  selectTotalPages,
+  selectIsLoadingNotices,
+} = noticesSlice.selectors;
