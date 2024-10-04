@@ -1,5 +1,5 @@
 export interface IPet {
-  // _id: string;
+  _id: string;
   imgUrl: string;
   title: string;
   name: string;

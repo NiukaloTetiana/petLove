@@ -13,9 +13,7 @@ export const registerUser = createAsyncThunk<
   try {
     const { data } = await instance.post("/users/signup", credentials);
     setToken(data.token);
-    // const { email, password } = credentials;
 
-    // await thunkAPI.dispatch(loginUser({ email, password }));
     return data;
   } catch (error) {
     if (axios.isAxiosError(error)) {

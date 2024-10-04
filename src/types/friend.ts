@@ -1,12 +1,12 @@
 export interface IWorkDay {
-  // _id: string;
+  _id: string;
   isOpen: boolean;
   from?: string;
   to?: string;
 }
 
 export interface IFriend {
-  // _id: string;
+  _id: string;
   title: string;
   url: string;
   addressUrl: string;
