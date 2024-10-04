@@ -7,7 +7,7 @@ import {
   removePet,
   updateUserCurrent,
 } from "./userOperations";
-import { logoutUser } from "../auth/authOperations";
+import { logoutUser, refreshUser } from "../auth/authOperations";
 
 export interface IUserSlice extends Omit<IUser, "token"> {
   isLoading: boolean;
@@ -48,6 +48,10 @@ const userSlice = createSlice({
         state.avatar = action.payload.avatar;
         state.phone = action.payload.phone;
         state.isLoading = false;
+      })
+      .addCase(refreshUser.fulfilled, (state, action) => {
+        state.name = action.payload.name;
+        state.email = action.payload.email;
       })
       .addCase(addPet.fulfilled, (state, action) => {
         state.pets = action.payload.pets;
