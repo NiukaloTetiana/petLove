@@ -2,12 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { ICity } from "../../types";
 import { getCities } from "./citiesOperations";
 
-export interface INoticesSlice {
+export interface ICitiesSlice {
   cities: ICity[];
   isLoading: boolean;
 }
 
-const initialState: INoticesSlice = {
+const initialState: ICitiesSlice = {
   cities: [],
   isLoading: false,
 };
