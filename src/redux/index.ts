@@ -5,3 +5,5 @@ export * from "./user/userOperations";
 export * from "./user/userSlice";
 export * from "./notices/noticesOperations";
 export * from "./notices/noticesSlice";
+export * from "./cities/citiesOperations";
+export * from "./cities/citiesSlice";
