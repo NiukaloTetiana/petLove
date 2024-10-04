@@ -36,7 +36,7 @@ const noticesSlice = createSlice({
   name: "notices",
   initialState,
   reducers: {
-    setPage: (state, action) => {
+    setPageNotices: (state, action) => {
       state.page = action.payload;
     },
   },
@@ -115,3 +115,4 @@ export const {
   selectTotalPages,
   selectIsLoadingNotices,
 } = noticesSlice.selectors;
+export const { setPageNotices } = noticesSlice.actions;

@@ -1,16 +1,16 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-import { INew } from "../../types";
+import { INewResponse } from "../../types";
 import { instance } from "../../services";
 
 export const getNews = createAsyncThunk<
-  INew[],
-  undefined,
+  INewResponse,
+  { page: number; limit: number; keyword: string },
   { rejectValue: string }
->("news/getNews", async (_, { rejectWithValue }) => {
+>("news/getNews", async (params, { rejectWithValue }) => {
   try {
-    const { data } = await instance.get("/news");
+    const { data } = await instance.get("/news", { params });
 
     return data;
   } catch (error) {
