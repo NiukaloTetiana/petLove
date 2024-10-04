@@ -9,3 +9,5 @@ export * from "./cities/citiesOperations";
 export * from "./cities/citiesSlice";
 export * from "./friends/friendsOperations";
 export * from "./friends/friendsSlice";
+export * from "./news/newsOperations";
+export * from "./news/newsSlice";
