@@ -275,20 +275,28 @@ input {
   @apply absolute left-1/2 top-1/2 z-[2] content-[''];
 }
 
-.real-radio:checked + .custom-radio {
-  @apply size-[32px] rounded-full transition duration-500 md:size-10;
+.female:has(.real-radio:checked) {
+  @apply bg-[#f43f5e];
 }
 
 .real-radio:checked + .custom-radio.female {
-  @apply bg-[#f43f5e] stroke-white;
+  @apply stroke-white;
+}
+
+.male:has(.real-radio:checked) {
+  @apply bg-[#54adff];
 }
 
 .real-radio:checked + .custom-radio.male {
-  @apply bg-[#54adff] stroke-white;
+  @apply stroke-white;
+}
+
+.multiple:has(.real-radio:checked) {
+  @apply bg-[#f6b83d];
 }
 
 .real-radio:checked + .custom-radio.multiple {
-  @apply bg-[#f6b83d] fill-white;
+  @apply fill-white;
 }
 
 .a-hover {
