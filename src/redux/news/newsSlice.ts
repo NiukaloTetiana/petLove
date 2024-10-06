@@ -40,10 +40,17 @@ const newsSlice = createSlice({
   },
   selectors: {
     selectNews: (state) => state.news,
+    selectPageNews: (state) => state.page,
+    selectTotalPagesNews: (state) => state.totalPages,
     selectIsLoadingNews: (state) => state.isLoading,
   },
 });
 
 export const newsReducer = newsSlice.reducer;
-export const { selectNews, selectIsLoadingNews } = newsSlice.selectors;
+export const {
+  selectNews,
+  selectPageNews,
+  selectTotalPagesNews,
+  selectIsLoadingNews,
+} = newsSlice.selectors;
 export const { setPageNews } = newsSlice.actions;
