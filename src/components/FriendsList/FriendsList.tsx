@@ -1,16 +1,14 @@
-// import { IFriend } from "../../types";
+import { useAppSelector } from "../../hooks";
+import { selectFriends } from "../../redux";
 import { FriendsItem } from "./FriendsItem";
-import friends from "../../assets/friends.json";
-
-// interface IFriendsListProps {
-//   friends: IFriend[];
-// }
 
 export const FriendsList = () => {
+  const friends = useAppSelector(selectFriends);
+
   return (
     <ul className="flex flex-wrap gap-5 lg:gap-y-[28px]">
-      {friends.map((friend, index) => (
-        <FriendsItem key={index} friend={friend} />
+      {friends.map((friend) => (
+        <FriendsItem key={friend._id} friend={friend} />
       ))}
     </ul>
   );

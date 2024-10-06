@@ -2,7 +2,6 @@ import axios from "axios";
 
 export const instance = axios.create({
   baseURL: "https://petlove.b.goit.study/api",
-  withCredentials: true,
 });
 
 export const setToken = (token: string) => {
