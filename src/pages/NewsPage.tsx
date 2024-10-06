@@ -1,14 +1,28 @@
 // import { useState } from "react";
 
+import { useEffect } from "react";
 import { NewsList, SearchField, Title } from "../components";
+import { useAppDispatch, useAppSelector } from "../hooks/redux";
+import { getNews, selectPageNews } from "../redux";
+import { Pagination } from "../components/Pagination/Pagination";
 
 const NewsPage = () => {
+  const page = useAppSelector(selectPageNews);
+  const dispatch = useAppDispatch();
+
   // const [search, setSearch] = useState<string>("");
   const search = true;
 
   // const handleChangeSearch = (news: React.ChangeEvent<HTMLInputElement>) => {
   //   setSearch(news.target.value);
   // };
+
+  useEffect(() => {
+    const params = { page, limit: 6, keyword: "" };
+
+    dispatch(getNews(params));
+  }, [dispatch, page]);
+
   const handleChangeSearch = () => {};
 
   return (
@@ -18,6 +32,7 @@ const NewsPage = () => {
         {search && <SearchField onChange={handleChangeSearch} />}
         <NewsList />
       </div>
+      <Pagination />
     </div>
   );
 };
