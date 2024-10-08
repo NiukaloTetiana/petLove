@@ -1,15 +1,16 @@
 import { format } from "date-fns";
-import { INewItem } from "../../types";
+
+import { INew } from "../../types";
 
 interface INewsItemProps {
-  news: INewItem;
+  item: INew;
 }
 
-export const NewsItem = ({ news }: INewsItemProps) => {
-  const { date, imgUrl, text, title, url } = news;
+export const NewsItem = ({ item }: INewsItemProps) => {
+  const { date, imgUrl, text, title, url } = item;
 
   return (
-    <li className="flex w-full flex-col rounded-[16px] pb-[28px] md:h-[476px] md:w-[340px] lg:w-[361px]">
+    <li className="flex w-full flex-col rounded-[16px] md:h-[476px] md:w-[340px] md:pb-[28px] lg:w-[361px]">
       <div className="mb-5 flex h-[190px] w-full shrink-0 items-center justify-center overflow-hidden rounded-[15px] md:mb-[28px] md:h-[226px]">
         <img src={imgUrl} alt={title} className="h-full w-full object-cover" />
       </div>

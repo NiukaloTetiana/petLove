@@ -6,7 +6,7 @@ import { instance } from "../../services";
 
 export const getNews = createAsyncThunk<
   INewResponse,
-  { page: number; limit: number; keyword: string },
+  { page: number; limit: number; keyword?: string },
   { rejectValue: string }
 >("news/getNews", async (params, { rejectWithValue }) => {
   try {
