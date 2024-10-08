@@ -1,14 +1,31 @@
 import { useEffect } from "react";
 import ReactPaginate from "react-paginate";
+import { useMediaQuery } from "react-responsive";
 
 import { Icon } from "../../components";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { selectPageNews, selectTotalPagesNews, setPageNews } from "../../redux";
+import {
+  selectPageNews,
+  selectPageNotices,
+  selectTotalPagesNews,
+  selectTotalPagesNotices,
+  setPageNews,
+} from "../../redux";
+import { useLocation } from "react-router-dom";
 
 export const Pagination: React.FC = () => {
-  const page = useAppSelector(selectPageNews) - 1;
-  const totalPages = useAppSelector(selectTotalPagesNews);
+  const location = useLocation();
+  const isNewsPage = location.pathname === "/news";
+
+  const page =
+    useAppSelector(isNewsPage ? selectPageNews : selectPageNotices) - 1;
+  const totalPages = useAppSelector(
+    isNewsPage ? selectTotalPagesNews : selectTotalPagesNotices
+  );
   const dispatch = useAppDispatch();
+  const pageRangeDisplayed = useMediaQuery({ query: "(max-width:767.99px)" })
+    ? 2
+    : 3;
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -28,6 +45,8 @@ export const Pagination: React.FC = () => {
 
   if (!totalPages) return;
 
+  if (totalPages <= 1) return null;
+
   return (
     <div className="flex items-center justify-center gap-[17px]">
       <button
@@ -44,7 +63,7 @@ export const Pagination: React.FC = () => {
 
       <ReactPaginate
         pageCount={totalPages}
-        pageRangeDisplayed={2}
+        pageRangeDisplayed={pageRangeDisplayed}
         marginPagesDisplayed={0}
         onPageChange={handlePageClick}
         forcePage={page}

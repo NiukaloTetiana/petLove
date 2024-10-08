@@ -31,3 +31,4 @@ export * from "./ModalNotice/ModalNotice";
 export * from "./NewsList/NewsList";
 export * from "./NewsList/NewsItem";
 export * from "./SearchField/SearchField";
+export * from "./NoticesFilters/NoticesFilters";
