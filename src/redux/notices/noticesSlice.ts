@@ -98,8 +98,8 @@ const noticesSlice = createSlice({
     selectCategories: (state) => state.categories,
     selectSpecies: (state) => state.species,
     selectSex: (state) => state.sex,
-    selectPage: (state) => state.page,
-    selectTotalPages: (state) => state.totalPages,
+    selectPageNotices: (state) => state.page,
+    selectTotalPagesNotices: (state) => state.totalPages,
     selectIsLoadingNotices: (state) => state.isLoading,
   },
 });
@@ -111,8 +111,8 @@ export const {
   selectCategories,
   selectSpecies,
   selectSex,
-  selectPage,
-  selectTotalPages,
+  selectPageNotices,
+  selectTotalPagesNotices,
   selectIsLoadingNotices,
 } = noticesSlice.selectors;
 export const { setPageNotices } = noticesSlice.actions;

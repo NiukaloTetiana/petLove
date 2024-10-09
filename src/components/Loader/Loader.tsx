@@ -25,7 +25,7 @@ export const Loader: FC<LoaderProps> = ({ isLoading }) => {
           }
           return nextProgress;
         });
-      }, 30);
+      }, 5);
     }
 
     return () => clearInterval(interval);
