@@ -63,7 +63,7 @@ const NewsPage = () => {
         {news.length ? <Pagination /> : null}
       </div>
 
-      {<Loader isLoading={isLoading} />}
+      <Loader isLoading={isLoading} />
     </>
   );
 };
