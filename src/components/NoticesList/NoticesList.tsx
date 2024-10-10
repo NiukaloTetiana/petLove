@@ -1,16 +1,14 @@
 // import { INotice} from "../../types";
+import { useAppSelector } from "../../hooks";
+import { selectNotices } from "../../redux";
 import { NoticesItem } from "./NoticesItem";
-import notices from "../../assets/notices.json";
-
-// interface INoticesListProps {
-//   notices: INotice[];
-// }
 
 export const NoticesList = () => {
+  const notices = useAppSelector(selectNotices);
   return (
     <ul className="flex flex-wrap gap-5 lg:gap-x-[32px] lg:gap-y-10">
-      {notices.results.map((notice, index) => (
-        <NoticesItem key={index} notice={notice} />
+      {notices.map((notice) => (
+        <NoticesItem key={notice._id} notice={notice} />
       ))}
     </ul>
   );
