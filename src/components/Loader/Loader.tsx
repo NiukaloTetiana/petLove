@@ -32,7 +32,7 @@ export const Loader: FC<LoaderProps> = ({ isLoading }) => {
   }, [isLoading, wasLoading, progress]);
 
   return progress <= 100 && wasLoading ? (
-    <div className="bg-img fixed inset-1 z-50 flex items-center justify-center">
+    <div className="bg-img fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm">
       <div className="size-[292px] animate-spin rounded-full border-t-2 border-slate-300 md:size-[427px] lg:size-[396px]"></div>
       <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[50px] font-bold leading-[1] tracking-[-0.04em] text-white md:text-[80px]">
         {Math.floor(progress)}%
