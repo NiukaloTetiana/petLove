@@ -15,6 +15,8 @@ import { format } from "date-fns";
 
 import { addPetSchema } from "../../schemas";
 import { Icon } from "../../components";
+import { useAppSelector } from "../../hooks";
+import { selectSpecies } from "../../redux";
 
 export interface AddPetFormData {
   title: string;
@@ -24,23 +26,6 @@ export interface AddPetFormData {
   birthday: string;
   sex: "male" | "female" | "multiple";
 }
-
-const speciesOptions = [
-  { label: "dog" },
-  { label: "cat" },
-  { label: "monkey" },
-  { label: "bird" },
-  { label: "snake" },
-  { label: "turtle" },
-  { label: "lizard" },
-  { label: "frog" },
-  { label: "fish" },
-  { label: "ants" },
-  { label: "bees" },
-  { label: "butterfly" },
-  { label: "spider" },
-  { label: "scorpion" },
-];
 
 export const AddPetForm = () => {
   const {
@@ -53,6 +38,8 @@ export const AddPetForm = () => {
     mode: "onChange",
     resolver: yupResolver(addPetSchema),
   });
+  const speciesOptions = useAppSelector(selectSpecies);
+  console.log(speciesOptions);
 
   const [isListVisible, setIsListVisible] = useState<boolean>(false);
   const [selectedType, setSelectedType] = useState<string | null>(null);
@@ -299,7 +286,7 @@ export const AddPetForm = () => {
 
             {isListVisible && (
               <ul className="scrollbar absolute top-[46px] z-[2] h-[78px] w-[143px] space-y-[8px] rounded-[15px] border border-[#26262626] bg-white p-3 text-[14px] font-medium leading-[1.25] tracking-[-0.03em] text-[#26262699] shadow-md sm-max:w-[102px] md:top-[54px] md:h-[126px] md:w-[210px] md:p-[14px] md:text-[16px] md:leading-[1.29]">
-                {speciesOptions.map(({ label }) => (
+                {speciesOptions.map((label) => (
                   <li
                     key={label}
                     onClick={() => handleLabelClick(label)}
