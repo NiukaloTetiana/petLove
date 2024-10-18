@@ -9,6 +9,7 @@ import {
   getNoticesSpecies,
   refreshUser,
 } from "../redux";
+import { PrivateRoute, PublicRoute } from "../routes";
 
 const HomePage = lazy(() => import("../pages/HomePage"));
 const NewsPage = lazy(() => import("../pages/NewsPage"));
@@ -40,10 +41,38 @@ export const App = () => {
         <Route path="/news" element={<NewsPage />} />
         <Route path="/notices" element={<NoticesPage />} />
         <Route path="/friends" element={<FriendsPage />} />
-        <Route path="/register" element={<RegistrationPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/add-pet" element={<AddPetPage />}></Route>
+        <Route
+          path="/register"
+          element={
+            <PublicRoute>
+              <RegistrationPage />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <PublicRoute>
+              <LoginPage />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute>
+              <ProfilePage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/add-pet"
+          element={
+            <PrivateRoute>
+              <AddPetPage />
+            </PrivateRoute>
+          }
+        ></Route>
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
