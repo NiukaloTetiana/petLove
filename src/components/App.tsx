@@ -1,7 +1,14 @@
-import { lazy } from "react";
+import { lazy, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import { Layout } from "../components";
+import { useAppDispatch } from "../hooks";
+import {
+  getNoticesCategories,
+  getNoticesSex,
+  getNoticesSpecies,
+  refreshUser,
+} from "../redux";
 
 const HomePage = lazy(() => import("../pages/HomePage"));
 const NewsPage = lazy(() => import("../pages/NewsPage"));
@@ -14,6 +21,18 @@ const AddPetPage = lazy(() => import("../pages/AddPetPage"));
 const NotFoundPage = lazy(() => import("../pages/NotFoundPage"));
 
 export const App = () => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getNoticesCategories());
+    dispatch(getNoticesSex());
+    dispatch(getNoticesSpecies());
+  }, [dispatch]);
+
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
