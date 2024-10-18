@@ -7,7 +7,7 @@ import type {
   IOneNotice,
 } from "../../types";
 import { instance } from "../../services";
-import { refreshUser } from "../auth/authOperations";
+import { getUserCurrent } from "../user/userOperations";
 
 export const getNotices = createAsyncThunk<
   INoticesResponse,
@@ -97,7 +97,7 @@ export const addNoticeFavorites = createAsyncThunk<
   try {
     const { data } = await instance.post(`/notices/favorites/add/${id}`);
 
-    await thunkAPI.dispatch(refreshUser());
+    await thunkAPI.dispatch(getUserCurrent());
     return data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -114,7 +114,7 @@ export const deleteNoticeFavorites = createAsyncThunk<
   try {
     const { data } = await instance.delete(`/notices/favorites/remove/${id}`);
 
-    await thunkAPI.dispatch(refreshUser());
+    await thunkAPI.dispatch(getUserCurrent());
     return data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
