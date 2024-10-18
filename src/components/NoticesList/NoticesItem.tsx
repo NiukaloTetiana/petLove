@@ -24,7 +24,7 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
   const [isOpenNoticeModal, toggleNoticeModal] = useModal();
 
   return (
-    <li className="w-full rounded-[16px] bg-white p-[24px] shadow-md md:w-[342px] lg:w-[363px]">
+    <li className="flex h-[430px] w-full flex-col rounded-[16px] bg-white p-[24px] shadow-md md:h-[444px] md:w-[342px] lg:w-[363px]">
       <div className="mb-[24px] flex h-[178px] w-[287px] shrink-0 items-center justify-center overflow-hidden rounded-[16px] sm-max:w-full md:w-[294px] lg:w-[315px]">
         <img
           src={imgURL}
@@ -73,11 +73,11 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
         </li>
       </ul>
 
-      <p className="mb-[42px] text-[14px] font-medium leading-[1.29] tracking-[-0.02em] text-[#2b2b2a] md:mb-[32px] lg:mb-[50px]">
+      <p className="text-[14px] font-medium leading-[1.29] tracking-[-0.02em] text-[#2b2b2a]">
         {comment}
       </p>
 
-      <div className="flex items-center justify-between">
+      <div className="mt-auto flex items-center justify-between">
         <button
           type="button"
           onClick={toggleNoticeModal}
