@@ -2,8 +2,9 @@ import { useRef } from "react";
 import { useLocation } from "react-router-dom";
 
 import { AuthButton, Icon, LogoutBtn,  NavBar } from "../../components";
-import { useEscapeClose } from "../../hooks";
+import { useAppSelector, useEscapeClose } from "../../hooks";
 import { handleClickOnBackdrop } from "../../helpers";
+import { selectIsLoggedIn } from "../../redux";
 
 interface IBurgerMenuProps {
   classBackdrop: string;
@@ -19,7 +20,7 @@ export const BurgerMenu = ({
   isOpen,
 }: IBurgerMenuProps) => {
   const backdropRef = useRef(null);
-  const isLogin = true;
+  const isLoggedIn = useAppSelector(selectIsLoggedIn);
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
@@ -52,7 +53,7 @@ export const BurgerMenu = ({
           toggleMenu={toggleMenu}
         />
 
-        {isLogin ? (
+        {isLoggedIn ? (
           <LogoutBtn
             toggleMenu={toggleMenu}
             className="inline-block w-full md:w-[155px] lg:hidden"

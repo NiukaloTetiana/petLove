@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { registerSchema, loginSchema } from "../../schemas/validationSchemas";
 import { InputField } from "../InputField/InputField";
 import { IFormData } from "../InputField/InputField";
+import { useAppDispatch } from "../../hooks";
+import { loginUser, registerUser } from "../../redux";
 
 interface IAuthFormProps {
   registration?: boolean;
@@ -22,12 +24,21 @@ export const AuthForm = ({ registration, toggleModal }: IAuthFormProps) => {
     mode: "onChange",
     resolver: yupResolver(registration ? registerSchema : loginSchema),
   });
+  const dispatch = useAppDispatch();
 
-  const onSubmit: SubmitHandler<IFormData> = async ({ name }) => {
+  const onSubmit: SubmitHandler<IFormData> = async ({
+    name,
+    email,
+    password,
+  }) => {
     try {
       if (registration && name) {
+        await dispatch(registerUser({ name, email, password })).unwrap();
+
         toast.success(`Yohoo! ${name}, you are successfully registered!`);
       } else {
+        await dispatch(loginUser({ email, password })).unwrap();
+
         toast.success(`Welcome back!`);
       }
       toggleModal && toggleModal();

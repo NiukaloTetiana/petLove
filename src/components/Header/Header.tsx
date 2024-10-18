@@ -7,11 +7,12 @@ import {
   NavBar,
   UserBar,
 } from "../../components";
-import { useModal } from "../../hooks";
+import { useAppSelector, useModal } from "../../hooks";
+import { selectIsLoggedIn } from "../../redux";
 
 export const Header = () => {
   const [isMenuOpen, toggleMenu] = useModal();
-  const isLogin = true;
+  const isLoggedIn = useAppSelector(selectIsLoggedIn);
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
@@ -31,7 +32,11 @@ export const Header = () => {
             classMenu={`${isMenuOpen ? "translate-y-0" : "translate-y-[-100%]"}`}
           />
           <div className="flex items-center gap-[12px] sm-max:gap-[8px] md:gap-[16px]">
-            {isLogin ? <UserBar /> : <AuthButton className="hidden lg:flex" />}
+            {isLoggedIn ? (
+              <UserBar />
+            ) : (
+              <AuthButton className="hidden lg:flex" />
+            )}
             <button
               type="button"
               onClick={() => {

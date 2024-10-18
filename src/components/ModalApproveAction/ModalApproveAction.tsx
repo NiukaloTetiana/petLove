@@ -1,5 +1,7 @@
 import { toast } from "react-toastify";
 import { modal_cat_1x, modal_cat_2x } from "../../assets";
+import { useAppDispatch } from "../../hooks";
+import { logoutUser } from "../../redux";
 
 interface IModalApproveActionProps {
   toggleLogOutModal: () => void;
@@ -8,8 +10,11 @@ interface IModalApproveActionProps {
 export const ModalApproveAction = ({
   toggleLogOutModal,
 }: IModalApproveActionProps) => {
+  const dispatch = useAppDispatch();
+
   const handleLogout = async () => {
     try {
+      await dispatch(logoutUser()).unwrap();
       toast.info("If you want to continue, you must log in.");
     } catch (error) {
       toast.error("Oops... Something went wrong.");
