@@ -23,10 +23,6 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
   const [isOpenModal, toggleModal] = useModal();
   const [isOpenNoticeModal, toggleNoticeModal] = useModal();
 
-  const capitalizeFirstLetter = (string: string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  };
-
   return (
     <li className="w-full rounded-[16px] bg-white p-[24px] shadow-md md:w-[342px] lg:w-[363px]">
       <div className="mb-[24px] flex h-[178px] w-[287px] shrink-0 items-center justify-center overflow-hidden rounded-[16px] sm-max:w-full md:w-[294px] lg:w-[315px]">
@@ -63,17 +59,17 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
           <span className="span">Birthday</span>
           {format(birthday, "dd.MM.yyyy")}
         </li>
-        <li className="flex flex-col gap-[2px]">
+        <li className="flex flex-col gap-[2px] capitalize">
           <span className="span">Sex</span>
-          {capitalizeFirstLetter(sex)}
+          {sex}
         </li>
-        <li className="flex flex-col gap-[2px]">
+        <li className="flex flex-col gap-[2px] capitalize">
           <span className="span">Species</span>
-          {capitalizeFirstLetter(species)}
+          {species}
         </li>
-        <li className="flex flex-col gap-[2px]">
+        <li className="flex flex-col gap-[2px] capitalize">
           <span className="span">Category</span>
-          {capitalizeFirstLetter(category)}
+          {category}
         </li>
       </ul>
 

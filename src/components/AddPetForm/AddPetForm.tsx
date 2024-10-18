@@ -39,7 +39,6 @@ export const AddPetForm = () => {
     resolver: yupResolver(addPetSchema),
   });
   const speciesOptions = useAppSelector(selectSpecies);
-  console.log(speciesOptions);
 
   const [isListVisible, setIsListVisible] = useState<boolean>(false);
   const [selectedType, setSelectedType] = useState<string | null>(null);
@@ -272,7 +271,7 @@ export const AddPetForm = () => {
               type="text"
               onClick={handleListClick}
               placeholder="Type of pet"
-              className="input input-hover !w-[143px] placeholder:text-[#2626267f] sm-max:!w-[102px] sm-max:pr-14 md:!w-[210px]"
+              className="input input-hover !w-[143px] capitalize placeholder:normal-case placeholder:text-[#2626267f] sm-max:!w-[102px] sm-max:pr-14 md:!w-[210px]"
               readOnly
             />
 
@@ -290,7 +289,7 @@ export const AddPetForm = () => {
                   <li
                     key={label}
                     onClick={() => handleLabelClick(label)}
-                    className={`cursor-pointer hover:text-[#f6b83d] ${
+                    className={`cursor-pointer capitalize hover:text-[#f6b83d] ${
                       selectedType === label ? "text-[#f6b83d]" : ""
                     }`}
                   >
