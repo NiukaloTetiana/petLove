@@ -2,10 +2,10 @@ import { Link, useLocation } from "react-router-dom";
 
 import { Icon, LogoutBtn } from "../../components";
 import { useAppSelector } from "../../hooks";
-import { selectName } from "../../redux";
+import { selectUser } from "../../redux";
 
 export const UserBar = () => {
-  const name = useAppSelector(selectName);
+  const user = useAppSelector(selectUser);
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
@@ -27,7 +27,7 @@ export const UserBar = () => {
         <p
           className={`hidden md:block md:text-[20px] md:font-bold md:leading-[1] md:tracking-[-0.03em] ${isHomePage ? "text-white" : "text-[#262626]"}`}
         >
-          {name}
+          {user.name}
         </p>
       </div>
     </div>

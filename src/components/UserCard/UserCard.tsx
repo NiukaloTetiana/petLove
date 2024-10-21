@@ -1,4 +1,4 @@
-import { useModal } from "../../hooks";
+import { useAppSelector, useModal } from "../../hooks";
 import {
   Icon,
   ModalApproveAction,
@@ -8,17 +8,19 @@ import {
   EditUserBtn,
   PetsBlock,
 } from "../../components";
+import { selectUser } from "../../redux";
+import { IUser } from "../../types";
 
+type UserKeys = keyof IUser["user"];
 
 export const UserCard = () => {
   const [isOpenModal, toggleModal] = useModal();
   const [isOpenEditModal, toggleEditModal] = useModal();
 
-  const user = {
-    name: "John Doe",
-    email: "XjKZB@example.com",
-    phone: "",
-  };
+  const user = useAppSelector(selectUser);
+  console.log(
+    Object.keys(user).filter((key) => ["name", "email", "phone"].includes(key))
+  );
 
   return (
     <div className="rounded-[30px] bg-white px-5 pb-10 pt-[18px] md:rounded-[60px] md:p-10">
@@ -41,12 +43,20 @@ export const UserCard = () => {
           </Modal>
         )}
       </div>
-      <div className="mx-auto mb-[8px] block size-[94px] rounded-[50%] bg-[#fff4df] p-[27px] md:size-[110px] md:p-[30px]">
-        <Icon
-          id="user"
-          size={40}
-          className="fill-[#f6b83d] stroke-[#f6b83d] md:size-[50px]"
-        />
+      <div className="mx-auto mb-[8px] flex size-[94px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#fff4df] md:size-[110px]">
+        {!user.avatar ? (
+          <Icon
+            id="user"
+            size={40}
+            className="fill-[#f6b83d] stroke-[#f6b83d] md:size-[50px]"
+          />
+        ) : (
+          <img
+            src={user.avatar}
+            alt={user.name || ""}
+            className="h-full w-full object-cover"
+          />
+        )}
       </div>
       <button
         type="button"
@@ -68,8 +78,8 @@ export const UserCard = () => {
               key={key}
               value={
                 key === "phone"
-                  ? user[key] || "+380"
-                  : user[key as keyof typeof user]
+                  ? user[key as UserKeys] || "+380"
+                  : user[key as UserKeys] || ""
               }
               readOnly
             />

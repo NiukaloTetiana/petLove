@@ -11,6 +11,8 @@ import {
 import { Icon } from "../../components";
 import { editInfoSchema } from "../../schemas";
 import { formatPhoneNumber } from "../../helpers";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { selectUser, updateUserAvatar, updateUserCurrent } from "../../redux";
 
 export interface FormData {
   name: string;
@@ -28,27 +30,45 @@ export const ModalEditUser = ({ toggleEditModal }: IModalEditUserProps) => {
     register,
     handleSubmit,
     setValue,
+    getValues,
     formState: { errors, dirtyFields },
   } = useForm<FormData>({
     mode: "onChange",
     resolver: yupResolver(editInfoSchema),
   });
 
+  const dispatch = useAppDispatch();
+  const user = useAppSelector(selectUser);
+
   useEffect(() => {
-    const user = {
-      name: "John Doe",
-      email: "XjKZB@example.com",
-      phone: "+380960700432",
-      avatar:
-        "https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg",
-    };
-    if (user) {
-      setValue("name", user.name);
-      setValue("email", user.email);
-      setValue("avatar", user.avatar);
-    }
+    user.name && setValue("name", user.name);
+    user.email && setValue("email", user.email);
+    setValue("avatar", user.avatar || "");
     setValue("phone", user.phone || "+380");
-  }, [setValue]);
+  }, [dispatch, setValue, user.avatar, user.email, user.name, user.phone]);
+
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    try {
+      await dispatch(updateUserCurrent(data)).unwrap();
+      toggleEditModal();
+      toast.info("The information has been successfully updated.");
+    } catch (error) {
+      toast.error("Oops... Something went wrong. Please, try again.");
+    }
+  };
+
+  const handleUploadAvatar = async () => {
+    const avatarURL = getValues("avatar");
+    if (avatarURL) {
+      try {
+        await dispatch(updateUserAvatar(avatarURL)).unwrap();
+        toggleEditModal();
+        toast.info("The avatar has been successfully updated.");
+      } catch (error) {
+        toast.error("Oops... Something went wrong. Please, try again.");
+      }
+    }
+  };
 
   const inputClass = (
     errors: FieldErrors<FormData>,
@@ -92,27 +112,26 @@ export const ModalEditUser = ({ toggleEditModal }: IModalEditUserProps) => {
     return null;
   };
 
-  const onSubmit: SubmitHandler<FormData> = async () => {
-    try {
-      toggleEditModal();
-      toast.info("The information has been successfully updated.");
-    } catch (error) {
-      toast.error("Oops... Something went wrong. Please, try again.");
-    }
-  };
-
   return (
     <>
       <h3 className="mb-5 text-[20px] font-bold leading-[1] text-[#2b2b2a] md:text-[18px] md:leading-[1.33]">
         Edit information
       </h3>
       <div className="mb-3">
-        <div className="mx-auto mb-[12px] flex size-[80px] items-center justify-center rounded-[50%] bg-[#fff4df] md:size-[86px]">
-          <Icon
-            id="user"
-            size={40}
-            className="fill-[#f6b83d] stroke-[#f6b83d] md:size-[42px]"
-          />
+        <div className="mx-auto flex size-[80px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#fff4df] md:size-[86px]">
+          {!user.avatar ? (
+            <Icon
+              id="user"
+              size={40}
+              className="fill-[#f6b83d] stroke-[#f6b83d] md:size-[42px]"
+            />
+          ) : (
+            <img
+              src={user.avatar}
+              alt={user.name || ""}
+              className="h-full w-full object-cover"
+            />
+          )}
         </div>
       </div>
 
@@ -130,8 +149,10 @@ export const ModalEditUser = ({ toggleEditModal }: IModalEditUserProps) => {
           {renderMessage(errors, dirtyFields, "avatar")}
 
           <button
+            onClick={handleUploadAvatar}
             type="button"
-            className="link-reg flex h-[42px] w-[126px] items-center justify-center gap-[8px] rounded-[30px] bg-[#fff4df] text-[12px] leading-[1.33] text-[#262626] transition duration-500 sm-max:gap-[4px] sm-max:text-[11px] md:w-[146px] md:text-[14px] md:leading-[1.29]"
+            className="link-reg flex h-[42px] w-[126px] items-center justify-center gap-[8px] rounded-[30px] bg-[#fff4df] text-[12px] leading-[1.33] text-[#262626] transition duration-500 disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-[#f6b83d] sm-max:gap-[4px] sm-max:text-[11px] md:w-[146px] md:text-[14px] md:leading-[1.29]"
+            disabled={!getValues("avatar") || !!errors.avatar}
           >
             Upload photo
             <Icon
