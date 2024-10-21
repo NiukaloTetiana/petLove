@@ -2,10 +2,10 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import { instance } from "../../services";
-import type { IPetRequest, IUser, IUserEditRequest } from "../../types";
+import type { IPetRequest, IUserEditRequest, IUserResponse } from "../../types";
 
 export const getUserCurrent = createAsyncThunk<
-  IUser,
+  IUserResponse,
   undefined,
   { rejectValue: string }
 >("user/current/full", async (_, { rejectWithValue }) => {
@@ -21,7 +21,7 @@ export const getUserCurrent = createAsyncThunk<
 });
 
 export const updateUserCurrent = createAsyncThunk<
-  IUser,
+  IUserResponse,
   IUserEditRequest,
   { rejectValue: string }
 >("user/update", async (updatedUser, { rejectWithValue }) => {
@@ -36,8 +36,24 @@ export const updateUserCurrent = createAsyncThunk<
   }
 });
 
+export const updateUserAvatar = createAsyncThunk<
+  IUserResponse,
+  string,
+  { rejectValue: string }
+>("user/updateAvatar", async (avatar, { rejectWithValue }) => {
+  try {
+    const { data } = await instance.patch("/users/current/edit", { avatar });
+
+    return data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      return rejectWithValue(error.response?.data.message);
+    }
+  }
+});
+
 export const addPet = createAsyncThunk<
-  IUser,
+  IUserResponse,
   IPetRequest,
   { rejectValue: string }
 >(
@@ -57,7 +73,7 @@ export const addPet = createAsyncThunk<
 );
 
 export const removePet = createAsyncThunk<
-  IUser,
+  IUserResponse,
   string,
   { rejectValue: string }
 >(

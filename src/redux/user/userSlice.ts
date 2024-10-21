@@ -5,6 +5,7 @@ import {
   addPet,
   getUserCurrent,
   removePet,
+  updateUserAvatar,
   updateUserCurrent,
 } from "./userOperations";
 import {
@@ -19,14 +20,16 @@ export interface IUserSlice extends Omit<IUser, "token"> {
 }
 
 const initialState: IUserSlice = {
-  _id: null,
-  name: null,
-  email: null,
-  avatar: null,
-  phone: null,
-  noticesViewed: [],
-  noticesFavorites: [],
-  pets: [],
+  user: {
+    _id: null,
+    name: null,
+    email: null,
+    avatar: null,
+    phone: null,
+    noticesViewed: [],
+    noticesFavorites: [],
+    pets: [],
+  },
   isLoading: false,
 };
 
@@ -37,42 +40,46 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(registerUser.fulfilled, (state, action) => {
-        state.name = action.payload.name;
-        state.email = action.payload.email;
+        state.user.name = action.payload.name;
+        state.user.email = action.payload.email;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
-        state.name = action.payload.name;
-        state.email = action.payload.email;
+        state.user.name = action.payload.name;
+        state.user.email = action.payload.email;
       })
       .addCase(getUserCurrent.fulfilled, (state, action) => {
-        state._id = action.payload._id;
-        state.name = action.payload.name;
-        state.email = action.payload.email;
-        state.avatar = action.payload.avatar;
-        state.phone = action.payload.phone;
-        state.noticesViewed = action.payload.noticesViewed;
-        state.noticesFavorites = action.payload.noticesFavorites;
-        state.pets = action.payload.pets;
+        state.user._id = action.payload._id;
+        state.user.name = action.payload.name;
+        state.user.email = action.payload.email;
+        state.user.avatar = action.payload.avatar;
+        state.user.phone = action.payload.phone;
+        state.user.noticesViewed = action.payload.noticesViewed;
+        state.user.noticesFavorites = action.payload.noticesFavorites;
+        state.user.pets = action.payload.pets;
         state.isLoading = false;
       })
       .addCase(updateUserCurrent.fulfilled, (state, action) => {
-        state.name = action.payload.name;
-        state.email = action.payload.email;
-        state.avatar = action.payload.avatar;
-        state.phone = action.payload.phone;
+        state.user.name = action.payload.name;
+        state.user.email = action.payload.email;
+        state.user.avatar = action.payload.avatar;
+        state.user.phone = action.payload.phone;
+        state.isLoading = false;
+      })
+      .addCase(updateUserAvatar.fulfilled, (state, action) => {
+        state.user.avatar = action.payload.avatar;
         state.isLoading = false;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.name = action.payload.name;
-        state.email = action.payload.email;
-        state.noticesFavorites = action.payload.noticesFavorites;
+        state.user.name = action.payload.name;
+        state.user.email = action.payload.email;
+        state.user.noticesFavorites = action.payload.noticesFavorites;
       })
       .addCase(addPet.fulfilled, (state, action) => {
-        state.pets = action.payload.pets;
+        state.user.pets = action.payload.pets;
         state.isLoading = false;
       })
       .addCase(removePet.fulfilled, (state, action) => {
-        state.pets = action.payload.pets;
+        state.user.pets = action.payload.pets;
         state.isLoading = false;
       })
       .addCase(logoutUser.fulfilled, () => {
@@ -82,6 +89,7 @@ const userSlice = createSlice({
         isAnyOf(
           getUserCurrent.pending,
           updateUserCurrent.pending,
+          updateUserAvatar.pending,
           addPet.pending,
           removePet.pending
         ),
@@ -93,6 +101,7 @@ const userSlice = createSlice({
         isAnyOf(
           getUserCurrent.rejected,
           updateUserCurrent.rejected,
+          updateUserAvatar.rejected,
           addPet.rejected,
           removePet.rejected
         ),
@@ -102,25 +111,10 @@ const userSlice = createSlice({
       );
   },
   selectors: {
-    selectName: (state) => state.name,
-    selectAvatar: (state) => state.avatar,
-    selectEmail: (state) => state.email,
-    selectPhone: (state) => state.phone,
-    selectNoticesViewed: (state) => state.noticesViewed,
-    selectNoticesFavorites: (state) => state.noticesFavorites,
-    selectPets: (state) => state.pets,
+    selectUser: (state) => state.user,
     selectIsLoadingUser: (state) => state.isLoading,
   },
 });
 
 export const userReducer = userSlice.reducer;
-export const {
-  selectName,
-  selectAvatar,
-  selectEmail,
-  selectPhone,
-  selectNoticesViewed,
-  selectNoticesFavorites,
-  selectPets,
-  selectIsLoadingUser,
-} = userSlice.selectors;
+export const { selectUser, selectIsLoadingUser } = userSlice.selectors;
