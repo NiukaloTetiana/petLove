@@ -15,7 +15,7 @@ import {
   registerUser,
 } from "../auth/authOperations";
 
-export interface IUserSlice extends Omit<IUser, "token"> {
+export interface IUserSlice extends IUser {
   isLoading: boolean;
 }
 
@@ -26,10 +26,10 @@ const initialState: IUserSlice = {
     email: null,
     avatar: null,
     phone: null,
-    noticesViewed: [],
-    noticesFavorites: [],
-    pets: [],
   },
+  noticesViewed: [],
+  noticesFavorites: [],
+  pets: [],
   isLoading: false,
 };
 
@@ -53,9 +53,9 @@ const userSlice = createSlice({
         state.user.email = action.payload.email;
         state.user.avatar = action.payload.avatar;
         state.user.phone = action.payload.phone;
-        state.user.noticesViewed = action.payload.noticesViewed;
-        state.user.noticesFavorites = action.payload.noticesFavorites;
-        state.user.pets = action.payload.pets;
+        state.noticesViewed = action.payload.noticesViewed;
+        state.noticesFavorites = action.payload.noticesFavorites;
+        state.pets = action.payload.pets;
         state.isLoading = false;
       })
       .addCase(updateUserCurrent.fulfilled, (state, action) => {
@@ -72,14 +72,14 @@ const userSlice = createSlice({
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.user.name = action.payload.name;
         state.user.email = action.payload.email;
-        state.user.noticesFavorites = action.payload.noticesFavorites;
+        state.noticesFavorites = action.payload.noticesFavorites;
       })
       .addCase(addPet.fulfilled, (state, action) => {
-        state.user.pets = action.payload.pets;
+        state.pets = action.payload.pets;
         state.isLoading = false;
       })
       .addCase(removePet.fulfilled, (state, action) => {
-        state.user.pets = action.payload.pets;
+        state.pets = action.payload.pets;
         state.isLoading = false;
       })
       .addCase(logoutUser.fulfilled, () => {
@@ -112,9 +112,18 @@ const userSlice = createSlice({
   },
   selectors: {
     selectUser: (state) => state.user,
+    selectNoticesViewed: (state) => state.noticesViewed,
+    selectNoticesFavorites: (state) => state.noticesFavorites,
+    selectPets: (state) => state.pets,
     selectIsLoadingUser: (state) => state.isLoading,
   },
 });
 
 export const userReducer = userSlice.reducer;
-export const { selectUser, selectIsLoadingUser } = userSlice.selectors;
+export const {
+  selectUser,
+  selectNoticesViewed,
+  selectNoticesFavorites,
+  selectPets,
+  selectIsLoadingUser,
+} = userSlice.selectors;

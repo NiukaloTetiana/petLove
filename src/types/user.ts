@@ -7,12 +7,11 @@ export interface IUser {
     name: string | null;
     email: string | null;
     phone: string | null;
-    noticesViewed: INotice[];
     avatar: string | null;
-    noticesFavorites: INotice[];
-    pets: IPet[];
   };
-  token: string | null;
+  noticesViewed: INotice[];
+  noticesFavorites: INotice[];
+  pets: IPet[];
 }
 
 export interface IUserResponse {

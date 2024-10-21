@@ -10,8 +10,6 @@ import {
 } from "../../components";
 import { selectUser } from "../../redux";
 
-type UserKeys = "name" | "email" | "phone";
-
 export const UserCard = () => {
   const [isOpenModal, toggleModal] = useModal();
   const [isOpenEditModal, toggleEditModal] = useModal();
@@ -69,12 +67,15 @@ export const UserCard = () => {
         {Object.keys(user)
           .filter((key) => ["name", "email", "phone"].includes(key))
           .map((key) => {
-            const value = user[key as UserKeys];
             return (
               <input
-                className={`input md:w-[305px] lg:w-full ${value ? "border-[#f6b83d]" : "border-[#26262626]"}`}
+                className={`input md:w-[305px] lg:w-full ${user[key as keyof typeof user] ? "border-[#f6b83d]" : "border-[#26262626]"}`}
                 key={key}
-                value={value ?? (key === "phone" ? "+380" : "")}
+                value={
+                  key === "phone"
+                    ? user[key] || "+380"
+                    : user[key as keyof typeof user] || ""
+                }
                 readOnly
               />
             );
