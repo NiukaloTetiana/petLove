@@ -9,18 +9,14 @@ import {
   PetsBlock,
 } from "../../components";
 import { selectUser } from "../../redux";
-import { IUser } from "../../types";
 
-type UserKeys = keyof IUser["user"];
+type UserKeys = "name" | "email" | "phone";
 
 export const UserCard = () => {
   const [isOpenModal, toggleModal] = useModal();
   const [isOpenEditModal, toggleEditModal] = useModal();
 
   const user = useAppSelector(selectUser);
-  console.log(
-    Object.keys(user).filter((key) => ["name", "email", "phone"].includes(key))
-  );
 
   return (
     <div className="rounded-[30px] bg-white px-5 pb-10 pt-[18px] md:rounded-[60px] md:p-10">
@@ -72,18 +68,17 @@ export const UserCard = () => {
       <div className="mb-10 flex flex-col flex-wrap gap-[10px] md:flex-row md:gap-[14px] lg:flex-col">
         {Object.keys(user)
           .filter((key) => ["name", "email", "phone"].includes(key))
-          .map((key) => (
-            <input
-              className={`input md:w-[305px] lg:w-full ${user[key as keyof typeof user] ? "border-[#f6b83d]" : "border-[#26262626]"}`}
-              key={key}
-              value={
-                key === "phone"
-                  ? user[key as UserKeys] || "+380"
-                  : user[key as UserKeys] || ""
-              }
-              readOnly
-            />
-          ))}
+          .map((key) => {
+            const value = user[key as UserKeys];
+            return (
+              <input
+                className={`input md:w-[305px] lg:w-full ${value ? "border-[#f6b83d]" : "border-[#26262626]"}`}
+                key={key}
+                value={value ?? (key === "phone" ? "+380" : "")}
+                readOnly
+              />
+            );
+          })}
       </div>
 
       <PetsBlock />

@@ -1,6 +1,11 @@
+// import { useAppSelector } from "../../hooks";
+// import { selectCategories, selectSex, selectSpecies } from "../../redux";
 import { SearchField } from "../SearchField/SearchField";
 
 export const NoticesFilters = () => {
+  // const caterogies = useAppSelector(selectCategories);
+  // const sex = useAppSelector(selectSex);
+  // const species = useAppSelector(selectSpecies);
   const handleSearch = () => {};
 
   const handleChange = () => {};
