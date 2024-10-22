@@ -8,8 +8,6 @@ const HomePage = () => {
     };
   }, []);
 
-  // return <Loader isLoading={true} />;
-
   return (
     <div className="bg-white">
       <div className="container pb-[412px] md:pb-[512px] lg:px-[32px] lg:pb-[400px]">

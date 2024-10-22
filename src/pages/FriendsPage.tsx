@@ -25,7 +25,8 @@ const FriendsPage = () => {
         />
         <FriendsList />
       </div>
-      <Loader isLoading={isLoading} />
+
+      {isLoading && <Loader />}
     </>
   );
 };

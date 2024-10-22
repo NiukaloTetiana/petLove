@@ -53,9 +53,9 @@ const NewsPage = () => {
           <SearchField onChange={handleChangeSearch} onSearch={handleSearch} />
         </div>
 
-        {!news.length ? (
+        {!news.length && search ? (
           <div className="flex h-[calc(100vh-400px)] items-center justify-center">
-            <h3 className="text-center text-[25px] font-semibold leading-[1] tracking-[-0.03em] text-[#f6b83d] md:text-[48px]">
+            <h3 className="text-center text-[25px] font-semibold leading-[1.3] tracking-[-0.03em] text-[#f6b83d] md:text-[48px]">
               Nothing was found for your search. Please, try another one query.
             </h3>
           </div>
@@ -63,10 +63,10 @@ const NewsPage = () => {
           <NewsList />
         )}
 
-        {news.length ? <Pagination /> : null}
+        <Pagination />
       </div>
 
-      {<Loader isLoading={isLoading} />}
+      {isLoading && <Loader />}
     </>
   );
 };

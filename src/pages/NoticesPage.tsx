@@ -36,7 +36,7 @@ const NoticesPage = () => {
         )}
       </div>
 
-      {<Loader isLoading={isLoading} />}
+      {isLoading && <Loader />}
     </>
   );
 };
