@@ -14,6 +14,7 @@ import {
   refreshUser,
   registerUser,
 } from "../auth/authOperations";
+import { deleteNoticeFavorites } from "../notices/noticesOperations";
 
 export interface IUserSlice extends IUser {
   isLoading: boolean;
@@ -81,6 +82,11 @@ const userSlice = createSlice({
       .addCase(removePet.fulfilled, (state, action) => {
         state.pets = action.payload.pets;
         state.isLoading = false;
+      })
+      .addCase(deleteNoticeFavorites.fulfilled, (state, action) => {
+        state.noticesFavorites = state.noticesFavorites.filter((elem) =>
+          action.payload.includes(elem._id)
+        );
       })
       .addCase(logoutUser.fulfilled, () => {
         return initialState;

@@ -114,7 +114,6 @@ export const deleteNoticeFavorites = createAsyncThunk<
   try {
     const { data } = await instance.delete(`/notices/favorites/remove/${id}`);
 
-    await thunkAPI.dispatch(getUserCurrent());
     return data;
   } catch (error) {
     if (axios.isAxiosError(error)) {

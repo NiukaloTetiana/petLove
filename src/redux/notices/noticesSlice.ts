@@ -63,6 +63,12 @@ const noticesSlice = createSlice({
         state.sex = action.payload;
         state.isLoading = false;
       })
+      .addCase(addNoticeFavorites.fulfilled, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(deleteNoticeFavorites.fulfilled, (state) => {
+        state.isLoading = false;
+      })
       .addMatcher(
         isAnyOf(
           getNotices.pending,
