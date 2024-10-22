@@ -2,7 +2,14 @@ import { format } from "date-fns";
 
 import { INotice } from "../../types";
 import { Icon, Modal, ModalAttention, ModalNotice } from "../../components";
-import { useModal } from "../../hooks";
+import { useAppDispatch, useAppSelector, useModal } from "../../hooks";
+import {
+  addNoticeFavorites,
+  deleteNoticeFavorites,
+  selectIsLoggedIn,
+  selectNoticesFavorites,
+} from "../../redux";
+import { toast } from "react-toastify";
 
 interface INoticesItemProps {
   notice: INotice;
@@ -10,6 +17,7 @@ interface INoticesItemProps {
 
 export const NoticesItem = ({ notice }: INoticesItemProps) => {
   const {
+    _id,
     title,
     birthday,
     category,
@@ -20,8 +28,33 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
     popularity,
     species,
   } = notice;
+
   const [isOpenModal, toggleModal] = useModal();
   const [isOpenNoticeModal, toggleNoticeModal] = useModal();
+
+  const dispatch = useAppDispatch();
+  const isLoggedIn = useAppSelector(selectIsLoggedIn);
+  const noticesFavorites = useAppSelector(selectNoticesFavorites);
+
+  const isInFavorites = noticesFavorites.find((elem) => elem._id === _id);
+
+  const handleClickFavorite = async () => {
+    if (isLoggedIn) {
+      try {
+        const action = isInFavorites
+          ? deleteNoticeFavorites(_id)
+          : addNoticeFavorites(_id);
+        await dispatch(action).unwrap();
+        toast.success(
+          `You have successfully ${!isInFavorites ? "added" : "removed"} pet ${!isInFavorites ? "to" : "from"} your favorites.`
+        );
+      } catch (error) {
+        toast.error("Oops... Something went wrong.");
+      }
+    } else {
+      toggleModal();
+    }
+  };
 
   return (
     <li className="flex h-[430px] w-full flex-col rounded-[16px] bg-white p-[24px] shadow-md md:h-[444px] md:w-[342px] lg:w-[363px]">
@@ -87,15 +120,19 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
         </button>
 
         <button
-          onClick={toggleModal}
+          onClick={handleClickFavorite}
           type="button"
           className="link-reg group flex size-[46px] items-center justify-center rounded-full bg-[#fff4df] transition duration-500 md:size-[48px]"
         >
-          <Icon
-            id="heart"
-            size={16}
-            className="fill-none stroke-[#ffc531] transition-colors duration-500 group-hover:fill-[#ffc531] group-focus:fill-[#ffc531]"
-          />
+          {!isInFavorites ? (
+            <Icon
+              id="heart"
+              size={16}
+              className="fill-none stroke-[#ffc531] transition duration-500 group-hover:fill-[#ffc531]"
+            />
+          ) : (
+            <Icon id="trash" size={16} className="fill-none stroke-[#ffc531]" />
+          )}
         </button>
       </div>
 
@@ -105,7 +142,10 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
           toggleModal={toggleNoticeModal}
           className="px-[28px] py-10 md:px-[72px]"
         >
-          <ModalNotice notice={notice} />
+          <ModalNotice
+            notice={notice}
+            handleClickFavorite={handleClickFavorite}
+          />
         </Modal>
       )}
 

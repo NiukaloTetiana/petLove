@@ -1,17 +1,17 @@
 import { format } from "date-fns";
 import { INotice } from "../../types";
 import { Icon } from "../Icon/Icon";
+import { useAppSelector } from "../../hooks";
+import { selectNoticesFavorites } from "../../redux";
 
 interface IModalNoticeProps {
-  notice?: INotice;
+  notice: INotice;
+  handleClickFavorite: () => void;
 }
 
-export const ModalNotice = ({ notice }: IModalNoticeProps) => {
-  if (!notice) {
-    return null;
-  }
-
-  const {
+export const ModalNotice = ({
+  notice: {
+    _id,
     title,
     birthday,
     category,
@@ -21,7 +21,12 @@ export const ModalNotice = ({ notice }: IModalNoticeProps) => {
     sex,
     popularity,
     species,
-  } = notice;
+  },
+  handleClickFavorite,
+}: IModalNoticeProps) => {
+  const noticesFavorites = useAppSelector(selectNoticesFavorites);
+
+  const isInFavorites = noticesFavorites.find((elem) => elem._id === _id);
 
   const capitalizeFirstLetter = (string: string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -94,14 +99,28 @@ export const ModalNotice = ({ notice }: IModalNoticeProps) => {
       <div className="flex justify-center gap-[10px]">
         <button
           type="button"
+          onClick={handleClickFavorite}
           className="button-notice group !flex items-center justify-center gap-2 bg-[#f6b83d] !text-white"
         >
-          Add to
-          <Icon
-            id="heart"
-            size={16}
-            className="size-[18px] fill-none stroke-white !font-medium transition-colors duration-500 group-hover:fill-white group-focus:fill-white"
-          />
+          {!isInFavorites ? (
+            <>
+              Add to
+              <Icon
+                id="heart"
+                size={16}
+                className="size-[18px] fill-none stroke-white transition duration-500 group-hover:fill-white"
+              />
+            </>
+          ) : (
+            <>
+              Remove
+              <Icon
+                id="trash"
+                size={16}
+                className="size-[18px] fill-none stroke-white"
+              />
+            </>
+          )}
         </button>
 
         <a href="tel:" className="button-notice bg-[#fff4df] text-[#f6b83d]">
