@@ -46,7 +46,7 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
           : addNoticeFavorites(_id);
         await dispatch(action).unwrap();
         toast.success(
-          `You have successfully ${!isInFavorites ? "added" : "removed"} pet ${!isInFavorites ? "to" : "from"} your favorites.`
+          `You have successfully ${!isInFavorites ? "added" : "removed"} notice ${!isInFavorites ? "to" : "from"} your favorites.`
         );
       } catch (error) {
         toast.error("Oops... Something went wrong.");
