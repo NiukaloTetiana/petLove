@@ -6,7 +6,7 @@ import {
   SubmitHandler,
   useForm,
 } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import DatePicker from "react-datepicker";
 import { toast } from "react-toastify";
@@ -15,13 +15,13 @@ import { format } from "date-fns";
 
 import { addPetSchema } from "../../schemas";
 import { Icon } from "../../components";
-import { useAppSelector } from "../../hooks";
-import { selectSpecies } from "../../redux";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { addPet, selectSpecies } from "../../redux";
 
 export interface AddPetFormData {
   title: string;
   name: string;
-  imgUrl: string;
+  imgURL: string;
   species: string;
   birthday: string;
   sex: "male" | "female" | "multiple";
@@ -33,12 +33,16 @@ export const AddPetForm = () => {
     handleSubmit,
     control,
     setValue,
+    getValues,
+    reset,
     formState: { errors, dirtyFields },
   } = useForm<AddPetFormData>({
     mode: "onChange",
     resolver: yupResolver(addPetSchema),
   });
   const speciesOptions = useAppSelector(selectSpecies);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const [isListVisible, setIsListVisible] = useState<boolean>(false);
   const [selectedType, setSelectedType] = useState<string | null>(null);
@@ -57,6 +61,19 @@ export const AddPetForm = () => {
     };
   }, []);
 
+  const onSubmit: SubmitHandler<AddPetFormData> = async (data) => {
+    try {
+      data.birthday = format(data.birthday, "yyyy-MM-dd");
+      await dispatch(addPet(data)).unwrap();
+      reset();
+
+      toast.info("The information has been successfully updated.");
+      navigate("/profile");
+    } catch (error) {
+      toast.error("Oops... Something went wrong. Please, try again.");
+    }
+  };
+
   const handleListClick = () => {
     setIsListVisible(!isListVisible);
   };
@@ -74,7 +91,7 @@ export const AddPetForm = () => {
   ): string => {
     const imgUrlClass =
       "max-w-[161px] md:max-w-none md:w-[278px] sm-max:w-[130px] sm-max:!pr-5 !h-[42px] !pr-[39px] md:!pr-5 truncate";
-    const baseClass = `input border-[#26262626] w-full placeholder:text-[#2626267f] input-hover ${fieldName === "imgUrl" ? imgUrlClass : ""}`;
+    const baseClass = `input border-[#26262626] w-full placeholder:text-[#2626267f] input-hover ${fieldName === "imgURL" ? imgUrlClass : ""}`;
     const errorClass = "border-red-700";
     const successClass = "border-green-700";
 
@@ -107,14 +124,6 @@ export const AddPetForm = () => {
       );
     }
     return null;
-  };
-
-  const onSubmit: SubmitHandler<AddPetFormData> = async () => {
-    try {
-      toast.info("The information has been successfully updated.");
-    } catch (error) {
-      toast.error("Oops... Something went wrong. Please, try again.");
-    }
   };
 
   return (
@@ -182,16 +191,17 @@ export const AddPetForm = () => {
 
         <div className="relative mb-[10px] flex w-full gap-[8px] sm-max:gap-[4px] md:mb-5">
           <input
-            {...register("imgUrl")}
+            {...register("imgURL")}
             type="text"
             placeholder="Enter URL"
-            className={inputClass(errors, dirtyFields, "imgUrl")}
+            className={inputClass(errors, dirtyFields, "imgURL")}
           />
-          {renderMessage(errors, dirtyFields, "imgUrl")}
+          {renderMessage(errors, dirtyFields, "imgURL")}
 
           <button
             type="button"
-            className="link-reg flex h-[42px] w-[126px] items-center justify-center gap-[8px] rounded-[30px] bg-[#fff4df] text-[12px] leading-[1.33] text-[#262626] transition duration-500 sm-max:gap-[4px] sm-max:text-[11px] md:w-[146px] md:text-[14px] md:leading-[1.29]"
+            className="link-reg flex h-[42px] w-[126px] items-center justify-center gap-[8px] rounded-[30px] bg-[#fff4df] text-[12px] leading-[1.33] text-[#262626] transition duration-500 disabled:cursor-not-allowed disabled:bg-[#262626] disabled:bg-opacity-[0.05] disabled:text-[#f6b83d] sm-max:gap-[4px] sm-max:text-[11px] md:w-[146px] md:text-[14px] md:leading-[1.29]"
+            disabled={!getValues("imgURL") || !!errors.imgURL}
           >
             Upload photo
             <Icon
@@ -271,9 +281,10 @@ export const AddPetForm = () => {
               type="text"
               onClick={handleListClick}
               placeholder="Type of pet"
-              className="input input-hover !w-[143px] capitalize placeholder:normal-case placeholder:text-[#2626267f] sm-max:!w-[102px] sm-max:pr-14 md:!w-[210px]"
+              className="input input-hover !w-[143px] cursor-pointer capitalize placeholder:normal-case placeholder:text-[#2626267f] sm-max:!w-[102px] sm-max:pr-14 md:!w-[210px]"
               readOnly
             />
+            {renderMessage(errors, dirtyFields, "species")}
 
             <Icon
               id="chevron-down"
