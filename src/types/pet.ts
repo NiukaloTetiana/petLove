@@ -1,6 +1,6 @@
 export interface IPet {
   _id: string;
-  imgUrl: string;
+  imgURL: string;
   title: string;
   name: string;
   birthday: string;

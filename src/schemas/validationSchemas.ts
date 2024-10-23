@@ -57,7 +57,7 @@ export const editInfoSchema = yup.object().shape({
 export const addPetSchema = yup.object().shape({
   title: yup.string().required("Title is required"),
   name: yup.string().required("Name is required"),
-  imgUrl: yup
+  imgURL: yup
     .string()
     .required("Image URL is required")
     .matches(

@@ -1,22 +1,35 @@
 import { format } from "date-fns";
+import { toast } from "react-toastify";
 
 import { IPet } from "../../types";
 import { Icon } from "../../components";
+import { useAppDispatch } from "../../hooks";
+import { removePet } from "../../redux";
 
 interface IPetsItemProps {
   pet: IPet;
 }
 
-export const PetsItem = ({ pet }: IPetsItemProps) => {
-  const { imgUrl, title, name, birthday, sex, species } = pet;
+export const PetsItem = ({
+  pet: { _id, imgURL, title, name, birthday, sex, species },
+}: IPetsItemProps) => {
+  const dispatch = useAppDispatch();
 
-  const handleRemovePet = async () => {};
+  const handleRemovePet = async () => {
+    try {
+      await dispatch(removePet(_id)).unwrap();
+
+      toast.success("You have successfully removed pets from your list.");
+    } catch (error) {
+      toast.error("Oops... Something went wrong. Please, try again.");
+    }
+  };
 
   return (
     <li className="relative flex items-start gap-[14px] rounded-[20px] border border-[#26262619] p-4 sm-max:gap-[8px] md:w-[305px] md:px-[16px] md:py-[22px] lg:w-full lg:items-center lg:gap-[25px] lg:p-5">
       <div className="flex size-[66px] shrink-0 items-center justify-center overflow-hidden rounded-full sm-max:size-[60px] md:size-[75px] lg:size-[90px]">
         <img
-          src={imgUrl}
+          src={imgURL}
           alt="Pet's photo"
           className="h-full w-full object-cover"
         />
@@ -48,7 +61,7 @@ export const PetsItem = ({ pet }: IPetsItemProps) => {
 
       <button
         onClick={handleRemovePet}
-        type="submit"
+        type="button"
         className="link-reg absolute right-[12px] top-[12px] flex size-[30px] items-center justify-center rounded-full bg-[#fff4df] md:size-[38px] lg:right-5 lg:top-5"
       >
         <Icon
