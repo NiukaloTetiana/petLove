@@ -346,3 +346,35 @@ input {
 .group:focus-visible .page-link {
   @apply border-transparent bg-[#f6b83d] text-white;
 }
+
+.scrollbar {
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-color: auto !important;
+  --sb-track-color: #f9f9f9;
+  --sb-thumb-color: #f6b83d;
+  --sb-size: 8px;
+  --sb-margin: 20px;
+}
+
+.scrollbar::-webkit-scrollbar {
+  width: var(--sb-size);
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 12px;
+  margin-top: var(--sb-margin);
+  margin-bottom: var(--sb-margin);
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 12px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  .scrollbar {
+    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+  }
+}
