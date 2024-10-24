@@ -63,11 +63,18 @@ export const AddPetForm = () => {
 
   const onSubmit: SubmitHandler<AddPetFormData> = async (data) => {
     try {
-      data.birthday = format(data.birthday, "yyyy-MM-dd");
+      const parsedDate = new Date(data.birthday.split(".").reverse().join("-"));
+      if (isNaN(parsedDate.getTime())) {
+        toast.error(
+          "Invalid birthday date. Please, check the date and try again."
+        );
+        return;
+      }
+      data.birthday = format(parsedDate, "yyyy-MM-dd");
       await dispatch(addPet(data)).unwrap();
       reset();
 
-      toast.info("The information has been successfully updated.");
+      toast.success("Pet was added successful.");
       navigate("/profile");
     } catch (error) {
       toast.error("Oops... Something went wrong. Please, try again.");
