@@ -351,8 +351,8 @@ input {
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-color: auto !important;
-  --sb-track-color: #f9f9f9;
-  --sb-thumb-color: #f6b83d;
+  --sb-track-color: #fff;
+  --sb-thumb-color: rgba(38, 38, 38, 0.08);
   --sb-size: 8px;
   --sb-margin: 20px;
 }
@@ -377,4 +377,8 @@ input {
   .scrollbar {
     scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
   }
+}
+
+.notices-button {
+  @apply h-[42px] rounded-[30px] bg-white p-[12px] text-center text-[14px] font-medium leading-[1] tracking-[-0.02em] text-[#262626] md:h-[48px] md:p-[14px] md:text-[16px];
 }
