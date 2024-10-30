@@ -28,6 +28,7 @@ const NoticesPage = () => {
   const [gender, setGender] = useState("Show all");
   const [type, setType] = useState("Show all");
   const [search, setSearch] = useState<string>("");
+  const [sortOrder, setSortOrder] = useState<string>("");
 
   const dispatch = useAppDispatch();
 
@@ -46,20 +47,31 @@ const NoticesPage = () => {
   ).current;
 
   useEffect(() => {
+    const sort = sortOrder ? sortOrder.split("=") : "";
     const params = {
       page,
       limit: 6,
-      keyword: search,
+      ...(search && { keyword: search }),
       ...(category !== "Show all" && { category }),
       ...(gender !== "Show all" && { sex: gender }),
       ...(type !== "Show all" && { species: type }),
+      ...(sortOrder && { [sort[0]]: sort[1] }),
     };
     debouncedDispatch(params);
-  }, [debouncedDispatch, category, dispatch, gender, page, search, type]);
+  }, [
+    debouncedDispatch,
+    category,
+    dispatch,
+    gender,
+    page,
+    search,
+    type,
+    sortOrder,
+  ]);
 
-  const handleChangeSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeSearch = (search: string) => {
     dispatch(setPageNotices(1));
-    setSearch(event.target.value);
+    setSearch(search);
   };
 
   const handleCategoryChange = (newCategory: string) => {
@@ -78,13 +90,17 @@ const NoticesPage = () => {
   };
   return (
     <>
-      <div className="container pb-[80px] pt-[34px] md:pb-[80px] md:pt-[46px] lg:pt-[64px]">
+      <div className="container pb-[80px] pt-[34px] md:pb-[80px] md:pt-[46px] lg:px-[32px] lg:pt-[64px]">
         <Title title="Find your favorite pet" className="mb-10 lg:mb-10" />
         <NoticesFilters
           setCategory={handleCategoryChange}
           setGender={handleGenderChange}
           setType={handleTypeChange}
           handleChangeSearch={handleChangeSearch}
+          setSortOrder={setSortOrder}
+          category={category}
+          type={type}
+          gender={gender}
         />
         {!notices.length ? (
           <div className="flex h-[calc(100vh-400px)] items-center justify-center">

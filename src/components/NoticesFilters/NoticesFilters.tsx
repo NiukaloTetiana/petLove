@@ -1,4 +1,6 @@
 import Select from "react-select";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 
 import { useAppSelector } from "../../hooks";
 import {
@@ -7,40 +9,82 @@ import {
   selectSex,
   selectSpecies,
 } from "../../redux";
-import { DropdownSelect, SearchField } from "../../components";
+import { DropdownSelect, Icon, SearchField } from "../../components";
+import { optionsList } from "../../constants";
 
 interface INoticesFilters {
   setCategory: (option: string) => void;
   setGender: (option: string) => void;
   setType: (option: string) => void;
-  handleChangeSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  setSortOrder: (option: string) => void;
+  handleChangeSearch: (search: string) => void;
+  category: string;
+  type: string;
+  gender: string;
 }
 
 export const NoticesFilters = ({
   setCategory,
   setGender,
   setType,
+  setSortOrder,
   handleChangeSearch,
+  category,
+  type,
+  gender,
 }: INoticesFilters) => {
   const caterogies = useAppSelector(selectCategories);
   const sex = useAppSelector(selectSex);
   const species = useAppSelector(selectSpecies);
   const locations = useAppSelector(selectCities);
 
-  // const formatOptionLabel = ({ label }, { inputValue }) => (
-  //   <span
-  //     dangerouslySetInnerHTML={{ __html: highlightText(label, inputValue) }}
-  //   />
-  // );
+  const [selectedSort, setSelectedSort] = useState("");
+
+  const { register, watch, reset } = useForm({
+    defaultValues: { sortOrder: "" },
+  });
+
+  const sortOrder = watch("sortOrder");
+  console.log("sortOrder", sortOrder);
+
+  useEffect(() => {
+    setSortOrder(sortOrder);
+    setSelectedSort(sortOrder);
+  }, [setSortOrder, sortOrder]);
+
+  const handleClear = () => {
+    reset();
+  };
+
+  const handleResetClick = () => {
+    reset();
+    setCategory("Show all");
+    setGender("Show all");
+    setType("Show all");
+    handleChangeSearch("");
+  };
+
+  const DropdownIndicator = () => {
+    return (
+      <button
+        type="button"
+        className="absolute right-[12px] top-[12px] transition duration-500 hover:stroke-[#f6b83d] focus:stroke-[#f6b83d] md:right-[14px] md:top-[14px]"
+      >
+        <Icon id="search" size={18} className="fill-none stroke-[#262626]" />
+      </button>
+    );
+  };
+
+  const IndicatorSeparator = () => null;
 
   return (
-    <div className="rounded-[30px] bg-[#fff4df] p-5 md:px-[32px] md:py-10 lg:px-10">
-      <div className="mb-10 flex flex-wrap gap-[12px] md:gap-[16px]">
+    <div className="mb-10 rounded-[30px] bg-[#fff4df] p-5 md:mb-[32px] md:px-[32px] md:py-10 lg:mb-10 lg:px-10">
+      <div className="relative mb-10 flex flex-wrap gap-[12px] before:absolute before:-bottom-5 before:left-0 before:h-[1px] before:w-full before:bg-[#26262619] before:content-[''] md:gap-[16px]">
         <SearchField onChange={handleChangeSearch} />
         <DropdownSelect
           options={caterogies}
           setOption={setCategory}
-          defaultOption={"Show all"}
+          defaultOption={category}
           placeholder="Category"
           className="w-[141px] capitalize sm-max:w-full md:w-[170px] lg:w-[190px]"
         />
@@ -48,7 +92,7 @@ export const NoticesFilters = ({
         <DropdownSelect
           options={sex}
           setOption={setGender}
-          defaultOption={"Show all"}
+          defaultOption={gender}
           placeholder="By gender"
           className="w-[141px] capitalize sm-max:w-full md:w-[170px] lg:w-[190px]"
         />
@@ -56,7 +100,7 @@ export const NoticesFilters = ({
         <DropdownSelect
           options={species}
           setOption={setType}
-          defaultOption={"Show all"}
+          defaultOption={type}
           placeholder="By type"
           className="w-full capitalize md:w-[190px]"
         />
@@ -65,32 +109,40 @@ export const NoticesFilters = ({
           className="basic-single"
           classNamePrefix="select"
           placeholder="Location"
-          // defaultValue={colourOptions[0]}
-          // isDisabled={isDisabled}
-          // isLoading={isLoading}
-          // isClearable={isClearable}
-          // isRtl={isRtl}
-          // isSearchable={isSearchable}
           options={locations}
-          // name={}
+          getOptionLabel={(option) => option.cityEn + ", " + option.countyEn}
+          components={{ DropdownIndicator, IndicatorSeparator }}
         />
       </div>
 
-      <div className="flex flex-wrap gap-[10px] md:gap-[6px]">
-        <button type="button" className="notices-button">
-          Popular
-        </button>
+      <div className="flex flex-wrap gap-[10px] md:gap-[8px]">
+        {optionsList.map((option) => (
+          <label
+            key={option.value}
+            className="notices-label flex gap-[6px] md:gap-[8px]"
+          >
+            <input
+              {...register("sortOrder")}
+              type="radio"
+              value={option.value}
+              className="notices-real-radio"
+            />
+            {option.label}
 
-        <button type="button" className="notices-button">
-          Unpopular
-        </button>
+            {selectedSort === option.value && (
+              <button onClick={handleClear} type="button">
+                <Icon id="close" size={18} className="fill-none stroke-white" />
+              </button>
+            )}
+          </label>
+        ))}
 
-        <button type="button" className="notices-button">
-          Cheap
-        </button>
-
-        <button type="button" className="notices-button">
-          Expensive
+        <button
+          type="button"
+          onClick={handleResetClick}
+          className="notices-label"
+        >
+          Reset all filter
         </button>
       </div>
     </div>
