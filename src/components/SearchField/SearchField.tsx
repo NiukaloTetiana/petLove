@@ -22,10 +22,10 @@ export const SearchField = ({
       className={`relative w-full ${isNewsPage ? "md:w-[230px]" : "md:w-[265px]"}`}
     >
       <input
-        className={`h-[42px] w-full rounded-[30px] p-[12px] pr-[50px] text-[14px] font-medium leading-[1.29] tracking-[-0.03em] text-[#262626] transition duration-500 hover:shadow-md focus:shadow-md md:h-[48px] md:p-[14px] md:pr-[54px] md:text-[16px] md:leading-[1.25] ${
+        className={`h-[42px] w-full rounded-[30px] border p-[12px] pr-[50px] text-[14px] font-medium leading-[1.29] tracking-[-0.03em] text-[#262626] transition duration-500 hover:border-[#f6b83d] hover:shadow-md focus:border-[#f6b83d] focus:shadow-md md:h-[48px] md:p-[14px] md:pr-[54px] md:text-[16px] md:leading-[1.25] ${
           isNewsPage
-            ? "border border-[#26262626] bg-transparent placeholder:text-[#2626267f] hover:border-[#f6b83d] focus:border-[#f6b83d]"
-            : "border-none bg-white placeholder:text-[#262626]"
+            ? "border-[#26262626] bg-transparent placeholder:text-[#2626267f]"
+            : "border-transparent bg-white placeholder:text-[#262626]"
         }`}
         name="search"
         placeholder="Search"

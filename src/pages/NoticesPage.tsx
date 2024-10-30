@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { debounce } from "lodash";
+// import { toast } from "react-toastify";
 
 import {
   Loader,
@@ -10,6 +11,7 @@ import {
 } from "../components";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import {
+  getCities,
   getNotices,
   selectIsLoadingNotices,
   selectNotices,
@@ -28,6 +30,14 @@ const NoticesPage = () => {
   const [search, setSearch] = useState<string>("");
 
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    try {
+      dispatch(getCities());
+    } catch (error) {
+      // toast.error();
+    }
+  }, [dispatch]);
 
   const debouncedDispatch = useRef(
     debounce((params) => {

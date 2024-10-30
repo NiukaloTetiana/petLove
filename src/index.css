@@ -382,3 +382,34 @@ input {
 .notices-button {
   @apply h-[42px] rounded-[30px] bg-white p-[12px] text-center text-[14px] font-medium leading-[1] tracking-[-0.02em] text-[#262626] md:h-[48px] md:p-[14px] md:text-[16px];
 }
+
+.select__control {
+  @apply h-[42px] !w-full !rounded-[30px] !border-transparent bg-white !p-[12px] !pr-[50px] text-[14px] font-medium leading-[1.29] tracking-[-0.03em] text-[#262626] md:h-[48px] md:text-[16px] md:leading-[1.25];
+}
+
+.select__control--is-focused {
+  border-color: #f6b83d !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.select__placeholder {
+  color: #262626 !important;
+}
+
+.select__single-value {
+  color: rgba(38, 38, 38, 0.4);
+}
+
+/* Стиль для індикатора стрілки */
+.select__dropdown-indicator {
+  color: #262626;
+  transition: color 0.3s;
+}
+
+.select__dropdown-indicator:hover {
+  color: #262626 !important;
+}
+
+.basic-single {
+  @apply relative w-full md:w-[227px];
+}

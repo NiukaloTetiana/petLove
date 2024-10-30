@@ -10,7 +10,7 @@ export const getCities = createAsyncThunk<
   { rejectValue: string }
 >("cities/getCities", async (_, { rejectWithValue }) => {
   try {
-    const { data } = await instance.get("/cities");
+    const { data } = await instance.get("/cities/locations");
 
     return data;
   } catch (error) {

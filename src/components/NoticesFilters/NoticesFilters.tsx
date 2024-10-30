@@ -1,5 +1,12 @@
+import Select from "react-select";
+
 import { useAppSelector } from "../../hooks";
-import { selectCategories, selectSex, selectSpecies } from "../../redux";
+import {
+  selectCategories,
+  selectCities,
+  selectSex,
+  selectSpecies,
+} from "../../redux";
 import { DropdownSelect, SearchField } from "../../components";
 
 interface INoticesFilters {
@@ -18,6 +25,13 @@ export const NoticesFilters = ({
   const caterogies = useAppSelector(selectCategories);
   const sex = useAppSelector(selectSex);
   const species = useAppSelector(selectSpecies);
+  const locations = useAppSelector(selectCities);
+
+  // const formatOptionLabel = ({ label }, { inputValue }) => (
+  //   <span
+  //     dangerouslySetInnerHTML={{ __html: highlightText(label, inputValue) }}
+  //   />
+  // );
 
   return (
     <div className="rounded-[30px] bg-[#fff4df] p-5 md:px-[32px] md:py-10 lg:px-10">
@@ -45,6 +59,20 @@ export const NoticesFilters = ({
           defaultOption={"Show all"}
           placeholder="By type"
           className="w-full capitalize md:w-[190px]"
+        />
+
+        <Select
+          className="basic-single"
+          classNamePrefix="select"
+          placeholder="Location"
+          // defaultValue={colourOptions[0]}
+          // isDisabled={isDisabled}
+          // isLoading={isLoading}
+          // isClearable={isClearable}
+          // isRtl={isRtl}
+          // isSearchable={isSearchable}
+          options={locations}
+          // name={}
         />
       </div>
 
