@@ -1,30 +1,28 @@
-import { useState } from "react";
-
 import { useAppSelector } from "../../hooks";
 import { selectCategories, selectSex, selectSpecies } from "../../redux";
 import { DropdownSelect, SearchField } from "../../components";
 
-export const NoticesFilters = () => {
+interface INoticesFilters {
+  setCategory: (option: string) => void;
+  setGender: (option: string) => void;
+  setType: (option: string) => void;
+  handleChangeSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export const NoticesFilters = ({
+  setCategory,
+  setGender,
+  setType,
+  handleChangeSearch,
+}: INoticesFilters) => {
   const caterogies = useAppSelector(selectCategories);
   const sex = useAppSelector(selectSex);
   const species = useAppSelector(selectSpecies);
 
-  const [category, setCategory] = useState("Show all");
-  const [gender, setGender] = useState("Show all");
-  const [type, setType] = useState("Show all");
-
-  const handleSearch = () => {};
-
-  const handleChange = () => {};
-
-  console.log(category);
-  console.log(gender);
-  console.log(type);
-
   return (
     <div className="rounded-[30px] bg-[#fff4df] p-5 md:px-[32px] md:py-10 lg:px-10">
       <div className="mb-10 flex flex-wrap gap-[12px] md:gap-[16px]">
-        <SearchField onChange={handleChange} onSearch={handleSearch} />
+        <SearchField onChange={handleChangeSearch} />
         <DropdownSelect
           options={caterogies}
           setOption={setCategory}
@@ -60,11 +58,11 @@ export const NoticesFilters = () => {
         </button>
 
         <button type="button" className="notices-button">
-          Expensive
+          Cheap
         </button>
 
         <button type="button" className="notices-button">
-          Cheap
+          Expensive
         </button>
       </div>
     </div>

@@ -10,6 +10,7 @@ import {
   selectTotalPagesNews,
   selectTotalPagesNotices,
   setPageNews,
+  setPageNotices,
 } from "../../redux";
 import { useLocation } from "react-router-dom";
 
@@ -31,20 +32,23 @@ export const Pagination: React.FC = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [page]);
 
+  const setPage = (pageNumber: number) => {
+    dispatch(isNewsPage ? setPageNews(pageNumber) : setPageNotices(pageNumber));
+  };
+
   const handlePageClick = (event: { selected: number }) => {
-    dispatch(setPageNews(event.selected + 1));
+    setPage(event.selected + 1);
   };
 
   const handleFirstPage = () => {
-    dispatch(setPageNews(1));
+    setPage(1);
   };
 
   const handleLastPage = () => {
-    dispatch(setPageNews(totalPages));
+    setPage(totalPages);
   };
 
-  if (!totalPages) return;
-
+  if (!totalPages) return null;
   if (totalPages <= 1) return null;
 
   return (

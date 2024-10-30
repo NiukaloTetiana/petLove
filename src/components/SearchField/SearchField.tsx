@@ -5,10 +5,8 @@ import { Icon } from "../../components";
 
 export const SearchField = ({
   onChange,
-  onSearch,
 }: {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onSearch: (query: string) => void;
 }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const location = useLocation();
@@ -18,15 +16,6 @@ export const SearchField = ({
     setSearchQuery("");
     onChange({ target: { value: "" } } as React.ChangeEvent<HTMLInputElement>);
   };
-
-  const handleSearch = () => {
-    onSearch(searchQuery);
-  };
-
-  // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault();
-  //   handleSearch();
-  // };
 
   return (
     <div
@@ -59,7 +48,6 @@ export const SearchField = ({
       )}
 
       <button
-        onClick={handleSearch}
         type="button"
         className="absolute right-[12px] top-[12px] transition duration-500 hover:stroke-[#f6b83d] focus:stroke-[#f6b83d] md:right-[14px] md:top-[14px]"
       >

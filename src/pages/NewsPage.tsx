@@ -43,19 +43,17 @@ const NewsPage = () => {
     setSearch(event.target.value);
   };
 
-  const handleSearch = () => {};
-
   return (
     <>
       <div className="container pb-[80px] pt-[34px] md:pb-[80px] md:pt-[46px] lg:pt-[64px]">
         <div className="mb-[24px] flex flex-col gap-5 md:mb-[44px] md:flex-row md:items-end md:justify-between lg:mb-[60px]">
           <Title title="News" />
-          <SearchField onChange={handleChangeSearch} onSearch={handleSearch} />
+          <SearchField onChange={handleChangeSearch} />
         </div>
 
         {!news.length && search ? (
           <div className="flex h-[calc(100vh-400px)] items-center justify-center">
-            <h3 className="text-center text-[25px] font-semibold leading-[1.3] tracking-[-0.03em] text-[#f6b83d] md:text-[48px]">
+            <h3 className="text-center text-[22px] font-semibold leading-[1.3] tracking-[-0.03em] text-[#f6b83d] md:text-[38px]">
               Nothing was found for your search. Please, try another one query.
             </h3>
           </div>
