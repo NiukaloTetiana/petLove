@@ -10,8 +10,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import DatePicker from "react-datepicker";
 import { toast } from "react-toastify";
-import "react-datepicker/dist/react-datepicker.css";
 import { format } from "date-fns";
+import "react-datepicker/dist/react-datepicker.css";
 
 import { addPetSchema } from "../../schemas";
 import { Icon } from "../../components";
@@ -307,7 +307,7 @@ export const AddPetForm = () => {
                   <li
                     key={label}
                     onClick={() => handleLabelClick(label)}
-                    className={`cursor-pointer capitalize hover:text-[#f6b83d] ${
+                    className={`cursor-pointer capitalize transition duration-300 hover:text-[#f6b83d] ${
                       selectedType === label ? "text-[#f6b83d]" : ""
                     }`}
                   >

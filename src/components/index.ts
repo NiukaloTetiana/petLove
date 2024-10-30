@@ -34,3 +34,4 @@ export * from "./SearchField/SearchField";
 export * from "./NoticesFilters/NoticesFilters";
 export * from "./Pagination/Pagination";
 export * from "./NoticesFilters/NoticesFilters";
+export * from "./DropdownSelect/DropdownSelect";
