@@ -40,6 +40,10 @@ export const DropdownSelect = ({
     };
   }, []);
 
+  useEffect(() => {
+    setSelectedOption(defaultOption);
+  }, [defaultOption]);
+
   const handleListClick = () => {
     setIsListVisible(!isListVisible);
   };

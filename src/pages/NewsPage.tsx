@@ -38,9 +38,9 @@ const NewsPage = () => {
     debouncedDispatch(params);
   }, [debouncedDispatch, dispatch, page, search]);
 
-  const handleChangeSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeSearch = (search: string) => {
     dispatch(setPageNews(1));
-    setSearch(event.target.value);
+    setSearch(search);
   };
 
   return (

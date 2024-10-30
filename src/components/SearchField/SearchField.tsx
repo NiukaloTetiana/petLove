@@ -6,7 +6,7 @@ import { Icon } from "../../components";
 export const SearchField = ({
   onChange,
 }: {
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (search: string) => void;
 }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const location = useLocation();
@@ -14,7 +14,7 @@ export const SearchField = ({
 
   const handleClear = () => {
     setSearchQuery("");
-    onChange({ target: { value: "" } } as React.ChangeEvent<HTMLInputElement>);
+    onChange("");
   };
 
   return (
@@ -33,7 +33,7 @@ export const SearchField = ({
         value={searchQuery}
         onChange={(e) => {
           setSearchQuery(e.target.value);
-          onChange(e);
+          onChange(e.target.value);
         }}
       />
 

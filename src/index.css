@@ -379,17 +379,30 @@ input {
   }
 }
 
-.notices-button {
-  @apply h-[42px] rounded-[30px] bg-white p-[12px] text-center text-[14px] font-medium leading-[1] tracking-[-0.02em] text-[#262626] md:h-[48px] md:p-[14px] md:text-[16px];
+.notices-label {
+  @apply h-[42px] cursor-pointer rounded-[30px] bg-white p-[12px] text-center text-[14px] font-medium leading-[1.2] tracking-[-0.02em] text-[#262626] transition duration-300 md:h-[48px] md:p-[14px] md:text-[16px];
+
+  &:hover,
+  &:focus {
+    @apply bg-[#f6b83d] text-white shadow-sm;
+  }
+}
+
+.notices-real-radio {
+  @apply absolute right-0 top-0 -z-[1] opacity-0;
+}
+
+.notices-label:has(.notices-real-radio:checked) {
+  @apply bg-[#f6b83d] text-white shadow-sm;
 }
 
 .select__control {
-  @apply h-[42px] !w-full !rounded-[30px] !border-transparent bg-white !p-[12px] !pr-[50px] text-[14px] font-medium leading-[1.29] tracking-[-0.03em] text-[#262626] md:h-[48px] md:text-[16px] md:leading-[1.25];
+  @apply h-[42px] !w-full !rounded-[30px] !border-transparent bg-white !px-[12px] text-[14px] font-medium leading-[1.29] tracking-[-0.03em] !text-[#262626] !shadow-none md:h-[48px] md:!px-[14px] md:text-[16px] md:leading-[1.25];
 }
 
 .select__control--is-focused {
   border-color: #f6b83d !important;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15) !important;
 }
 
 .select__placeholder {
@@ -400,16 +413,22 @@ input {
   color: rgba(38, 38, 38, 0.4);
 }
 
-/* Стиль для індикатора стрілки */
-.select__dropdown-indicator {
-  color: #262626;
-  transition: color 0.3s;
-}
-
 .select__dropdown-indicator:hover {
   color: #262626 !important;
 }
 
 .basic-single {
   @apply relative w-full md:w-[227px];
+}
+
+/* .select__menu-list {
+  @apply !rounded-[15px] !border-none;
+} */
+
+.css-qr46ko {
+  @apply !max-h-[95px] !py-[12px] !shadow-none;
+}
+
+.css-10wo9uf-option {
+  @apply px-[14px] pb-[8px];
 }
