@@ -27,6 +27,7 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
     sex,
     popularity,
     species,
+    price,
   } = notice;
 
   const [isOpenModal, toggleModal] = useModal();
@@ -57,13 +58,17 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
   };
 
   return (
-    <li className="flex h-[430px] w-full flex-col rounded-[16px] bg-white p-[24px] shadow-md md:h-[444px] md:w-[342px] lg:w-[363px]">
-      <div className="mb-[24px] flex h-[178px] w-[287px] shrink-0 items-center justify-center overflow-hidden rounded-[16px] sm-max:w-full md:w-[294px] lg:w-[315px]">
+    <li className="relative flex h-[430px] w-full flex-col rounded-[16px] bg-white p-[24px] shadow-md sm-max:h-[500px] md:h-[444px] md:w-[342px] lg:w-[363px]">
+      <div className="relative mb-[24px] flex h-[178px] w-[287px] shrink-0 items-center justify-center overflow-hidden rounded-[16px] sm-max:w-full md:w-[294px] lg:w-[315px]">
         <img
           src={imgURL}
           alt={species}
           className="h-full w-full object-cover"
         />
+      </div>
+
+      <div className="absolute left-3 top-4 h-[32px] overflow-visible rounded-[30px] bg-[#fff4df] px-[14px] py-[8px] text-center text-[14px] font-semibold leading-[1.1] tracking-[-0.02em] text-[#262626] shadow-md sm-max:h-[30px] md:h-[34px] md:text-[16px]">
+        {price ? `$${price}` : "Free"}
       </div>
 
       <div className="mb-2 flex justify-between">
@@ -83,7 +88,7 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
         </div>
       </div>
 
-      <ul className="mb-4 flex gap-[13px] text-[12px] font-medium leading-[1.17] tracking-[-0.02em] text-[#262626] md:gap-4 lg:gap-5">
+      <ul className="mb-4 flex gap-[13px] text-[12px] font-medium leading-[1.17] tracking-[-0.02em] text-[#262626] sm-max:flex-wrap md:gap-4 lg:gap-5">
         <li className="flex flex-col gap-[2px]">
           <span className="span">Name</span>
           {name}
@@ -140,7 +145,7 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
         <Modal
           isOpen={isOpenNoticeModal}
           toggleModal={toggleNoticeModal}
-          className="px-[28px] py-10 md:px-[72px]"
+          className="px-[28px] py-10 md:w-[473px] md:px-[72px]"
         >
           <ModalNotice
             notice={notice}
