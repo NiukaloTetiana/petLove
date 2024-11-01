@@ -430,5 +430,5 @@ input {
 }
 
 .select__option {
-  @apply !bg-transparent !p-0 !pb-[8px] !text-[14px] !leading-[1.3] !tracking-[-0.03em] !text-[#262626] last:!pb-0 md:!text-[16px];
+  @apply !cursor-pointer !bg-transparent !p-0 !pb-[8px] !text-[14px] !leading-[1.3] !tracking-[-0.03em] !text-[#26262666] !transition !duration-500 last:!pb-0 hover:!text-[#f6b83d] md:!text-[16px];
 }

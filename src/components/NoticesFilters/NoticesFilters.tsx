@@ -1,6 +1,6 @@
-import Select from "react-select";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import Select from "react-select";
 
 import { useAppSelector } from "../../hooks";
 import {
@@ -11,6 +11,11 @@ import {
 } from "../../redux";
 import { DropdownSelect, Icon, SearchField } from "../../components";
 import { optionsList } from "../../constants";
+import {
+  CustomOption,
+  IndicatorSeparator,
+  DropdownIndicator,
+} from "../../helpers";
 
 interface INoticesFilters {
   setCategory: (option: string) => void;
@@ -45,7 +50,6 @@ export const NoticesFilters = ({
   });
 
   const sortOrder = watch("sortOrder");
-  console.log("sortOrder", sortOrder);
 
   useEffect(() => {
     setSortOrder(sortOrder);
@@ -63,19 +67,6 @@ export const NoticesFilters = ({
     setType("Show all");
     handleChangeSearch("");
   };
-
-  const DropdownIndicator = () => {
-    return (
-      <button
-        type="button"
-        className="absolute right-[12px] top-[12px] transition duration-500 hover:stroke-[#f6b83d] focus:stroke-[#f6b83d] md:right-[14px] md:top-[14px]"
-      >
-        <Icon id="search" size={18} className="fill-none stroke-[#262626]" />
-      </button>
-    );
-  };
-
-  const IndicatorSeparator = () => null;
 
   return (
     <div className="mb-10 rounded-[30px] bg-[#fff4df] p-5 md:mb-[32px] md:px-[32px] md:py-10 lg:mb-10 lg:px-10">
@@ -111,7 +102,11 @@ export const NoticesFilters = ({
           placeholder="Location"
           options={locations}
           getOptionLabel={(option) => option.cityEn + ", " + option.countyEn}
-          components={{ DropdownIndicator, IndicatorSeparator }}
+          components={{
+            Option: CustomOption,
+            IndicatorSeparator,
+            DropdownIndicator,
+          }}
         />
       </div>
 
