@@ -417,6 +417,10 @@ input {
   @apply !text-[#262626];
 }
 
+.select__indicator {
+  @apply !p-0;
+}
+
 .basic-single {
   @apply !relative !w-full md:!w-[227px];
 }
