@@ -145,7 +145,7 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
         <Modal
           isOpen={isOpenNoticeModal}
           toggleModal={toggleNoticeModal}
-          className="px-[28px] py-10 md:w-[473px] md:px-[72px]"
+          className="px-[28px] py-10 md:w-[473px] md:px-[62px]"
         >
           <ModalNotice
             notice={notice}

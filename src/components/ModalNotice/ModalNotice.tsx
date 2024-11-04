@@ -1,8 +1,13 @@
 import { format } from "date-fns";
 import { INotice } from "../../types";
 import { Icon } from "../Icon/Icon";
-import { useAppSelector } from "../../hooks";
-import { selectNoticesFavorites } from "../../redux";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import {
+  getNoticeById,
+  selectNoticesFavorites,
+  selectOneNotice,
+} from "../../redux";
+import { useEffect } from "react";
 
 interface IModalNoticeProps {
   notice: INotice;
@@ -10,8 +15,20 @@ interface IModalNoticeProps {
 }
 
 export const ModalNotice = ({
-  notice: {
-    _id,
+  notice: { _id, price },
+  handleClickFavorite,
+}: IModalNoticeProps) => {
+  const dispatch = useAppDispatch();
+  const noticesFavorites = useAppSelector(selectNoticesFavorites);
+  const oneNotice = useAppSelector(selectOneNotice);
+
+  useEffect(() => {
+    dispatch(getNoticeById(_id));
+  }, [_id, dispatch]);
+
+  if (!oneNotice) return;
+
+  const {
     title,
     birthday,
     category,
@@ -21,10 +38,8 @@ export const ModalNotice = ({
     sex,
     popularity,
     species,
-  },
-  handleClickFavorite,
-}: IModalNoticeProps) => {
-  const noticesFavorites = useAppSelector(selectNoticesFavorites);
+    location,
+  } = oneNotice;
 
   const isInFavorites = noticesFavorites.find((elem) => elem._id === _id);
 
@@ -73,7 +88,7 @@ export const ModalNotice = ({
         </p>
       </div>
 
-      <ul className="mb-[18px] flex justify-center gap-[27px] text-[12px] font-medium leading-[1.17] tracking-[-0.02em] text-[#262626] sm-max:gap-[18px]">
+      <ul className="wrap mb-[18px] flex flex-wrap justify-center gap-x-[27px] gap-y-[12px] text-[12px] font-medium leading-[1.17] tracking-[-0.02em] text-[#262626] sm-max:gap-[18px]">
         <li className="item-notice">
           <span className="span">Name</span>
           {name}
@@ -90,12 +105,21 @@ export const ModalNotice = ({
           <span className="span">Species</span>
           {capitalizeFirstLetter(species)}
         </li>
+        <li className="item-notice">
+          <span className="span">Location</span>
+          {location.cityEn}
+        </li>
       </ul>
 
-      <p className="mb-10 text-center text-[14px] font-medium leading-[1.29] tracking-[-0.02em] text-[#2b2b2a]">
+      <p className="mb-[32px] text-center text-[14px] font-medium leading-[1.29] tracking-[-0.02em] text-[#2b2b2a]">
         {comment}
       </p>
 
+      {price ? (
+        <p className="mb-5 text-center text-[16px] font-bold leading-[1.29] tracking-[-0.02em] text-[#2b2b2a] md:text-[18px]">
+          ${price}
+        </p>
+      ) : null}
       <div className="flex justify-center gap-[10px]">
         <button
           type="button"

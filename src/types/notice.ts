@@ -39,13 +39,12 @@ export interface IOneNotice {
   _id: string;
   species: string;
   category: string;
-  price?: number;
   title: string;
   name: string;
   birthday: string;
   comment: string;
   sex: string;
-  location: { _id: string; stateEn: string; cityEn: string };
+  location: { _id: string; stateEn?: string; cityEn: string };
   imgURL: string;
   popularity: number;
   user: { _id: string; email: string; phone: string };
