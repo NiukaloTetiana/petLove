@@ -57,6 +57,14 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
     }
   };
 
+  const handleClickLearnMore = async () => {
+    if (isLoggedIn) {
+      toggleNoticeModal();
+    } else {
+      toggleModal();
+    }
+  };
+
   return (
     <li className="relative flex h-[430px] w-full flex-col rounded-[16px] bg-white p-[24px] shadow-md sm-max:h-[500px] md:h-[444px] md:w-[342px] lg:w-[363px]">
       <div className="relative mb-[24px] flex h-[178px] w-[287px] shrink-0 items-center justify-center overflow-hidden rounded-[16px] sm-max:w-full md:w-[294px] lg:w-[315px]">
@@ -118,7 +126,7 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
       <div className="mt-auto flex items-center justify-between">
         <button
           type="button"
-          onClick={toggleNoticeModal}
+          onClick={handleClickLearnMore}
           className="link-log h-[46px] w-[231px] rounded-[30px] bg-[#f6b83d] py-[14px] text-center text-[14px] font-medium leading-[1.29] tracking-[-0.03em] text-white shadow-sm transition duration-500 sm-max:w-[170px] md:h-[48px] md:w-[236px] md:leading-[1] lg:w-[257px]"
         >
           Learn more
