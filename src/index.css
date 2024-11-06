@@ -85,6 +85,16 @@ input {
   }
 }
 
+.link-profile {
+  @apply block h-[42px] w-[123px] rounded-[30px] bg-white py-[12px] text-center text-[14px] font-medium leading-[1.29] tracking-[-0.03em] text-[#262626] transition duration-500 md:h-[48px] md:w-[142px] md:text-[16px] md:leading-[1.4];
+
+  &:hover,
+  &:focus-visible,
+  &.active {
+    @apply bg-[#f6b83d] text-white shadow-sm;
+  }
+}
+
 .bg-home {
   @apply relative after:absolute after:bottom-0 after:right-0 after:h-[402px] after:w-[335px] after:translate-y-full after:rounded-[30px] after:content-[''] after:sm-max:w-[280px] md:after:h-[496px] md:after:w-[704px] after:md:rounded-[60px] lg:after:h-[384px] lg:after:w-[1216px];
 }

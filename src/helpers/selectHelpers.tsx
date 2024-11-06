@@ -43,20 +43,25 @@ export const IndicatorSeparator = () => null;
 export const DropdownIndicator = (
   props: DropdownIndicatorProps<ICity, boolean, GroupBase<ICity>>
 ) => {
-  const { clearValue, inputValue } = props.selectProps as CustomSelectProps;
+  const { clearValue, inputValue, value, onChange } =
+    props.selectProps as CustomSelectProps;
 
   return (
     <components.DropdownIndicator {...props}>
-      {inputValue && (
+      {(inputValue || value) && (
         <button
           type="button"
           onClick={(e) => {
             e.stopPropagation();
-            clearValue();
+
+            inputValue && clearValue();
+            if (value && onChange) {
+              onChange(null, { action: "clear", removedValues: [] });
+            }
           }}
           className="mr-[4px]"
         >
-          <Icon id="close" size={18} className="fill-none stroke-[#262626]" />
+          <components.ClearIndicator {...props} />
         </button>
       )}
       <Icon id="search" size={18} className="fill-none stroke-[#262626]" />

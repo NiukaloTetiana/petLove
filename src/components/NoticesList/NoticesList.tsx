@@ -1,4 +1,3 @@
-// import { INotice} from "../../types";
 import { useAppSelector } from "../../hooks";
 import { selectNotices } from "../../redux";
 import { NoticesItem } from "./NoticesItem";
