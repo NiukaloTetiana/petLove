@@ -1,7 +1,13 @@
 import { format } from "date-fns";
 
 import { INotice } from "../../types";
-import { Icon, Modal, ModalAttention, ModalNotice } from "../../components";
+import {
+  Icon,
+  Modal,
+  ModalAttention,
+  ModalCongrats,
+  ModalNotice,
+} from "../../components";
 import { useAppDispatch, useAppSelector, useModal } from "../../hooks";
 import {
   addNoticeFavorites,
@@ -32,6 +38,7 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
 
   const [isOpenModal, toggleModal] = useModal();
   const [isOpenNoticeModal, toggleNoticeModal] = useModal();
+  const [isOpenCongratsModal, toggleCongratsModal] = useModal();
 
   const dispatch = useAppDispatch();
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
@@ -45,7 +52,11 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
         const action = isInFavorites
           ? deleteNoticeFavorites(_id)
           : addNoticeFavorites(_id);
-        await dispatch(action).unwrap();
+
+        const response = await dispatch(action).unwrap();
+        if (noticesFavorites.length === 0 && response.length === 1) {
+          toggleCongratsModal();
+        }
         toast.success(
           `You have successfully ${!isInFavorites ? "added" : "removed"} notice ${!isInFavorites ? "to" : "from"} your favorites.`
         );
@@ -169,6 +180,16 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
           className="px-5 py-10 md:p-[60px]"
         >
           <ModalAttention />
+        </Modal>
+      )}
+
+      {isOpenCongratsModal && (
+        <Modal
+          isOpen={isOpenCongratsModal}
+          toggleModal={toggleCongratsModal}
+          className="px-5 py-10 md:w-[410px] md:p-[60px]"
+        >
+          <ModalCongrats />
         </Modal>
       )}
     </li>
