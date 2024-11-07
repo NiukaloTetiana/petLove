@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import Select from "react-select";
+import Select, { SingleValue } from "react-select";
 
-import { useAppSelector } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import {
   selectCategories,
   selectCities,
   selectSex,
   selectSpecies,
+  setPageNotices,
 } from "../../redux";
 import { DropdownSelect, Icon, SearchField } from "../../components";
 import { optionsList } from "../../constants";
@@ -16,11 +17,13 @@ import {
   IndicatorSeparator,
   DropdownIndicator,
 } from "../../helpers";
+import { ICity } from "../../types";
 
 interface INoticesFilters {
   setCategory: (option: string) => void;
   setGender: (option: string) => void;
   setType: (option: string) => void;
+  setLocation: (location: SingleValue<ICity>) => void;
   setSortOrder: (option: string) => void;
   handleChangeSearch: (search: string) => void;
   category: string;
@@ -33,6 +36,7 @@ export const NoticesFilters = ({
   setGender,
   setType,
   setSortOrder,
+  setLocation,
   handleChangeSearch,
   category,
   type,
@@ -42,6 +46,7 @@ export const NoticesFilters = ({
   const sex = useAppSelector(selectSex);
   const species = useAppSelector(selectSpecies);
   const locations = useAppSelector(selectCities);
+  const dispatch = useAppDispatch();
 
   const [selectedSort, setSelectedSort] = useState("");
 
@@ -62,10 +67,13 @@ export const NoticesFilters = ({
 
   const handleResetClick = () => {
     reset();
+    handleChangeSearch("");
     setCategory("Show all");
     setGender("Show all");
     setType("Show all");
-    handleChangeSearch("");
+    setLocation(null);
+
+    dispatch(setPageNotices(1));
   };
 
   return (
@@ -102,6 +110,8 @@ export const NoticesFilters = ({
           placeholder="Location"
           options={locations}
           getOptionLabel={(option) => option.cityEn + ", " + option.countyEn}
+          isMulti={false}
+          onChange={setLocation}
           components={{
             Option: CustomOption,
             IndicatorSeparator,

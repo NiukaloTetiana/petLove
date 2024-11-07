@@ -14,7 +14,10 @@ import {
   refreshUser,
   registerUser,
 } from "../auth/authOperations";
-import { deleteNoticeFavorites } from "../notices/noticesOperations";
+import {
+  addNoticeFavorites,
+  deleteNoticeFavorites,
+} from "../notices/noticesOperations";
 
 export interface IUserSlice extends IUser {
   isLoading: boolean;
@@ -37,7 +40,13 @@ const initialState: IUserSlice = {
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    addNoticeViewed: (state, action) => {
+      if (!state.noticesViewed.includes(action.payload)) {
+        state.noticesViewed.push(action.payload);
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(registerUser.fulfilled, (state, action) => {
@@ -54,7 +63,6 @@ const userSlice = createSlice({
         state.user.email = action.payload.email;
         state.user.avatar = action.payload.avatar;
         state.user.phone = action.payload.phone;
-        state.noticesViewed = action.payload.noticesViewed;
         state.noticesFavorites = action.payload.noticesFavorites;
         state.pets = action.payload.pets;
         state.isLoading = false;
@@ -87,6 +95,10 @@ const userSlice = createSlice({
         state.noticesFavorites = state.noticesFavorites.filter((elem) =>
           action.payload.includes(elem._id)
         );
+        state.isLoading = false;
+      })
+      .addCase(addNoticeFavorites.fulfilled, (state) => {
+        state.isLoading = false;
       })
       .addCase(logoutUser.fulfilled, () => {
         return initialState;
@@ -97,7 +109,9 @@ const userSlice = createSlice({
           updateUserCurrent.pending,
           updateUserAvatar.pending,
           addPet.pending,
-          removePet.pending
+          removePet.pending,
+          deleteNoticeFavorites.pending,
+          addNoticeFavorites.pending
         ),
         (state) => {
           state.isLoading = true;
@@ -109,7 +123,9 @@ const userSlice = createSlice({
           updateUserCurrent.rejected,
           updateUserAvatar.rejected,
           addPet.rejected,
-          removePet.rejected
+          removePet.rejected,
+          deleteNoticeFavorites.rejected,
+          addNoticeFavorites.rejected
         ),
         (state) => {
           state.isLoading = false;
@@ -133,3 +149,4 @@ export const {
   selectPets,
   selectIsLoadingUser,
 } = userSlice.selectors;
+export const { addNoticeViewed } = userSlice.actions;

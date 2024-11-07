@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { debounce } from "lodash";
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 import {
   Loader,
@@ -14,29 +14,47 @@ import {
   getCities,
   getNotices,
   selectIsLoadingNotices,
+  selectIsLoadingUser,
   selectNotices,
   selectPageNotices,
   setPageNotices,
 } from "../redux";
+import { ICity } from "../types";
+import { SingleValue } from "react-select";
 
 const NoticesPage = () => {
   const page = useAppSelector(selectPageNotices);
   const notices = useAppSelector(selectNotices);
   const isLoading = useAppSelector(selectIsLoadingNotices);
+  const isLoadingUser = useAppSelector(selectIsLoadingUser);
 
   const [category, setCategory] = useState("Show all");
   const [gender, setGender] = useState("Show all");
   const [type, setType] = useState("Show all");
   const [search, setSearch] = useState<string>("");
   const [sortOrder, setSortOrder] = useState<string>("");
+  const [location, setLocation] = useState<ICity | null>(null);
 
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (
+      category !== "Show all" ||
+      gender !== "Show all" ||
+      type !== "Show all" ||
+      location !== null ||
+      search !== "" ||
+      sortOrder !== ""
+    ) {
+      dispatch(setPageNotices(1));
+    }
+  }, [category, dispatch, gender, location, search, sortOrder, type]);
 
   useEffect(() => {
     try {
       dispatch(getCities());
     } catch (error) {
-      // toast.error();
+      toast.error("Something went wrong. Please, reload the page.");
     }
   }, [dispatch]);
 
@@ -55,6 +73,7 @@ const NoticesPage = () => {
       ...(category !== "Show all" && { category }),
       ...(gender !== "Show all" && { sex: gender }),
       ...(type !== "Show all" && { species: type }),
+      ...(location && { locationId: location._id }),
       ...(sortOrder && { [sort[0]]: sort[1] }),
     };
     debouncedDispatch(params);
@@ -67,36 +86,38 @@ const NoticesPage = () => {
     search,
     type,
     sortOrder,
+    location,
   ]);
 
   const handleChangeSearch = (search: string) => {
-    dispatch(setPageNotices(1));
     setSearch(search);
   };
 
   const handleCategoryChange = (newCategory: string) => {
-    dispatch(setPageNotices(1));
     setCategory(newCategory);
   };
 
   const handleGenderChange = (newGender: string) => {
-    dispatch(setPageNotices(1));
     setGender(newGender);
   };
 
   const handleTypeChange = (newType: string) => {
-    dispatch(setPageNotices(1));
     setType(newType);
+  };
+
+  const handleLocationChange = (newLocation: SingleValue<ICity>) => {
+    setLocation(newLocation ? newLocation : null);
   };
   return (
     <>
       <div className="container pb-[80px] pt-[34px] md:pb-[80px] md:pt-[46px] lg:px-[32px] lg:pt-[64px]">
         <Title title="Find your favorite pet" className="mb-10 lg:mb-10" />
         <NoticesFilters
+          handleChangeSearch={handleChangeSearch}
           setCategory={handleCategoryChange}
           setGender={handleGenderChange}
           setType={handleTypeChange}
-          handleChangeSearch={handleChangeSearch}
+          setLocation={handleLocationChange}
           setSortOrder={setSortOrder}
           category={category}
           type={type}
@@ -115,7 +136,7 @@ const NoticesPage = () => {
         <Pagination />
       </div>
 
-      {isLoading && <Loader />}
+      {(isLoading || isLoadingUser) && <Loader />}
     </>
   );
 };
