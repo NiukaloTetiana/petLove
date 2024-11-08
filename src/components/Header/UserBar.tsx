@@ -16,7 +16,7 @@ export const UserBar = () => {
 
       <div className="flex items-center justify-center gap-[8px]">
         <Link
-          to="/profile"
+          to="/profile/favorites"
           className="link-reg flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#fff4df] transition duration-500 md:size-[50px]"
         >
           {!user.avatar ? (
@@ -28,13 +28,13 @@ export const UserBar = () => {
           ) : (
             <img
               src={user.avatar}
-              alt={user.name || ""}
+              alt={user.name || "User"}
               className="h-full w-full object-cover"
             />
           )}
         </Link>
         <p
-          className={`hidden md:block md:text-[20px] md:font-bold md:leading-[1] md:tracking-[-0.03em] ${isHomePage ? "text-white" : "text-[#262626]"}`}
+          className={`hidden max-w-[150px] truncate md:block md:max-w-[350px] md:text-[20px] md:font-bold md:leading-[1] md:tracking-[-0.03em] ${isHomePage ? "text-white" : "text-[#262626]"}`}
         >
           {user.name}
         </p>

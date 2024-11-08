@@ -47,7 +47,7 @@ export const UserCard = () => {
         ) : (
           <img
             src={user.avatar}
-            alt={user.name || ""}
+            alt={user.name || "User"}
             className="h-full w-full object-cover"
           />
         )}
