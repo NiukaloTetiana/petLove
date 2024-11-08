@@ -11,11 +11,13 @@ import {
 import { useAppDispatch, useAppSelector, useModal } from "../../hooks";
 import {
   addNoticeFavorites,
+  addNoticeViewed,
   deleteNoticeFavorites,
   selectIsLoggedIn,
   selectNoticesFavorites,
 } from "../../redux";
 import { toast } from "react-toastify";
+import { useLocation } from "react-router-dom";
 
 interface INoticesItemProps {
   notice: INotice;
@@ -43,6 +45,10 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
   const dispatch = useAppDispatch();
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
   const noticesFavorites = useAppSelector(selectNoticesFavorites);
+  const location = useLocation();
+
+  const isNoticesPage = location.pathname === "/notices";
+  const isViewedPage = location.pathname === "/profile/viewed";
 
   const isInFavorites = noticesFavorites.find((elem) => elem._id === _id);
 
@@ -70,6 +76,7 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
 
   const handleClickLearnMore = async () => {
     if (isLoggedIn) {
+      dispatch(addNoticeViewed(_id));
       toggleNoticeModal();
     } else {
       toggleModal();
@@ -77,8 +84,12 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
   };
 
   return (
-    <li className="relative flex h-[430px] w-full flex-col rounded-[16px] bg-white p-[24px] shadow-md sm-max:h-[500px] md:h-[444px] md:w-[342px] lg:w-[363px]">
-      <div className="relative mb-[24px] flex h-[178px] w-[287px] shrink-0 items-center justify-center overflow-hidden rounded-[16px] sm-max:w-full md:w-[294px] lg:w-[315px]">
+    <li
+      className={`relative flex h-[430px] w-full flex-col rounded-[16px] bg-white p-[24px] shadow-md sm-max:h-[500px] md:h-[444px] md:w-[342px] lg:w-[363px] ${isNoticesPage ? "" : "sm-max:h-[440px] sm-max:p-[14px] md:h-[388px] md:p-[14px] md:pb-[18px] lg:w-[320px]"}`}
+    >
+      <div
+        className={`relative mb-[24px] flex h-[178px] w-[287px] shrink-0 items-center justify-center overflow-hidden rounded-[16px] sm-max:w-full md:w-[294px] lg:w-[315px] ${isNoticesPage ? "" : "md:mb-[14px] md:h-[162px] md:w-[314px] lg:w-[292px]"}`}
+      >
         <img
           src={imgURL}
           alt={species}
@@ -86,7 +97,7 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
         />
       </div>
 
-      <div className="absolute left-3 top-4 h-[32px] overflow-visible rounded-[30px] bg-[#fff4df] px-[14px] py-[8px] text-center text-[14px] font-semibold leading-[1.1] tracking-[-0.02em] text-[#262626] shadow-md sm-max:h-[30px] md:h-[34px] md:text-[16px]">
+      <div className="absolute left-3 top-4 h-[32px] overflow-visible rounded-[30px] bg-[#fff4df] px-[14px] py-[8px] text-center text-[14px] font-semibold leading-[1.1] tracking-[-0.02em] text-[#262626] shadow-md sm-max:top-2 sm-max:h-[30px] md:left-2 md:top-2 md:h-[34px] md:text-[16px]">
         {price ? `$${price}` : "Free"}
       </div>
 
@@ -107,7 +118,9 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
         </div>
       </div>
 
-      <ul className="mb-4 flex gap-[13px] text-[12px] font-medium leading-[1.17] tracking-[-0.02em] text-[#262626] sm-max:flex-wrap md:gap-4 lg:gap-5">
+      <ul
+        className={`mb-4 flex gap-[13px] text-[12px] font-medium leading-[1.17] tracking-[-0.02em] text-[#262626] sm-max:flex-wrap md:gap-4 ${isNoticesPage ? "lg:gap-5" : ""}`}
+      >
         <li className="flex flex-col gap-[2px]">
           <span className="span">Name</span>
           {name}
@@ -138,26 +151,32 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
         <button
           type="button"
           onClick={handleClickLearnMore}
-          className="link-log h-[46px] w-[231px] rounded-[30px] bg-[#f6b83d] py-[14px] text-center text-[14px] font-medium leading-[1.29] tracking-[-0.03em] text-white shadow-sm transition duration-500 sm-max:w-[170px] md:h-[48px] md:w-[236px] md:leading-[1] lg:w-[257px]"
+          className={`link-log w-[231px] rounded-[30px] bg-[#f6b83d] py-[14px] text-center text-[14px] font-medium leading-[1.2] tracking-[-0.03em] text-white shadow-sm transition duration-500 md:leading-[1] ${isNoticesPage ? "h-[46px] sm-max:w-[170px] md:h-[48px] md:w-[236px] lg:w-[257px]" : "h-[44px] sm-max:w-[200px] md:w-[260px] lg:w-[238px]"} ${isViewedPage ? "w-full" : ""}`}
         >
           Learn more
         </button>
 
-        <button
-          onClick={handleClickFavorite}
-          type="button"
-          className="link-reg group flex size-[46px] items-center justify-center rounded-full bg-[#fff4df] transition duration-500 md:size-[48px]"
-        >
-          {!isInFavorites ? (
-            <Icon
-              id="heart"
-              size={16}
-              className="fill-none stroke-[#ffc531] transition duration-500 group-hover:fill-[#ffc531]"
-            />
-          ) : (
-            <Icon id="trash" size={16} className="fill-none stroke-[#ffc531]" />
-          )}
-        </button>
+        {!isViewedPage ? (
+          <button
+            onClick={handleClickFavorite}
+            type="button"
+            className={`link-reg group flex items-center justify-center rounded-full bg-[#fff4df] transition duration-500 ${isNoticesPage ? "size-[46px] md:size-[48px]" : "size-[44px]"}`}
+          >
+            {!isInFavorites ? (
+              <Icon
+                id="heart"
+                size={16}
+                className="fill-none stroke-[#ffc531] transition duration-500 group-hover:fill-[#ffc531]"
+              />
+            ) : (
+              <Icon
+                id="trash"
+                size={16}
+                className="fill-none stroke-[#ffc531]"
+              />
+            )}
+          </button>
+        ) : null}
       </div>
 
       {isOpenNoticeModal && (

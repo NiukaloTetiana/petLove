@@ -6,9 +6,9 @@ const Favorites = () => {
   const noticesFavorites = useAppSelector(selectNoticesFavorites);
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex items-center justify-center lg:max-h-[928px]">
       {noticesFavorites.length === 0 ? (
-        <h4 className="mx-auto text-center text-[14px] font-medium leading-[1.29] tracking-[-0.02em] text-[#262626] md:w-[458px] md:text-[16px] md:leading-[1.25]">
+        <h4 className="text-center text-[14px] font-medium leading-[1.29] tracking-[-0.02em] text-[#262626] md:w-[458px] md:text-[16px] md:leading-[1.25]">
           Oops,{" "}
           <span className="font-bold text-[#f6b83d]">
             looks like there aren't any furries
