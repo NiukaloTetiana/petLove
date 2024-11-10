@@ -40,13 +40,7 @@ const initialState: IUserSlice = {
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {
-    addNoticeViewed: (state, action) => {
-      if (!state.noticesViewed.includes(action.payload)) {
-        state.noticesViewed.push(action.payload);
-      }
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(registerUser.fulfilled, (state, action) => {
@@ -150,4 +144,3 @@ export const {
   selectPets,
   selectIsLoadingUser,
 } = userSlice.selectors;
-export const { addNoticeViewed } = userSlice.actions;

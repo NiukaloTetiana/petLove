@@ -11,7 +11,6 @@ import {
 import { useAppDispatch, useAppSelector, useModal } from "../../hooks";
 import {
   addNoticeFavorites,
-  addNoticeViewed,
   deleteNoticeFavorites,
   selectIsLoggedIn,
   selectNoticesFavorites,
@@ -77,7 +76,6 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
 
   const handleClickLearnMore = async () => {
     if (isLoggedIn) {
-      dispatch(addNoticeViewed(_id));
       toggleNoticeModal();
     } else {
       toggleModal();
