@@ -64,6 +64,7 @@ const userSlice = createSlice({
         state.user.avatar = action.payload.avatar;
         state.user.phone = action.payload.phone;
         state.noticesFavorites = action.payload.noticesFavorites;
+        state.noticesViewed = action.payload.noticesViewed;
         state.pets = action.payload.pets;
         state.isLoading = false;
       })
