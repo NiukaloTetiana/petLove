@@ -17,7 +17,7 @@ const Favorites = () => {
           your favorite pet" page and add them to your favorites.
         </h4>
       ) : (
-        <ul className="scrollbar flex flex-col gap-5 md:flex-row md:flex-wrap lg:max-h-[664px]">
+        <ul className="scrollbar flex flex-col gap-5 md:flex-row md:flex-wrap lg:max-h-[796px]">
           {noticesFavorites.map((notice) => (
             <NoticesItem key={notice._id} notice={notice} />
           ))}

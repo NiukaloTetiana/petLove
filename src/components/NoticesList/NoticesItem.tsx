@@ -86,7 +86,7 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
 
   return (
     <li
-      className={`relative flex h-[430px] w-full flex-col rounded-[16px] bg-white p-[24px] shadow-md md:w-[342px] ${isNoticesPage ? "sm-max:h-[500px] md:h-[444px] lg:w-[363px]" : "sm-max:h-[440px] sm-max:p-[14px] md:h-[388px] md:p-[14px] md:pb-[18px] lg:w-[320px]"}`}
+      className={`relative flex h-[430px] w-full flex-col rounded-[16px] bg-white p-[24px] md:w-[342px] ${isNoticesPage ? "shadow-md sm-max:h-[500px] md:h-[444px] lg:w-[363px]" : "sm-max:h-[440px] sm-max:p-[14px] md:h-[388px] md:p-[14px] md:pb-[18px] lg:w-[320px]"}`}
     >
       <div
         className={`relative mb-[24px] flex h-[178px] w-[287px] shrink-0 items-center justify-center overflow-hidden rounded-[16px] sm-max:w-full ${isNoticesPage ? "md:w-[294px] lg:w-[315px]" : "md:mb-[14px] md:h-[162px] md:w-[314px] lg:w-[292px]"}`}
