@@ -49,6 +49,7 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
 
   const isNoticesPage = location.pathname === "/notices";
   const isViewedPage = location.pathname === "/profile/viewed";
+  console.log();
 
   const isInFavorites = noticesFavorites.find((elem) => elem._id === _id);
 
@@ -85,10 +86,10 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
 
   return (
     <li
-      className={`relative flex h-[430px] w-full flex-col rounded-[16px] bg-white p-[24px] shadow-md sm-max:h-[500px] md:h-[444px] md:w-[342px] lg:w-[363px] ${isNoticesPage ? "" : "sm-max:h-[440px] sm-max:p-[14px] md:h-[388px] md:p-[14px] md:pb-[18px] lg:w-[320px]"}`}
+      className={`relative flex h-[430px] w-full flex-col rounded-[16px] bg-white p-[24px] shadow-md md:w-[342px] ${isNoticesPage ? "sm-max:h-[500px] md:h-[444px] lg:w-[363px]" : "sm-max:h-[440px] sm-max:p-[14px] md:h-[388px] md:p-[14px] md:pb-[18px] lg:w-[320px]"}`}
     >
       <div
-        className={`relative mb-[24px] flex h-[178px] w-[287px] shrink-0 items-center justify-center overflow-hidden rounded-[16px] sm-max:w-full md:w-[294px] lg:w-[315px] ${isNoticesPage ? "" : "md:mb-[14px] md:h-[162px] md:w-[314px] lg:w-[292px]"}`}
+        className={`relative mb-[24px] flex h-[178px] w-[287px] shrink-0 items-center justify-center overflow-hidden rounded-[16px] sm-max:w-full ${isNoticesPage ? "md:w-[294px] lg:w-[315px]" : "md:mb-[14px] md:h-[162px] md:w-[314px] lg:w-[292px]"}`}
       >
         <img
           src={imgURL}
@@ -119,7 +120,7 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
       </div>
 
       <ul
-        className={`mb-4 flex gap-[13px] text-[12px] font-medium leading-[1.17] tracking-[-0.02em] text-[#262626] sm-max:flex-wrap md:gap-4 ${isNoticesPage ? "lg:gap-5" : ""}`}
+        className={`flex gap-[13px] text-[12px] font-medium leading-[1.17] tracking-[-0.02em] text-[#262626] sm-max:flex-wrap md:gap-4 ${isNoticesPage ? "mb-4 lg:gap-5" : "mb-[14px]"}`}
       >
         <li className="flex flex-col gap-[2px]">
           <span className="span">Name</span>
@@ -151,7 +152,7 @@ export const NoticesItem = ({ notice }: INoticesItemProps) => {
         <button
           type="button"
           onClick={handleClickLearnMore}
-          className={`link-log w-[231px] rounded-[30px] bg-[#f6b83d] py-[14px] text-center text-[14px] font-medium leading-[1.2] tracking-[-0.03em] text-white shadow-sm transition duration-500 md:leading-[1] ${isNoticesPage ? "h-[46px] sm-max:w-[170px] md:h-[48px] md:w-[236px] lg:w-[257px]" : "h-[44px] sm-max:w-[200px] md:w-[260px] lg:w-[238px]"} ${isViewedPage ? "w-full" : ""}`}
+          className={`link-log w-[231px] rounded-[30px] bg-[#f6b83d] py-[14px] text-center text-[14px] font-medium leading-[1.2] tracking-[-0.03em] text-white shadow-sm transition duration-500 md:leading-[1] ${isNoticesPage ? "h-[46px] sm-max:w-[170px] md:h-[48px] md:w-[236px] lg:w-[257px]" : "h-[44px] sm-max:w-[200px] md:w-[260px] lg:w-[238px]"} ${isViewedPage ? "!w-full" : ""}`}
         >
           Learn more
         </button>

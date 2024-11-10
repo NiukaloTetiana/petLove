@@ -6,7 +6,7 @@ const Favorites = () => {
   const noticesFavorites = useAppSelector(selectNoticesFavorites);
 
   return (
-    <div className="flex items-center justify-center lg:max-h-[928px]">
+    <div className="flex items-center justify-center">
       {noticesFavorites.length === 0 ? (
         <h4 className="text-center text-[14px] font-medium leading-[1.29] tracking-[-0.02em] text-[#262626] md:w-[458px] md:text-[16px] md:leading-[1.25]">
           Oops,{" "}
@@ -17,7 +17,7 @@ const Favorites = () => {
           your favorite pet" page and add them to your favorites.
         </h4>
       ) : (
-        <ul className="flex flex-col gap-5 md:flex-row md:flex-wrap lg:gap-[24px]">
+        <ul className="scrollbar flex flex-col gap-5 md:flex-row md:flex-wrap lg:max-h-[664px]">
           {noticesFavorites.map((notice) => (
             <NoticesItem key={notice._id} notice={notice} />
           ))}

@@ -17,7 +17,7 @@ export const UserCard = () => {
   const user = useAppSelector(selectUser);
 
   return (
-    <div className="rounded-[30px] bg-white px-5 pb-10 pt-[18px] md:rounded-[60px] md:p-10 lg:w-[520px]">
+    <div className="rounded-[30px] bg-white px-5 pb-10 pt-[18px] md:rounded-[60px] md:p-10 lg:max-h-[928px] lg:w-[520px]">
       <div className="flex items-center justify-between">
         <div className="flex h-[38px] w-[80px] items-center justify-center gap-[4px] rounded-[30px] bg-[#f6b83d] px-[14px] py-[10px]">
           <p className="text-[14px] font-medium leading-[1.29] tracking-[-0.02em] text-white">
