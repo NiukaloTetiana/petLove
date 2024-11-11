@@ -26,7 +26,7 @@ export const PetsItem = ({
   };
 
   return (
-    <li className="relative flex items-start gap-[14px] rounded-[20px] border border-[#26262619] p-4 sm-max:gap-[8px] md:w-[300px] md:px-[16px] md:py-[22px] lg:w-full lg:items-center lg:gap-[25px] lg:p-5">
+    <li className="relative flex h-[130px] items-start gap-[14px] rounded-[20px] border border-[#26262619] p-4 sm-max:gap-[8px] sm-max:p-[10px] md:h-[149px] md:w-[300px] md:px-[16px] md:py-[22px] lg:h-[130px] lg:w-full lg:items-center lg:gap-[25px] lg:p-5">
       <div className="flex size-[66px] shrink-0 items-center justify-center overflow-hidden rounded-full sm-max:size-[60px] md:size-[75px] lg:size-[90px]">
         <img
           src={imgURL}

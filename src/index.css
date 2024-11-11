@@ -363,7 +363,7 @@ input {
   scrollbar-color: auto !important;
   --sb-track-color: transparent;
   --sb-thumb-color: rgba(38, 38, 38, 0.08);
-  --sb-size: 8px;
+  --sb-size: 6px;
   --sb-margin: 20px;
 }
 

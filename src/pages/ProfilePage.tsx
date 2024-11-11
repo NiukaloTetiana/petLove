@@ -15,10 +15,10 @@ const ProfilePage = () => {
 
   return (
     <>
-      <div className="container flex flex-col gap-[32px] pb-[80px] lg:flex-row lg:pb-[64px] lg:pl-[32px] lg:pr-[28px]">
+      <div className="container flex flex-col gap-[28px] pb-[80px] lg:flex-row lg:pb-[64px] lg:pl-[32px] lg:pr-[25px]">
         <UserCard />
 
-        <div className="lg:w-[692px]">
+        <div className="lg:w-[676px]">
           <div className="mb-5 flex items-center gap-[10px] md:gap-[8px] lg:mb-[32px] lg:pt-10">
             <NavLink to="favorites" className="link-profile">
               My favorite pets
