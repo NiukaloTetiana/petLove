@@ -13,8 +13,9 @@ import { toast } from "react-toastify";
 import { format } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
 
-import { addPetSchema } from "../../schemas";
 import { Icon } from "../../components";
+
+import { addPetSchema } from "../../schemas";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { addPet, selectSpecies } from "../../redux";
 
@@ -75,7 +76,7 @@ export const AddPetForm = () => {
       reset();
 
       toast.success("Pet was added successful.");
-      navigate("/profile");
+      navigate("/profile/favorites");
     } catch (error) {
       toast.error("Oops... Something went wrong. Please, try again.");
     }

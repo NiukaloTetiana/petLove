@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+
 import type { ICity } from "../../types";
 import { getCities } from "./citiesOperations";
 

@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 
 import { Modal, ModalApproveAction } from "../../components";
+
 import { useModal } from "../../hooks";
 
 interface ILogoutBtnProps {

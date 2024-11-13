@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+
 import type { INew } from "../../types";
 import { getNews } from "./newsOperations";
 

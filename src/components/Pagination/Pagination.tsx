@@ -1,8 +1,10 @@
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import { useMediaQuery } from "react-responsive";
 
 import { Icon } from "../../components";
+
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import {
   selectPageNews,
@@ -12,7 +14,6 @@ import {
   setPageNews,
   setPageNotices,
 } from "../../redux";
-import { useLocation } from "react-router-dom";
 
 export const Pagination: React.FC = () => {
   const location = useLocation();

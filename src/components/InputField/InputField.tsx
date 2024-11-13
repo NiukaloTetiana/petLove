@@ -1,5 +1,6 @@
-import { FieldErrors, FormState, UseFormRegister } from "react-hook-form";
 import { useState } from "react";
+import { FieldErrors, FormState, UseFormRegister } from "react-hook-form";
+
 import { Icon } from "../../components";
 
 export interface IFormData {

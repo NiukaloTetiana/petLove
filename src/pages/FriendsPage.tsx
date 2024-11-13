@@ -1,8 +1,10 @@
 import { useEffect } from "react";
+import { toast } from "react-toastify";
+
 import { FriendsList, Loader, Title } from "../components";
+
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { getFriends, selectIsLoadingFriends } from "../redux";
-import { toast } from "react-toastify";
 
 const FriendsPage = () => {
   const dispatch = useAppDispatch();

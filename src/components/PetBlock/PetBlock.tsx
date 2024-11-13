@@ -1,4 +1,5 @@
 import { useLocation } from "react-router-dom";
+
 import {
   regisrer_desktop_1x,
   regisrer_desktop_2x,

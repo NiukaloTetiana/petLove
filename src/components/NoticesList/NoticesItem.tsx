@@ -1,6 +1,7 @@
 import { format } from "date-fns";
+import { useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
 
-import { INotice } from "../../types";
 import {
   Icon,
   Modal,
@@ -8,15 +9,15 @@ import {
   ModalCongrats,
   ModalNotice,
 } from "../../components";
+
 import { useAppDispatch, useAppSelector, useModal } from "../../hooks";
+import { INotice } from "../../types";
 import {
   addNoticeFavorites,
   deleteNoticeFavorites,
   selectIsLoggedIn,
   selectNoticesFavorites,
 } from "../../redux";
-import { toast } from "react-toastify";
-import { useLocation } from "react-router-dom";
 
 interface INoticesItemProps {
   notice: INotice;

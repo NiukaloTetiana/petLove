@@ -1,8 +1,9 @@
 import ReactDOM from "react-dom";
 
+import { Icon } from "../../components";
+
 import { useEscapeClose } from "../../hooks";
 import { handleClickOnBackdrop } from "../../helpers";
-import { Icon } from "../../components";
 
 interface ModalProps {
   isOpen: boolean;

@@ -1,13 +1,15 @@
+import { useEffect } from "react";
 import { format } from "date-fns";
+
+import { Icon } from "../../components";
+
 import { INotice } from "../../types";
-import { Icon } from "../Icon/Icon";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import {
   getNoticeById,
   selectNoticesFavorites,
   selectOneNotice,
 } from "../../redux";
-import { useEffect } from "react";
 
 interface IModalNoticeProps {
   notice: INotice;

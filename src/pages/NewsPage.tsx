@@ -8,7 +8,8 @@ import {
   SearchField,
   Title,
 } from "../components";
-import { useAppDispatch, useAppSelector } from "../hooks/redux";
+
+import { useAppDispatch, useAppSelector } from "../hooks";
 import {
   getNews,
   selectIsLoadingNews,

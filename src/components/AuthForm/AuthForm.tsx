@@ -1,13 +1,13 @@
+import { Link } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
 
-import { registerSchema, loginSchema } from "../../schemas/validationSchemas";
-import { InputField } from "../InputField/InputField";
-import { IFormData } from "../InputField/InputField";
+import { InputField, IFormData } from "../../components";
+
 import { useAppDispatch } from "../../hooks";
 import { loginUser, registerUser } from "../../redux";
+import { registerSchema, loginSchema } from "../../schemas";
 
 interface IAuthFormProps {
   registration?: boolean;

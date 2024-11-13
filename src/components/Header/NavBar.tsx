@@ -1,7 +1,8 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 
+import { Icon } from "../../components";
+
 import { navItems } from "../../constants";
-import { Icon } from "../Icon/Icon";
 
 interface INavBarProps {
   logoClass?: string;

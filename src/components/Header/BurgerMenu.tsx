@@ -1,7 +1,8 @@
 import { useRef } from "react";
 import { useLocation } from "react-router-dom";
 
-import { AuthButton, Icon, LogoutBtn,  NavBar } from "../../components";
+import { AuthButton, Icon, LogoutBtn, NavBar } from "../../components";
+
 import { useAppSelector, useEscapeClose } from "../../hooks";
 import { handleClickOnBackdrop } from "../../helpers";
 import { selectIsLoggedIn } from "../../redux";

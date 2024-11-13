@@ -1,6 +1,7 @@
+import { NoticesItem } from "./NoticesItem";
+
 import { useAppSelector } from "../../hooks";
 import { selectNotices } from "../../redux";
-import { NoticesItem } from "./NoticesItem";
 
 export const NoticesList = () => {
   const notices = useAppSelector(selectNotices);

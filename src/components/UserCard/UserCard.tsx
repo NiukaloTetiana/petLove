@@ -1,4 +1,3 @@
-import { useAppSelector, useModal } from "../../hooks";
 import {
   Icon,
   ModalApproveAction,
@@ -8,6 +7,8 @@ import {
   EditUserBtn,
   PetsBlock,
 } from "../../components";
+
+import { useAppSelector, useModal } from "../../hooks";
 import { selectUser } from "../../redux";
 
 export const UserCard = () => {

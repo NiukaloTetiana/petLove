@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { debounce } from "lodash";
+import { SingleValue } from "react-select";
 import { toast } from "react-toastify";
 
 import {
@@ -9,7 +10,9 @@ import {
   Pagination,
   Title,
 } from "../components";
+
 import { useAppDispatch, useAppSelector } from "../hooks";
+import { ICity } from "../types";
 import {
   getCities,
   getNotices,
@@ -19,8 +22,6 @@ import {
   selectPageNotices,
   setPageNotices,
 } from "../redux";
-import { ICity } from "../types";
-import { SingleValue } from "react-select";
 
 const NoticesPage = () => {
   const page = useAppSelector(selectPageNotices);

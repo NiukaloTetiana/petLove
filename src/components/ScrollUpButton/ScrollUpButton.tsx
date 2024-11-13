@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import throttle from "lodash.throttle";
+
 import { Icon } from "../../components";
 
 export const ScrollUpButton = () => {

@@ -1,6 +1,7 @@
+import { PetsItem } from "./PetsItem";
+
 import { useAppSelector } from "../../hooks";
 import { selectPets } from "../../redux";
-import { PetsItem } from "./PetsItem";
 
 export const PetsList = () => {
   const pets = useAppSelector(selectPets);

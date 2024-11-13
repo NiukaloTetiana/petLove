@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+
 import type { IFriend } from "../../types";
 import { getFriends } from "./friendsOperations";
 

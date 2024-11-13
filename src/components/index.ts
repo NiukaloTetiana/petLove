@@ -36,3 +36,4 @@ export * from "./Pagination/Pagination";
 export * from "./NoticesFilters/NoticesFilters";
 export * from "./DropdownSelect/DropdownSelect";
 export * from "./ModalCongrats/ModalCongrats";
+export * from "./NoticesFilters/selectCustom";

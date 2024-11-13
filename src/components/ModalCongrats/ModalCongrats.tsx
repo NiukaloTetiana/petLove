@@ -1,5 +1,6 @@
 // import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+
 import { modal_cat_1x, modal_cat_2x } from "../../assets";
 
 export const ModalCongrats = () => {

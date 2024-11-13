@@ -1,7 +1,9 @@
 import { toast } from "react-toastify";
-import { modal_cat_1x, modal_cat_2x } from "../../assets";
+
 import { useAppDispatch } from "../../hooks";
 import { logoutUser } from "../../redux";
+
+import { modal_cat_1x, modal_cat_2x } from "../../assets";
 
 interface IModalApproveActionProps {
   toggleLogOutModal: () => void;

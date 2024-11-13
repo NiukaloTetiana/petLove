@@ -1,6 +1,7 @@
+import { NewsItem } from "./NewsItem";
+
 import { useAppSelector } from "../../hooks";
 import { selectNews } from "../../redux";
-import { NewsItem } from "./NewsItem";
 
 export const NewsList = () => {
   const news = useAppSelector(selectNews);

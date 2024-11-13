@@ -2,6 +2,8 @@ import { lazy, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import { Layout } from "../components";
+
+import { PrivateRoute, PublicRoute } from "../routes";
 import { useAppDispatch } from "../hooks";
 import {
   getNoticesCategories,
@@ -9,7 +11,6 @@ import {
   getNoticesSpecies,
   refreshUser,
 } from "../redux";
-import { PrivateRoute, PublicRoute } from "../routes";
 
 const HomePage = lazy(() => import("../pages/HomePage"));
 const NewsPage = lazy(() => import("../pages/NewsPage"));

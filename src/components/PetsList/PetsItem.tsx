@@ -1,8 +1,9 @@
 import { format } from "date-fns";
 import { toast } from "react-toastify";
 
-import { IPet } from "../../types";
 import { Icon } from "../../components";
+
+import { IPet } from "../../types";
 import { useAppDispatch } from "../../hooks";
 import { removePet } from "../../redux";
 

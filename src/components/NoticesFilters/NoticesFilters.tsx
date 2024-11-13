@@ -2,7 +2,18 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Select, { SingleValue } from "react-select";
 
+import {
+  DropdownSelect,
+  Icon,
+  SearchField,
+  CustomOption,
+  IndicatorSeparator,
+  DropdownIndicator,
+} from "../../components";
+
 import { useAppDispatch, useAppSelector } from "../../hooks";
+import { optionsList } from "../../constants";
+import { ICity } from "../../types";
 import {
   selectCategories,
   selectCities,
@@ -10,14 +21,6 @@ import {
   selectSpecies,
   setPageNotices,
 } from "../../redux";
-import { DropdownSelect, Icon, SearchField } from "../../components";
-import { optionsList } from "../../constants";
-import {
-  CustomOption,
-  IndicatorSeparator,
-  DropdownIndicator,
-} from "./selectCustom";
-import { ICity } from "../../types";
 
 interface INoticesFilters {
   setCategory: (option: string) => void;

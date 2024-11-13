@@ -1,6 +1,7 @@
+import { FriendsItem } from "./FriendsItem";
+
 import { useAppSelector } from "../../hooks";
 import { selectFriends } from "../../redux";
-import { FriendsItem } from "./FriendsItem";
 
 export const FriendsList = () => {
   const friends = useAppSelector(selectFriends);
