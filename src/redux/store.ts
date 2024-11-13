@@ -13,7 +13,7 @@ import {
 } from "redux-persist";
 
 import { authReducer, AuthState } from "./auth/authSlice";
-import { userReducer } from "./user/userSlice";
+import { userReducer, UserState } from "./user/userSlice";
 import { noticesReducer } from "./notices/noticesSlice";
 import { friendsReducer } from "./friends/friendsSlice";
 import { citiesReducer } from "./cities/citiesSlice";
@@ -31,10 +31,22 @@ const persistedAuthReducer = persistReducer<AuthState>(
   authReducer
 );
 
+const userPersistConfig = {
+  key: "user",
+  version: 1,
+  storage,
+  whitelist: ["user"],
+};
+
+const persistedUserReducer = persistReducer<UserState>(
+  userPersistConfig,
+  userReducer
+);
+
 export const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
-    user: userReducer,
+    user: persistedUserReducer,
     notices: noticesReducer,
     friends: friendsReducer,
     news: newsReducer,

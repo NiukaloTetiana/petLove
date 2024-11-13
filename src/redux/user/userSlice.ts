@@ -144,3 +144,5 @@ export const {
   selectPets,
   selectIsLoadingUser,
 } = userSlice.selectors;
+
+export type UserState = ReturnType<typeof userReducer>;
