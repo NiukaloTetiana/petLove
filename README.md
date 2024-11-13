@@ -58,9 +58,9 @@ user-friendly experience across devices.
   popularity indicator, pet name, birth date, gender, type, category, comment,
   and two functional buttons:
 
-         - For unauthenticated users, a modal appears prompting them to log in or register.
-         - For authenticated users, a modal shows detailed information about the pet along with an Add to Favorites button.
-         - When an authenticated user adds their first pet to favorites, a modal window appears with a congratulatory message and a button that redirects to the favorites page.
+    - For unauthenticated users, a modal appears prompting them to log in or register.
+    - For authenticated users, a modal shows detailed information about the pet along with an Add to Favorites button.
+    - When an authenticated user adds their first pet to favorites, a modal window appears with a congratulatory message and a button that redirects to the favorites page.
 
   ![NoticesModals](./public/5-1.webp)
 
@@ -83,23 +83,24 @@ user-friendly experience across devices.
 
 **_The profile page consists of two main sections:_**
 
-- _User card:_
-
-          - Displays the user`s avatar (with the option to edit it), name, email, and phone number.
-          - The edit user button triggers a modal where users can update their avatar, name, email, and phone number.
-          - The PetsBlock shows a list of the user's pets with the option to add new ones through the "Add pet" button, which redirects to the "Add Pet" page.
-          - The LogOutBtn triggers a confirmation modal to log out the user.
+- **User card:**
+  * Displays the user's avatar (with the option to edit it), name, email, and phone number.
+  * The edit user button triggers a modal where users can update their avatar, name, email, and phone number.
+  * The Pets block shows a list of the user's pets with the option to add new ones through the "Add pet" button, which redirects to the "Add Pet" page.
+  * The "Log out" button triggers a confirmation modal to log out the user.
 
   ![ModalProfilePage](./public/7.webp)
 
--_My notices:_
+- **My notices:**
+  
+   _Favorites:_
+    - This tab displays a list of notices that the user has added to their favorites. These are notices the user has specifically marked as important or interesting. 
+    - Additionally, the "Learn More" button allows the user to view additional details about the pet. There is also a trash icon that allows the user to remove a notice from their favorites list.
+    
+    ![ProfileFavoritesPage](./public/7-1.webp)
 
-      -_Favorites:_This tab displays a list of notices that the user has added to their favorites. These are notices the user has specifically marked as important or interesting. Additionally, there is a trash icon that allows the user to remove a notice from their favorites list.
-
-![ProfileFavoritesPage](./public/7-1.webp)
-
--_Vieved:_
-
+  _Viewed:_
+    - This tab displays a list of notices the user has viewed. Clicking the "Learn More" button allows the user to view additional details about the pet.
 ![Cart page](./public/7-2.webp)
 
 **7. Add Pet page**
@@ -117,12 +118,8 @@ interface.
 
 ## Features
 
-- **User Authentication**: Secure login, registration, and logout
-  functionalities powered by Node.js.
 - **Adaptive Design**: Fluid layout for breakpoints at 320px, 375px, 768px, and
   1440px. Ensures compatibility and usability across various devices.
-- **Modal Dialogs**: Enhanced interaction through modal dialogs for login,
-  registration and logaut.
 - **Form Validation**: Implemented using React Hook Form and Yup for client-side
   validation.
 
@@ -144,8 +141,3 @@ interface.
 ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
-
-## Deployment
-
-This project is deployed on Vercel. Check it out:
-[**PetLove**](https://pet-love-ecru.vercel.app/)
