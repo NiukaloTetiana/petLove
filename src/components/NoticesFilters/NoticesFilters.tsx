@@ -155,7 +155,7 @@ export const NoticesFilters = ({
           onClick={handleResetClick}
           className="notices-label"
         >
-          Reset all filter
+          Reset all filters
         </button>
       </div>
     </div>
