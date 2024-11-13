@@ -6,8 +6,8 @@ import {
   Props,
 } from "react-select";
 
-import { ICity } from "../types";
-import { Icon } from "../components";
+import { ICity } from "../../types";
+import { Icon } from "../../components";
 
 interface CustomSelectProps extends Props<ICity, boolean, GroupBase<ICity>> {
   clearValue: () => void;
@@ -32,7 +32,10 @@ export const CustomOption = (props: OptionProps<ICity>) => {
   };
 
   return (
-    <components.Option {...props}>
+    <components.Option
+      {...props}
+      className={props.isSelected ? "!text-[#262626]" : ""}
+    >
       {highlightMatch(`${cityEn}, ${countyEn}`)}
     </components.Option>
   );
@@ -61,7 +64,13 @@ export const DropdownIndicator = (
           }}
           className="mr-[4px]"
         >
-          <components.ClearIndicator {...props} />
+          <components.ClearIndicator {...props}>
+            <Icon
+              id="close"
+              size={18}
+              className="fill-none stroke-[#262626] transition duration-300 hover:stroke-[#f6b83d]"
+            />
+          </components.ClearIndicator>
         </button>
       )}
       <Icon id="search" size={18} className="fill-none stroke-[#262626]" />

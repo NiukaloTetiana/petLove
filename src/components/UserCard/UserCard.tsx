@@ -37,7 +37,7 @@ export const UserCard = () => {
           </Modal>
         )}
       </div>
-      <div className="mx-auto mb-[8px] flex size-[94px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#fff4df] md:size-[110px]">
+      <div className="mx-auto mb-[8px] flex size-[94px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#fff4df] md:mt-[-38px] md:size-[110px]">
         {!user.avatar ? (
           <Icon
             id="user"

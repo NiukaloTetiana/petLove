@@ -16,7 +16,7 @@ import {
   CustomOption,
   IndicatorSeparator,
   DropdownIndicator,
-} from "../../helpers";
+} from "./selectCustom";
 import { ICity } from "../../types";
 
 interface INoticesFilters {
@@ -29,6 +29,7 @@ interface INoticesFilters {
   category: string;
   type: string;
   gender: string;
+  location: ICity | null;
 }
 
 export const NoticesFilters = ({
@@ -41,6 +42,7 @@ export const NoticesFilters = ({
   category,
   type,
   gender,
+  location,
 }: INoticesFilters) => {
   const caterogies = useAppSelector(selectCategories);
   const sex = useAppSelector(selectSex);
@@ -105,18 +107,21 @@ export const NoticesFilters = ({
         />
 
         <Select
-          className="basic-single"
-          classNamePrefix="select"
-          placeholder="Location"
-          options={locations}
-          getOptionLabel={(option) => option.cityEn + ", " + option.countyEn}
-          isMulti={false}
-          onChange={setLocation}
           components={{
             Option: CustomOption,
             IndicatorSeparator,
             DropdownIndicator,
           }}
+          options={locations}
+          value={location}
+          onChange={setLocation}
+          getOptionLabel={(option) => `${option.cityEn}, ${option.countyEn}`}
+          getOptionValue={(option) => option._id}
+          placeholder="Location"
+          hideSelectedOptions={false}
+          isMulti={false}
+          className="basic-single"
+          classNamePrefix="select"
         />
       </div>
 

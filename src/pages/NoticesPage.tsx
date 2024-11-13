@@ -122,6 +122,7 @@ const NoticesPage = () => {
           category={category}
           type={type}
           gender={gender}
+          location={location}
         />
         {!notices.length ? (
           <div className="flex h-[calc(100vh-400px)] items-center justify-center">
