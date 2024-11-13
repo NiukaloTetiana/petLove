@@ -13,7 +13,7 @@ export const PublicRoute = ({ children }: IPublicRouteProps) => {
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
 
   if (isLoggedIn) {
-    return <Navigate to={location.state?.from || "/profile"} />;
+    return <Navigate to={location.state?.from || "/profile/favorites"} />;
   }
   return children;
 };
