@@ -69,8 +69,9 @@ export const DropdownSelect = ({
       />
 
       <Icon
+        onClick={handleListClick}
         id="chevron-down"
-        className={`absolute right-[12px] top-[12px] fill-none stroke-[#262626] transition duration-300 sm-max:size-4 md:right-[16px] md:top-[16px] md:size-5 ${
+        className={`absolute right-[12px] top-[12px] cursor-pointer fill-none stroke-[#262626] transition duration-300 sm-max:size-4 md:right-[16px] md:top-[16px] md:size-5 ${
           isListVisible ? "rotate-180" : ""
         }`}
         size={18}

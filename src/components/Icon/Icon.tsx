@@ -1,14 +1,13 @@
 import Icons from "../../assets/sprite.svg";
 
-interface IIconProps {
+interface IIconProps extends React.SVGProps<SVGSVGElement> {
   id: string;
   size?: number;
-  className?: string;
 }
 
-export const Icon: React.FC<IIconProps> = ({ id, size, className }) => {
+export const Icon: React.FC<IIconProps> = ({ id, size, ...rest }) => {
   return (
-    <svg width={size} height={size} className={className}>
+    <svg width={size} height={size} {...rest}>
       <use href={`${Icons}#icon-${id}`} />
     </svg>
   );
